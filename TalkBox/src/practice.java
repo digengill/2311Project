@@ -1,6 +1,6 @@
 
 public class practice {
 public static void main(String[] args) {
-	System.out.println("New update- Satinder");
+	System.out.println("New update- Satinderdfsdf");
 }
 }
