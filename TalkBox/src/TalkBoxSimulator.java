@@ -40,6 +40,7 @@ public void actionPerformed(ActionEvent e) {
 	public static void main(String[] args) {
 		TalkBoxSimulator test = new TalkBoxSimulator();
 		test.setVisible(true);
+		test.pack();
 
 	}
 
