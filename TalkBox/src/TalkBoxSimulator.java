@@ -1,9 +1,12 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.*;
+import java.applet.*;
 public class TalkBoxSimulator extends JFrame implements ActionListener {
 JPanel panel1;
 JButton b1;
+File audioclip = new File("");
 
 /**
  * Initializing the app when launched.
