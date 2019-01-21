@@ -5,14 +5,12 @@ public class FunWithGit {
 		// TODO Auto-generated method stub
 
 
-<<<<<<< HEAD
+
 System.out.println("Fun with git-usama1");
 System.out.println("branch");
-=======
-		System.out.println("HELLO");
-		
 
->>>>>>> refs/heads/exampleBranch
+		System.out.println("HELLO");
+
 	}
 
 }
