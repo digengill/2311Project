@@ -11,13 +11,13 @@ class TalkBoxSimulatorTest {
 
 	@Test
 	void testTalkBoxSimulator() {
-		assertNotNull(new JButton);
 		
 	}
 
 	@Test
-	void testActionPerformed() {
-		fail("Not yet implemented");
+	void isButtonStringEmpty()
+	{
+		assertFalse()
+		
 	}
-
 }
