@@ -11,7 +11,8 @@ class TalkBoxSimulatorTest {
 
 	@Test
 	void testTalkBoxSimulator() {
-		fail("Not yet implemented");
+		assertNotNull(new JButton);
+		
 	}
 
 	@Test
