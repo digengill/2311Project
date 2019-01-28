@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="libraries/freetts.jar"/>
 	<classpathentry kind="lib" path="libraries/jsapi.jar"/>
 	<classpathentry kind="lib" path="libraries/mbrola.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

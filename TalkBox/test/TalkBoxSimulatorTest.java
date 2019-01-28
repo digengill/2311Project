@@ -15,11 +15,10 @@ class TalkBoxSimulatorTest {
 	}
 
 	@Test
-	void testActionPerformed() {
+	 testActionPerformed() {
 		fail("Not yet implemented");
 	}
-	@Test
-	test
+
 
 
 }
