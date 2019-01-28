@@ -6,15 +6,17 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Downloads/freetts-1.2.2-bin/freetts-1.2/lib/cmu_time_awb.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Downloads/freetts-1.2.2-bin/freetts-1.2/lib/cmu_us_kal.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Downloads/freetts-1.2.2-bin/freetts-1.2/lib/cmudict04.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Downloads/freetts-1.2.2-bin/freetts-1.2/lib/cmulex.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Downloads/freetts-1.2.2-bin/freetts-1.2/lib/cmutimelex.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Downloads/freetts-1.2.2-bin/freetts-1.2/lib/en_us.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Downloads/freetts-1.2.2-bin/freetts-1.2/lib/freetts.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Downloads/freetts-1.2.2-bin/freetts-1.2/lib/freetts-jsapi10.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Downloads/freetts-1.2.2-bin/freetts-1.2/lib/jsapi.jar"/>
-	<classpathentry kind="lib" path="C:/Users/HP/Downloads/freetts-1.2.2-bin/freetts-1.2/lib/mbrola.jar"/>
+	<classpathentry kind="lib" path="libraries/cmu_time_awb.jar"/>
+	<classpathentry kind="lib" path="libraries/cmu_us_kal.jar"/>
+	<classpathentry kind="lib" path="libraries/cmudict04.jar"/>
+	<classpathentry kind="lib" path="libraries/cmulex.jar"/>
+	<classpathentry kind="lib" path="libraries/cmutimelex.jar"/>
+	<classpathentry kind="lib" path="libraries/en_us.jar"/>
+	<classpathentry kind="lib" path="libraries/freetts-jsapi10.jar"/>
+	<classpathentry kind="lib" path="libraries/freetts.jar"/>
+	<classpathentry kind="lib" path="libraries/jsapi.exe"/>
+	<classpathentry kind="lib" path="libraries/jsapi.jar"/>
+	<classpathentry kind="lib" path="libraries/jsapi.sh"/>
+	<classpathentry kind="lib" path="libraries/mbrola.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
