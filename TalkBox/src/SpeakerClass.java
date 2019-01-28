@@ -1,9 +1,9 @@
 // Speaker Shit  
 // text to speech 
 import java.util.Locale; 
-import javax.speech.Central; 
-import javax.speech.synthesis.Synthesizer; 
-import javax.speech.synthesis.SynthesizerModeDesc; 
+//import javax.speech.Central; 
+//import javax.speech.synthesis.Synthesizer; 
+//import javax.speech.synthesis.SynthesizerModeDesc; 
 //Scanner from file
 import java.io.*;
 import java.util.*;
@@ -22,18 +22,18 @@ public class SpeakerClass {
                 "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");  
                   
             // Register Engine 
-            Central.registerEngineCentral 
-                ("com.sun.speech.freetts.jsapi.FreeTTSEngineCentral");  
+          //  Central.registerEngineCentral 
+              //  ("com.sun.speech.freetts.jsapi.FreeTTSEngineCentral");  
   
             // Create a Synthesizer 
-            Synthesizer synthesizer =                                          
-                Central.createSynthesizer(new SynthesizerModeDesc(Locale.US));      
+        //    Synthesizer synthesizer =                                          
+             //   Central.createSynthesizer(new SynthesizerModeDesc(Locale.US));      
       
             // Allocate synthesizer 
-            synthesizer.allocate();  
+          //  synthesizer.allocate();  
               
             // Resume Synthesizer 
-            synthesizer.resume(); 
+           // synthesizer.resume(); 
             
 	        try 
 	        {     
@@ -41,8 +41,8 @@ public class SpeakerClass {
 	            while(scanner.hasNextLine()) {
 	            	String talk = scanner.nextLine();
 	            	 // speaks the given text until queue is empty. 
-	            	synthesizer.speakPlainText(talk, null);          
-	            	synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY); 
+	            	//synthesizer.speakPlainText(talk, null);          
+	            	//synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY); 
 	              
 	            	// Deallocate the Synthesizer. 
 	            	//synthesizer.deallocate(); 

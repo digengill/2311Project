@@ -25,7 +25,7 @@ public TalkBoxSimulator ()
     setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     
     panel1 = new JPanel();
-    panel1.setBounds(150, 100, 300, 300);
+    panel1.setBounds(150, 100, 500, 500);
     b1 = new JButton("Happy");
     b2 = new JButton("Sad");
     b3 = new JButton("Angry");
@@ -40,7 +40,7 @@ public TalkBoxSimulator ()
     b6.addActionListener(this);
     
     panel1.setBackground(Color.gray);
-    
+    panel1.setLayout(new FlowLayout());
     panel1.add(b1);
     panel1.add(b2);
     panel1.add(b3);
@@ -48,7 +48,7 @@ public TalkBoxSimulator ()
     panel1.add(b5);
     panel1.add(b6);
     
-    add(panel1);
+    setContentPane(panel1);
 
 }
 public void actionPerformed(ActionEvent e) {
@@ -119,7 +119,7 @@ public void actionPerformed(ActionEvent e) {
 	public static void main(String[] args) {
 		TalkBoxSimulator test = new TalkBoxSimulator();
 		test.setVisible(true);
-		//test.pack();
+		test.pack();
 
 	}
 

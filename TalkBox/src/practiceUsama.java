@@ -7,12 +7,12 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
+//import sun.audio.AudioPlayer;
+//import sun.audio.AudioStream;
 import java.io.*;
 
-import sun.applet.Main;
-import sun.audio.*;
+//import sun.applet.Main;
+//import sun.audio.*;
 
 public class practiceUsama {
 	
@@ -24,9 +24,9 @@ public class practiceUsama {
 		    public void run() {
 		      try {
 		        Clip clip = AudioSystem.getClip();
-		        AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-		          Main.class.getResourceAsStream("/path/to/sounds/" + url));
-		        clip.open(inputStream);
+		      //  AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+		         // Main.class.getResourceAsStream("/path/to/sounds/" + url));
+		        //clip.open(inputStream);
 		        clip.start(); 
 		      } catch (Exception e) {
 		        System.err.println(e.getMessage());
@@ -47,7 +47,7 @@ public class practiceUsama {
 	    try {
 		    InputStream in = new FileInputStream("musicA1.m4a");
 		    // create an audiostream from the inputstream
-		    AudioStream audioStream = new AudioStream(in);
+		  //  AudioStream audioStream = new AudioStream(in);
 
 		    // play the audio clip with the audioplayer class
 		    //AudioPlayer.player.start(audioStream);
