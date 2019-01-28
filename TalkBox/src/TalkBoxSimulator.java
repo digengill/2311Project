@@ -93,8 +93,31 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
 
 }
 
+//Methods for Simulator
 
-
+public boolean isButtonStringEmpty(int buttonNumber ) {
+	if(buttonNumber==1) {
+		return !(b1.getText().equals(""));
+	}
+	else if(buttonNumber==2) {
+		return !(b2.getText().equals(""));
+	}
+	else if(buttonNumber==3) {
+		return !(b3.getText().equals(""));
+	}
+	else if(buttonNumber==4) {
+		return !(b4.getText().equals(""));
+	}
+	else if(buttonNumber==5) {
+		return !(b5.getText().equals(""));
+	}else if(buttonNumber==6) {
+		return !(b6.getText().equals(""));
+	}
+	else {
+		System.out.println("Error: Invalid Argument");
+		return false;
+	}
+}
 
 
 
