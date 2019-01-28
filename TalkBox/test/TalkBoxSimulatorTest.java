@@ -11,13 +11,14 @@ class TalkBoxSimulatorTest {
 
 	@Test
 	void testTalkBoxSimulator() {
+	fail("Not yet implemented");
 		
 	}
 
 	@Test
-	void isButtonStringEmpty()
-	{
-		assertFalse()
-		
+	void testActionPerformed() {
+		fail("Not yet implemented");
 	}
+	@Test
+	test
 }
