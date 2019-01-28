@@ -14,9 +14,7 @@
 	<classpathentry kind="lib" path="libraries/en_us.jar"/>
 	<classpathentry kind="lib" path="libraries/freetts-jsapi10.jar"/>
 	<classpathentry kind="lib" path="libraries/freetts.jar"/>
-	<classpathentry kind="lib" path="libraries/jsapi.exe"/>
 	<classpathentry kind="lib" path="libraries/jsapi.jar"/>
-	<classpathentry kind="lib" path="libraries/jsapi.sh"/>
 	<classpathentry kind="lib" path="libraries/mbrola.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
