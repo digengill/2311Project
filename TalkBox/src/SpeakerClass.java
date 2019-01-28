@@ -22,7 +22,7 @@ public class SpeakerClass {
               "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");  
                   
             // Register Engine 
- Central.registerEngineCentral  ("com.sun.speech.freetts.jsapi.FreeTTSEngineCentral");  
+ Central.registerEngineCentral("com.sun.speech.freetts.jsapi.FreeTTSEngineCentral");  
   
              //Create a Synthesizer 
              Synthesizer synthesizer =                                          

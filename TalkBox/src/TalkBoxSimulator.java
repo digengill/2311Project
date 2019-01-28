@@ -196,6 +196,7 @@ public void actionPerformed(ActionEvent e) {
 		TalkBoxSimulator test = new TalkBoxSimulator();
 		test.setVisible(true);
 		test.pack();
+		
 
 	}
 
