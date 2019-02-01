@@ -26,8 +26,8 @@ class TalkBoxSimulatorTest {
 	@Test
 	void isButtonStringEmpty()
 	{
-		
-		assertTrue(true==tbb.isButtonStringEmpty(1));
+		fail("Not implemented yet");
+	//	assertTrue(true == tbb.isButtonStringEmpty(7));
 		
 	}
 }
