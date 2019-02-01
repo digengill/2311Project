@@ -12,7 +12,7 @@ JButton b4;
 JButton b5;
 JButton b6;
 JButton b7;
-//File audioclip = new File("");
+
 
 /**
  * Default constructor. Initializes the buttons based on preset choices
