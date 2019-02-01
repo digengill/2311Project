@@ -10,6 +10,8 @@ JPanel mainPanel;
 JPanel topPanel;
 JPanel panel1Center;
 JPanel panel1Top;
+JPanel panel2;
+
 JButton b1;
 JButton b2;
 JButton b3;
@@ -31,6 +33,7 @@ public TalkBoxSimulator ()
     // JPanel initialization
     mainPanel = new JPanel();
     panel1 = new JPanel();
+    panel2 = new JPanel();
     topPanel = new JPanel();
     panel1Center = new JPanel();
     panel1Top = new JPanel();
@@ -62,6 +65,7 @@ public TalkBoxSimulator ()
     
    // Panel Color
     panel1.setBackground(Color.gray);
+    panel2.setBackground(Color.CYAN);
     topPanel.setBackground(Color.ORANGE);
     panel1Center.setBackground(Color.black);
     
@@ -75,6 +79,7 @@ public TalkBoxSimulator ()
     panel1.add(panel1Center, BorderLayout.CENTER);
     panel1.add(panel1Top, BorderLayout.NORTH);
     
+    mainPanel.add(panel2,BorderLayout.CENTER);
     mainPanel.add(panel1, BorderLayout.WEST);
     mainPanel.add(topPanel,BorderLayout.NORTH);
     
