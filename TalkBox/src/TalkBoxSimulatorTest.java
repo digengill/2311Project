@@ -27,7 +27,7 @@ class TalkBoxSimulatorTest {
 	void isButtonStringEmpty()
 	{
 		
-		assertTrue(1,tbb.isButtonStringEmpty(1));
+		assertTrue(true==tbb.isButtonStringEmpty(1));
 		
 	}
 }
