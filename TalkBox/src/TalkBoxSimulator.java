@@ -9,13 +9,14 @@ import java.applet.*;
 public class TalkBoxSimulator extends JFrame implements ActionListener {
 
 int maxX, maxY;
-Dimension buttonSpacing;	
+Dimension buttonSpacing;
+Dimension labelSpacing;
 JPanel centerPanel;
 JPanel centerPaneltop;
 JPanel centerPanelbottom;
 JPanel mainPanel;
 JPanel westPanel;
-
+JPanel northPanel;
 JPanel eastPanel;
 JPanel panel1Top;
 JPanel panel2;
@@ -70,6 +71,9 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     centerPanelbottom = new JPanel();
     westPanel = new JPanel();
     eastPanel = new JPanel();
+    northPanel = new JPanel();
+    
+    northPanel.setPreferredSize(new Dimension(100,200));
     
     b1 = new JButton(button1);
     b2 = new JButton(button2);
@@ -87,7 +91,7 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     l6 = new JLabel(button6);
 
     buttonSpacing = new Dimension(60,60);
-    
+    labelSpacing = new Dimension(120,100);
     
     b1.addActionListener(this);
     b2.addActionListener(this);
@@ -109,18 +113,24 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
     centerPanelbottom.add(b6);
     
+    
     centerPaneltop.add(l1);
+    centerPaneltop.add(Box.createRigidArea(labelSpacing));
     centerPaneltop.add(l2);
+    centerPaneltop.add(Box.createRigidArea(labelSpacing));
     centerPaneltop.add(l3);
+    centerPaneltop.add(Box.createRigidArea(labelSpacing));
     centerPaneltop.add(l4);
+    centerPaneltop.add(Box.createRigidArea(labelSpacing));
     centerPaneltop.add(l5);
+    centerPaneltop.add(Box.createRigidArea(labelSpacing));
     centerPaneltop.add(l6);
    
 
 
     
-    mainPanel.add(l1,BorderLayout.WEST);
 
+    northPanel.setBackground(Color.BLACK);
     centerPanelbottom.setBackground(Color.CYAN);
     
     mainPanel.setLayout(new BorderLayout());
@@ -130,6 +140,8 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
 
     centerPanel.add(centerPaneltop);
     centerPanel.add(centerPanelbottom);
+    
+    mainPanel.add(northPanel, BorderLayout.NORTH);
     mainPanel.add(centerPanel,BorderLayout.CENTER);
     
     
@@ -248,7 +260,7 @@ public void actionPerformed(ActionEvent e) {
 	public static void main(String[] args) {
 		TalkBoxSimulator test = new TalkBoxSimulator();
 		test.setVisible(true);
-		
+		test.pack();
 		
 
 	}
