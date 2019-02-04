@@ -44,7 +44,7 @@ public class SpeakerClass {
 	            	synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY); 
 	              
 	            	// Deallocate the Synthesizer. 
-	            	synthesizer.deallocate(); 
+	            	//synthesizer.deallocate(); 
 	            }
 	                                            
 	        }  
