@@ -1,14 +1,22 @@
 import java.awt.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.applet.*;
 public class TalkBoxSimulator extends JFrame implements ActionListener {
-	
-JPanel panel1;
+
+int maxX, maxY;
+Dimension buttonSpacing;	
+JPanel centerPanel;
+JPanel centerPaneltop;
+JPanel centerPanelbottom;
 JPanel mainPanel;
-JPanel topPanel;
-JPanel panel1Center;
+JPanel westPanel;
+
+JPanel eastPanel;
 JPanel panel1Top;
 JPanel panel2;
 
@@ -20,32 +28,67 @@ JButton b5;
 JButton b6;
 JButton b7;
 
+JLabel l1;
+JLabel l2;
+JLabel l3;
+JLabel l4;
+JLabel l5;
+JLabel l6;
+
+BufferedImage p1;
+BufferedImage p2;
+BufferedImage p3;
+BufferedImage p4;
+BufferedImage p5;
+BufferedImage p6;
+
+JButton north, west, east, south, center;
+
 
 /**
  * Default constructor. Initializes the buttons based on preset choices
   */ 
 public TalkBoxSimulator ()
 {
+	this("Happy","Sad","Angry","Hungry","Washroom","Done");
+
+}
+
+public TalkBoxSimulator (String button1,String button2,String button3,String button4, String button5, String button6)
+{
 	super("TalkBox");
-	setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+	this.setMinimumSize(new Dimension(500,400));
     this.setExtendedState(MAXIMIZED_BOTH);
-    
+
+	
+	setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+	
     // JPanel initialization
     mainPanel = new JPanel();
-    panel1 = new JPanel();
-    panel2 = new JPanel();
-    topPanel = new JPanel();
-    panel1Center = new JPanel();
-    panel1Top = new JPanel();
-    panel1Center = new JPanel();
+    centerPanel = new JPanel();
+    centerPaneltop = new JPanel();
+    centerPanelbottom = new JPanel();
+    westPanel = new JPanel();
+    eastPanel = new JPanel();
     
-    b1 = new JButton("Happy");
-    b2 = new JButton("Sad");
-    b3 = new JButton("Angry");
-    b4 = new JButton("Hungry");
-    b5 = new JButton("Washroom");
-    b6 = new JButton("Done");
+    b1 = new JButton(button1);
+    b2 = new JButton(button2);
+    b3 = new JButton(button3);
+    b4 = new JButton(button4);
+    b5 = new JButton(button5);
+    b6 = new JButton(button6);
+    
 
+    l1 = new JLabel(button1);
+    l2 = new JLabel(button2);
+    l3 = new JLabel(button3);
+    l4 = new JLabel(button4);
+    l5 = new JLabel(button5);
+    l6 = new JLabel(button6);
+
+    buttonSpacing = new Dimension(60,60);
+    
+    
     b1.addActionListener(this);
     b2.addActionListener(this);
     b3.addActionListener(this);
@@ -54,78 +97,54 @@ public TalkBoxSimulator ()
     b6.addActionListener(this);
     
     //Panel Layout
-    panel1.setLayout(new BorderLayout());
-    mainPanel.setLayout( new BorderLayout());
+    centerPanelbottom.add(b1);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(b2);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(b3);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(b4);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(b5);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(b6);
     
-   // Panel Size
-    panel1Center.setSize(200, 200);
-    panel1Top.setPreferredSize(new Dimension(50,50));
-    topPanel.setPreferredSize(new Dimension(50,50));
+    centerPaneltop.add(l1);
+    centerPaneltop.add(l2);
+    centerPaneltop.add(l3);
+    centerPaneltop.add(l4);
+    centerPaneltop.add(l5);
+    centerPaneltop.add(l6);
+   
+
+
     
+    mainPanel.add(l1,BorderLayout.WEST);
+
+    centerPanelbottom.setBackground(Color.CYAN);
     
-   // Panel Color
-    panel1.setBackground(Color.gray);
-    panel2.setBackground(Color.CYAN);
-    topPanel.setBackground(Color.ORANGE);
-    panel1Center.setBackground(Color.black);
+    mainPanel.setLayout(new BorderLayout());
+    centerPanel.setLayout(new BoxLayout(centerPanel,BoxLayout.Y_AXIS));
+    centerPaneltop.setLayout(new BoxLayout(centerPaneltop,BoxLayout.X_AXIS));
+    centerPanelbottom.setLayout(new BoxLayout(centerPanelbottom,BoxLayout.X_AXIS));
+
+    centerPanel.add(centerPaneltop);
+    centerPanel.add(centerPanelbottom);
+    mainPanel.add(centerPanel,BorderLayout.CENTER);
     
-    
-    
-    //Panel ADD
-    
-    panel1Center.add(b1);
-    panel1Center.add(b2);
-    
-    panel1.add(panel1Center, BorderLayout.CENTER);
-    panel1.add(panel1Top, BorderLayout.NORTH);
-    
-    mainPanel.add(panel2,BorderLayout.CENTER);
-    mainPanel.add(panel1, BorderLayout.WEST);
-    mainPanel.add(topPanel,BorderLayout.NORTH);
     
     setContentPane(mainPanel);
 
-}
-
-public TalkBoxSimulator (String button1,String button2,String button3,String button4, String button5, String button6)
-{
 	
-	super("TalkBox");
-	setSize(720, 600);
-	setLayout(null);
-    setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-    
-    panel1 = new JPanel();
-    panel1.setBounds(150, 100, 500, 500);
-   
-    //initialize buttons based on Strings
-    b1 = new JButton(button1);
-    b2 = new JButton(button2);
-    b3 = new JButton(button3);
-    b4 = new JButton(button4);
-    b5 = new JButton(button5);
-    b6 = new JButton(button6);
-    
-    
-    b1.addActionListener(this);
-    b2.addActionListener(this);
-    b3.addActionListener(this);
-    b4.addActionListener(this);
-    b5.addActionListener(this);
-    b6.addActionListener(this);
-    
-    panel1.setBackground(Color.gray);
-    panel1.setLayout(new FlowLayout());
-    panel1.add(b1);
-    panel1.add(b2);
-    panel1.add(b3);
-    panel1.add(b4);
-    panel1.add(b5);
-    panel1.add(b6);
-    
-    setContentPane(panel1);
-
 }
+
+
+
+
+
+
+
+
 
 //Methods for Simulator
 
@@ -228,7 +247,6 @@ public void actionPerformed(ActionEvent e) {
 	
 	public static void main(String[] args) {
 		TalkBoxSimulator test = new TalkBoxSimulator();
-		test.pack();
 		test.setVisible(true);
 		
 		
