@@ -60,7 +60,7 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
 	super("TalkBox");
 	this.setMinimumSize(new Dimension(500,400));
     this.setExtendedState(MAXIMIZED_BOTH);
-
+    
 	
 	setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	
@@ -83,15 +83,27 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     b6 = new JButton(button6);
     
 
-    l1 = new JLabel(button1);
-    l2 = new JLabel(button2);
-    l3 = new JLabel(button3);
-    l4 = new JLabel(button4);
-    l5 = new JLabel(button5);
-    l6 = new JLabel(button6);
+    l1 = new JLabel();
+    l2 = new JLabel();
+    l3 = new JLabel();
+    l4 = new JLabel();
+    l5 = new JLabel();
+    l6 = new JLabel();
 
-    buttonSpacing = new Dimension(60,60);
-    labelSpacing = new Dimension(120,100);
+    ImageIcon pic1 = new ImageIcon(new ImageIcon("happy1.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    l1.setIcon(pic1);
+    ImageIcon pic2 = new ImageIcon(new ImageIcon("happy1.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    l2.setIcon(pic2);
+    ImageIcon pic3 = new ImageIcon(new ImageIcon("happy1.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    l3.setIcon(pic3);
+    ImageIcon pic4 = new ImageIcon(new ImageIcon("happy1.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    l4.setIcon(pic4);
+    ImageIcon pic5 = new ImageIcon(new ImageIcon("happy1.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+    l5.setIcon(pic5);
+    
+    
+    buttonSpacing = new Dimension(100,60);
+    labelSpacing = new Dimension(100,100);
     
     b1.addActionListener(this);
     b2.addActionListener(this);
@@ -113,7 +125,7 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
     centerPanelbottom.add(b6);
     
-    
+    centerPaneltop.add(Box.createRigidArea(labelSpacing));
     centerPaneltop.add(l1);
     centerPaneltop.add(Box.createRigidArea(labelSpacing));
     centerPaneltop.add(l2);
@@ -132,6 +144,7 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
 
     northPanel.setBackground(Color.BLACK);
     centerPanelbottom.setBackground(Color.CYAN);
+    
     
     mainPanel.setLayout(new BorderLayout());
     centerPanel.setLayout(new BoxLayout(centerPanel,BoxLayout.Y_AXIS));
