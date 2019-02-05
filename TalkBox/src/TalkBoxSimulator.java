@@ -8,40 +8,27 @@ import java.io.*;
 import java.applet.*;
 public class TalkBoxSimulator extends JFrame implements ActionListener {
 
-int maxX, maxY;
 Dimension buttonSpacing;
 Dimension labelSpacing;
+Dimension buttonSize;
 JPanel centerPanel;
 JPanel centerPaneltop;
 JPanel centerPanelbottom;
 JPanel mainPanel;
 JPanel westPanel;
 JPanel northPanel;
+JPanel southPanel;
 JPanel eastPanel;
 JPanel panel1Top;
 JPanel panel2;
 
-JButton b1;
-JButton b2;
-JButton b3;
-JButton b4;
-JButton b5;
-JButton b6;
-JButton b7;
+JButton b1, b2, b3, b4, b5, b6;
 
-JLabel l1;
-JLabel l2;
-JLabel l3;
-JLabel l4;
-JLabel l5;
-JLabel l6;
+JLabel l1, l2, l3, l4, l5, l6;
 
-BufferedImage p1;
-BufferedImage p2;
-BufferedImage p3;
-BufferedImage p4;
-BufferedImage p5;
-BufferedImage p6;
+ImageIcon pic1, pic2, pic3, pic4, pic5, pic6;
+
+
 
 JButton north, west, east, south, center;
 
@@ -59,7 +46,6 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
 {
 	super("TalkBox");
 	this.setMinimumSize(new Dimension(500,400));
-    this.setExtendedState(MAXIMIZED_BOTH);
     
 	
 	setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
@@ -72,9 +58,10 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     westPanel = new JPanel();
     eastPanel = new JPanel();
     northPanel = new JPanel();
-    
+    southPanel = new JPanel();
     northPanel.setPreferredSize(new Dimension(100,200));
-    
+    southPanel.setPreferredSize(new Dimension(100,200));
+
     b1 = new JButton(button1);
     b2 = new JButton(button2);
     b3 = new JButton(button3);
@@ -89,21 +76,32 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     l4 = new JLabel();
     l5 = new JLabel();
     l6 = new JLabel();
+    
+    pic1 = new ImageIcon();
+    pic2 = new ImageIcon();
+    pic3 = new ImageIcon();
+    pic4 = new ImageIcon();
+    pic5 = new ImageIcon();
+    pic6 = new ImageIcon();
 
-    ImageIcon pic1 = new ImageIcon(new ImageIcon("happy1.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-    l1.setIcon(pic1);
-    ImageIcon pic2 = new ImageIcon(new ImageIcon("happy1.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-    l2.setIcon(pic2);
-    ImageIcon pic3 = new ImageIcon(new ImageIcon("happy1.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-    l3.setIcon(pic3);
-    ImageIcon pic4 = new ImageIcon(new ImageIcon("happy1.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-    l4.setIcon(pic4);
-    ImageIcon pic5 = new ImageIcon(new ImageIcon("happy1.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-    l5.setIcon(pic5);
     
     
-    buttonSpacing = new Dimension(100,60);
+    
+    setImage(l1,pic1,"happy1.png");
+    setImage(l2,pic2,"happy1.png");
+    setImage(l3,pic3,"happy1.png");
+    setImage(l4,pic4,"happy1.png");
+    setImage(l5,pic5,"happy1.png");
+    setImage(l6,pic6,"happy1.png");
+
+    
+
+    buttonSize = new Dimension(50,130);
+    buttonSpacing = new Dimension(50,60);
     labelSpacing = new Dimension(100,100);
+    
+    
+
     
     b1.addActionListener(this);
     b2.addActionListener(this);
@@ -125,7 +123,6 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
     centerPanelbottom.add(b6);
     
-    centerPaneltop.add(Box.createRigidArea(labelSpacing));
     centerPaneltop.add(l1);
     centerPaneltop.add(Box.createRigidArea(labelSpacing));
     centerPaneltop.add(l2);
@@ -139,24 +136,25 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     centerPaneltop.add(l6);
    
 
-
     
-
-    northPanel.setBackground(Color.BLACK);
+    
+    centerPaneltop.setBackground(Color.GRAY);
+    northPanel.setBackground(Color.ORANGE);
+    southPanel.setBackground(Color.ORANGE);
     centerPanelbottom.setBackground(Color.CYAN);
     
     
     mainPanel.setLayout(new BorderLayout());
-    centerPanel.setLayout(new BoxLayout(centerPanel,BoxLayout.Y_AXIS));
-    centerPaneltop.setLayout(new BoxLayout(centerPaneltop,BoxLayout.X_AXIS));
-    centerPanelbottom.setLayout(new BoxLayout(centerPanelbottom,BoxLayout.X_AXIS));
+    centerPanel.setLayout(new GridLayout(2,1));
+    centerPaneltop.setLayout(new GridLayout(1,11));
+    centerPanelbottom.setLayout(new GridLayout(1,11));
 
     centerPanel.add(centerPaneltop);
     centerPanel.add(centerPanelbottom);
     
     mainPanel.add(northPanel, BorderLayout.NORTH);
     mainPanel.add(centerPanel,BorderLayout.CENTER);
-    
+    mainPanel.add(southPanel, BorderLayout.SOUTH);
     
     setContentPane(mainPanel);
 
@@ -164,7 +162,14 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
 }
 
 
+public void setImage(JLabel l, ImageIcon icon, String imageName)
+{
+	icon.setImage(new ImageIcon(imageName).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+	l.setIcon(icon);
 
+
+
+}
 
 
 
