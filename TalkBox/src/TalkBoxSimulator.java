@@ -278,6 +278,11 @@ public void actionPerformed(ActionEvent e) {
 			e1.printStackTrace();
 		}
 	}
+	if (source == configureButton)
+	{
+		TalkBoxConfigurationApp config = new TalkBoxConfigurationApp();
+		
+	}
 }
 	
 	
