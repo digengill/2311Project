@@ -22,7 +22,7 @@ JPanel eastPanel;
 JPanel panel1Top;
 JPanel panel2;
 
-JButton b1, b2, b3, b4, b5, b6;
+JButton b1, b2, b3, b4, b5, b6, configureButton;
 
 JLabel l1, l2, l3, l4, l5, l6;
 
@@ -60,7 +60,7 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     northPanel = new JPanel();
     southPanel = new JPanel();
     northPanel.setPreferredSize(new Dimension(100,200));
-    southPanel.setPreferredSize(new Dimension(100,200));
+   // southPanel.setPreferredSize(new Dimension(100,200));
 
     b1 = new JButton(button1);
     b2 = new JButton(button2);
@@ -68,7 +68,7 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     b4 = new JButton(button4);
     b5 = new JButton(button5);
     b6 = new JButton(button6);
-    
+    configureButton = new JButton("Configure");
 
     l1 = new JLabel();
     l2 = new JLabel();
@@ -88,10 +88,10 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     
     
     setImage(l1,pic1,"happy1.png");
-    setImage(l2,pic2,"happy1.png");
-    setImage(l3,pic3,"happy1.png");
-    setImage(l4,pic4,"happy1.png");
-    setImage(l5,pic5,"happy1.png");
+    setImage(l2,pic2,"sad.png");
+    setImage(l3,pic3,"angry.png");
+    setImage(l4,pic4,"hungry.png");
+    setImage(l5,pic5,"washroom.png");
     setImage(l6,pic6,"happy1.png");
 
     
@@ -135,7 +135,12 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     centerPaneltop.add(Box.createRigidArea(labelSpacing));
     centerPaneltop.add(l6);
    
-
+    southPanel.add(Box.createRigidArea(new Dimension(100,10)));
+    southPanel.add(Box.createRigidArea(new Dimension(100,10)));
+    southPanel.add(Box.createRigidArea(new Dimension(100,10)));
+    southPanel.add(Box.createRigidArea(new Dimension(100,10)));
+    southPanel.add(Box.createRigidArea(new Dimension(100,10)));
+    southPanel.add(configureButton);
     
     
     centerPaneltop.setBackground(Color.GRAY);
@@ -148,7 +153,9 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     centerPanel.setLayout(new GridLayout(2,1));
     centerPaneltop.setLayout(new GridLayout(1,11));
     centerPanelbottom.setLayout(new GridLayout(1,11));
-
+    southPanel.setLayout(new GridLayout(2,3));
+    
+    
     centerPanel.add(centerPaneltop);
     centerPanel.add(centerPanelbottom);
     
