@@ -6,6 +6,12 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.applet.*;
+
+import javafx.application.Application;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.embed.swing.JFXPanel;
+
 public class TalkBoxSimulator extends JFrame implements ActionListener {
 
 Dimension buttonSpacing;
@@ -21,18 +27,13 @@ JPanel southPanel;
 JPanel eastPanel;
 JPanel panel1Top;
 JPanel panel2;
-
 JButton b1, b2, b3, b4, b5, b6, configureButton;
 
 JLabel l1, l2, l3, l4, l5, l6;
 
 ImageIcon pic1, pic2, pic3, pic4, pic5, pic6;
-
-
-
 JButton north, west, east, south, center;
-
-
+AudioClip play1;
 /**
  * Default constructor. Initializes the buttons based on preset choices
   */ 
@@ -47,6 +48,8 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
 	super("TalkBox");
 	this.setMinimumSize(new Dimension(500,400));
     
+	final JFXPanel fxPanel = new JFXPanel();
+
 	
 	setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	
@@ -83,10 +86,14 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     pic4 = new ImageIcon();
     pic5 = new ImageIcon();
     pic6 = new ImageIcon();
+try {
+    play1 = Applet.newAudioClip(new File("wavtest.wav").toURI().toURL());
 
-    
-    
-    
+}
+ catch(Exception e)
+{
+	 
+	 }
     setImage(l1,pic1,"happy1.png");
     setImage(l2,pic2,"sad.png");
     setImage(l3,pic3,"angry.png");
@@ -182,7 +189,6 @@ public void setImage(JLabel l, ImageIcon icon, String imageName)
 
 
 
-
 //Methods for Simulator
 
 public boolean isButtonStringEmpty(int buttonNumber ) {
@@ -222,7 +228,8 @@ public void actionPerformed(ActionEvent e) {
 	if (source == b1)
 	{
 		try {
-			SpeakerClass talk = new SpeakerClass("btn1.txt");
+			//SpeakerClass talk = new SpeakerClass("btn1.txt");
+			play1.play();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
