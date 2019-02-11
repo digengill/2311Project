@@ -116,6 +116,7 @@ try {
     b4.addActionListener(this);
     b5.addActionListener(this);
     b6.addActionListener(this);
+    configureButton.addActionListener(this);
     
     //Panel Layout
     centerPanelbottom.add(b1);
@@ -287,7 +288,7 @@ public void actionPerformed(ActionEvent e) {
 	}
 	if (source == configureButton)
 	{
-		TalkBoxConfigurationApp config = new TalkBoxConfigurationApp();
+		TalkBoxConfigurationApp prac = new TalkBoxConfigurationApp();
 		
 	}
 }

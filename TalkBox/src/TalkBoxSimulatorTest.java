@@ -18,7 +18,7 @@ class TalkBoxSimulatorTest {
 		tbb.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tbb.setTitle("Application Test");
 		tbb.pack();
-        tbb.setVisible(true);
+        tbb.setVisible(true); 
 	}
 	@Test
 	public void testClickingButtons() throws InterruptedException{

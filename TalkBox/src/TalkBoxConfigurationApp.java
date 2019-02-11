@@ -20,7 +20,7 @@ public class TalkBoxConfigurationApp extends JFrame implements ActionListener {
 	String b6Input;
 	JLabel buttons [] = new JLabel [6];
 	JLabel labels [] = new JLabel [6];
-	JButton apply;
+	JButton apply, pickAudio;
 	JTextField phrases [] = new JTextField[6];
 	JTextField name [] = new JTextField[6];
 	int x, y;
@@ -52,6 +52,8 @@ public class TalkBoxConfigurationApp extends JFrame implements ActionListener {
 			pane[i].add(buttons[i]); pane[i].add(phrases[i]); pane[i].add(labels[i]);  pane[i].add(name[i]);
 		}
 		apply = new JButton("Apply"); apply.setFont(new Font("Dialog", Font.BOLD, 20));
+		pickAudio = new JButton("Pick Audio");
+		pickAudio.addActionListener(this);
 		pane[6] = new Container();
 		pane[6].setLayout(new FlowLayout(FlowLayout.RIGHT)); pane[6].add(apply);
 		
