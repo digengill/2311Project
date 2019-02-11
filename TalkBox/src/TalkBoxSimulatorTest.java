@@ -21,7 +21,8 @@ class TalkBoxSimulatorTest {
         tbb.setVisible(true);
 	}
 	@Test
-	public void testOfAllButtons() throws InterruptedException{
+	public void testClickingButtons() throws InterruptedException{
+        Thread.sleep(1000);
 		tbb.b1.doClick();
 		tbb.b2.doClick();
 		tbb.b3.doClick();
@@ -29,6 +30,19 @@ class TalkBoxSimulatorTest {
 		tbb.b5.doClick();
 		tbb.b6.doClick();
 	}
+	
+	@Test
+	public void checkLabelNames() throws InterruptedException{
+		assertEquals("Happy",tbb.b1.getText());
+		assertEquals("Sad",tbb.b2.getText());
+		assertEquals("Angry",tbb.b3.getText());
+		assertEquals("Hungry",tbb.b4.getText());
+		assertEquals("Washroom",tbb.b5.getText());
+		assertEquals("Done",tbb.b6.getText());
+	}
+	
+	
+	
 	
 //	@Test
 //	void test() {
