@@ -20,57 +20,95 @@ public class TalkBoxConfigurationApp extends JFrame implements ActionListener {
 	String b6Input;
 	JLabel buttons [] = new JLabel [6];
 	JLabel labels [] = new JLabel [6];
+	JLabel main, center;
 	JButton apply, pickAudio;
+	JButton ttsConfig, audioConfig;
 	JTextField phrases [] = new JTextField[6];
 	JTextField name [] = new JTextField[6];
 	int x, y;
 	
 	TalkBoxConfigurationApp(){
-		super();
-		//sizevariables
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		x = screenSize.width; y = screenSize.height-120; int ratiox = x/1090, ratioy=y/1080;  System.out.println(x + " " + y);
-		//Set frames and pane
-		JFrame frame = new JFrame();
-		frame.setLayout(new GridLayout(7, 1));
-		Container pane [] = new Container [7];
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		super("TalkBox Configuration");
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setMinimumSize(new Dimension(500,400));
+
 		
-			//Buttons
-		for (int i = 0; i < buttons.length; i++) {
-			buttons[i] = new JLabel("Button " + (i+1) + ": ");	 buttons[i].setSize(190, 65);	buttons[i].setFont(new Font("Dialog", Font.BOLD, 18));
-				//TEXTFIELDS
-			phrases[i] = new JTextField(); phrases[i].setColumns(65);; MaxLengthTextDocument max = new MaxLengthTextDocument();
-			max.setMaxChars(30); phrases[i].setDocument(max);  
-			//Labels
-			labels[i] = new JLabel("             Label: "); labels[i].setSize(175, 65); labels[i].setFont(new Font("Dialog", Font.BOLD, 18));
-				//LABEL NAMES
-			name[i] = new JTextField(); name[i].setColumns(45); MaxLengthTextDocument max2 = new MaxLengthTextDocument();
-			max2.setMaxChars(30); phrases[i].setDocument(max2); 
-				//PANES
-			pane[i] = new Container(); pane[i].setLayout(new FlowLayout(FlowLayout.CENTER));
-			pane[i].add(buttons[i]); pane[i].add(phrases[i]); pane[i].add(labels[i]);  pane[i].add(name[i]);
-		}
-		apply = new JButton("Apply"); apply.setFont(new Font("Dialog", Font.BOLD, 20));
-		pickAudio = new JButton("Pick Audio");
-		pickAudio.addActionListener(this);
-		pane[6] = new Container();
-		pane[6].setLayout(new FlowLayout(FlowLayout.RIGHT)); pane[6].add(apply);
+		audioConfig = new JButton("Change Audio");
+		ttsConfig = new JButton("Change TTS");
+		
+		audioConfig.addActionListener(this);
+		ttsConfig.addActionListener(this);
+		
+		main = new JLabel();
+		center = new JLabel();
 		
 		
 		
-		for (int i = 0; i < pane.length; i++) {
-			frame.add(pane[i]);
-		}
-		//Add ActionListener
-		apply.addActionListener(this);
+		main.setLayout(new BorderLayout());
+		main.add(center,BorderLayout.CENTER);
+		center.setLayout(new GridLayout(1,2));
 		
-		frame.setSize(screenSize.width, screenSize.height-120);
-		frame.setVisible(true);
+		center.add(audioConfig);
+		center.add(ttsConfig);
+		
+		this.setContentPane(main);
+
 	}
 	
+	public void launchTTSConfig()
+	{
+		//sizevariables
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+				x = screenSize.width; y = screenSize.height-120; int ratiox = x/1090, ratioy=y/1080;  System.out.println(x + " " + y);
+				//Set frames and pane
+				JFrame frame = new JFrame();
+				frame.setLayout(new GridLayout(7, 1));
+				Container pane [] = new Container [7];
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+					//Buttons
+				for (int i = 0; i < buttons.length; i++) {
+					buttons[i] = new JLabel("Button " + (i+1) + ": ");	 buttons[i].setSize(190, 65);	buttons[i].setFont(new Font("Dialog", Font.BOLD, 18));
+						//TEXTFIELDS
+					phrases[i] = new JTextField(); phrases[i].setColumns(65);; MaxLengthTextDocument max = new MaxLengthTextDocument();
+					max.setMaxChars(30); phrases[i].setDocument(max);  
+					//Labels
+					labels[i] = new JLabel("             Label: "); labels[i].setSize(175, 65); labels[i].setFont(new Font("Dialog", Font.BOLD, 18));
+						//LABEL NAMES
+					name[i] = new JTextField(); name[i].setColumns(45); MaxLengthTextDocument max2 = new MaxLengthTextDocument();
+					max2.setMaxChars(30); phrases[i].setDocument(max2); 
+						//PANES
+					pane[i] = new Container(); pane[i].setLayout(new FlowLayout(FlowLayout.CENTER));
+					pane[i].add(buttons[i]); pane[i].add(phrases[i]); pane[i].add(labels[i]);  pane[i].add(name[i]);
+				}
+				apply = new JButton("Apply"); apply.setFont(new Font("Dialog", Font.BOLD, 20));
+				pickAudio = new JButton("Pick Audio");
+				pickAudio.addActionListener(this);
+				pane[6] = new Container();
+				pane[6].setLayout(new FlowLayout(FlowLayout.RIGHT)); pane[6].add(apply);
+				
+				
+				
+				for (int i = 0; i < pane.length; i++) {
+					frame.add(pane[i]);
+				}
+				//Add ActionListener
+				apply.addActionListener(this);
+				
+				frame.setSize(screenSize.width, screenSize.height-120);
+				frame.setVisible(true);
+		
+	}
 	
-	
+	public void launchAudioConfig()
+	{
+		JFrame nframe = new JFrame();
+		nframe.setVisible(true);
+		nframe.setMinimumSize(new Dimension(500,400));
+		this.setVisible(false);
+		nframe.setDefaultCloseOperation(nframe.EXIT_ON_CLOSE);
+	}
 	//method to choose button and write content for that button
 	void writeToFile(String fileContent, String buttonFile) {
 		File f1= new File("");
@@ -78,6 +116,7 @@ public class TalkBoxConfigurationApp extends JFrame implements ActionListener {
 	 
 	 public static void main(String[] args) {
 		TalkBoxConfigurationApp prac = new TalkBoxConfigurationApp();
+		prac.pack();
 	}
 		
 	TalkBoxSimulator talk1= new TalkBoxSimulator();
@@ -98,6 +137,16 @@ public class TalkBoxConfigurationApp extends JFrame implements ActionListener {
 					e1.printStackTrace();
 				}
 			}
+		}
+		else if (source == audioConfig)
+		{
+			launchAudioConfig();
+			
+		}
+		else if (source == ttsConfig)
+		{
+			launchTTSConfig();
+			
 		}
 		
 	}
