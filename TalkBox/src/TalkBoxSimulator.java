@@ -20,6 +20,7 @@ Dimension buttonSize;
 JPanel centerPanel;
 JPanel centerPaneltop;
 JPanel centerPanelbottom;
+JPanel newButtons, newLabels, newConfigButtons, newConfigLabels;
 JPanel mainPanel;
 JPanel westPanel;
 JPanel northPanel;
@@ -31,9 +32,8 @@ JButton b1, b2, b3, b4, b5, b6, configureButton;
 JButton cb1, cb2, cb3, cb4, cb5, cb6;
 JButton pb1, pb2, pb3, pb4, pb5, pb6;
 JLabel l1, l2, l3, l4, l5, l6;
-
+JButton addButton;
 ImageIcon pic1, pic2, pic3, pic4, pic5, pic6;
-JButton north, west, east, south, center;
 AudioClip play1;
 /**
  * Default constructor. Initializes the buttons based on preset choices
@@ -67,7 +67,7 @@ public TalkBoxSimulator (Boolean custom, String button1,String button2,String bu
     eastPanel = new JPanel();
     northPanel = new JPanel();
     southPanel = new JPanel();
-    northPanel.setPreferredSize(new Dimension(100,200));
+    northPanel.setPreferredSize(new Dimension(10,100));
    // southPanel.setPreferredSize(new Dimension(100,200));
 
     b1 = new JButton(button1);
@@ -76,6 +76,8 @@ public TalkBoxSimulator (Boolean custom, String button1,String button2,String bu
     b4 = new JButton(button4);
     b5 = new JButton(button5);
     b6 = new JButton(button6);
+    
+    addButton = new JButton("Add Button");
     
     cb1 = new JButton("Change Audio 1");
     cb2 = new JButton("Change Audio 2");
@@ -124,6 +126,11 @@ public TalkBoxSimulator (Boolean custom, String button1,String button2,String bu
     l5 = new JLabel();
     l6 = new JLabel();
     
+    newButtons = new JPanel();
+    newLabels = new JPanel();
+    newConfigButtons = new JPanel();
+    newConfigLabels = new JPanel();
+    
     pic1 = new ImageIcon();
     pic2 = new ImageIcon();
     pic3 = new ImageIcon();
@@ -161,6 +168,7 @@ try {
     b5.addActionListener(this);
     b6.addActionListener(this);
     configureButton.addActionListener(this);
+    addButton.addActionListener(this);
     
     cb1.addActionListener(this);
     cb2.addActionListener(this);
@@ -219,6 +227,7 @@ try {
     centerPaneltop.add(Box.createRigidArea(labelSpacing));
     centerPaneltop.add(l6);
    
+    southPanel.add(addButton);
     southPanel.add(Box.createRigidArea(new Dimension(100,10)));
     southPanel.add(Box.createRigidArea(new Dimension(100,10)));
     southPanel.add(Box.createRigidArea(new Dimension(100,10)));
@@ -234,14 +243,25 @@ try {
     
     
     mainPanel.setLayout(new BorderLayout());
-    centerPanel.setLayout(new GridLayout(2,1));
+    centerPanel.setLayout(new GridLayout(10,1));
     centerPaneltop.setLayout(new GridLayout(1,11));
     centerPanelbottom.setLayout(new GridLayout(3,11));
     southPanel.setLayout(new GridLayout(2,3));
     
+    newButtons.setLayout(new GridLayout(1,11));
+    newLabels.setLayout(new GridLayout(1,11));
+    newConfigButtons.setLayout(new GridLayout(1,11));
+    newConfigLabels.setLayout(new GridLayout(1,11));
+    newLabels.add(b1);
+    newConfigButtons.add(b2);
+    newConfigLabels.add(b3);
     
     centerPanel.add(centerPaneltop);
     centerPanel.add(centerPanelbottom);
+    centerPanel.add(newLabels);
+    centerPanel.add(newLabels);
+    centerPanel.add(newConfigButtons);
+    centerPanel.add(newConfigLabels);
     
     mainPanel.add(northPanel, BorderLayout.NORTH);
     mainPanel.add(centerPanel,BorderLayout.CENTER);
@@ -313,7 +333,7 @@ public void actionPerformed(ActionEvent e) {
 		}
 	}
 	
-	if (source == b2)
+	else if (source == b2)
 	{
 		try {
 			SpeakerClass talk = new SpeakerClass("btn2.txt");
@@ -323,7 +343,7 @@ public void actionPerformed(ActionEvent e) {
 		}
 	}
 	
-	if (source == b3)
+	else if (source == b3)
 	{
 		try {
 			SpeakerClass talk = new SpeakerClass("btn3.txt");
@@ -333,7 +353,7 @@ public void actionPerformed(ActionEvent e) {
 		}
 	}
 	
-	if (source == b4)
+	else if (source == b4)
 	{
 		try {
 			SpeakerClass talk = new SpeakerClass("btn4.txt");
@@ -343,7 +363,7 @@ public void actionPerformed(ActionEvent e) {
 		}
 	}
 	
-	if (source == b5)
+	else if (source == b5)
 	{
 		try {
 			SpeakerClass talk = new SpeakerClass("btn5.txt");
@@ -353,7 +373,7 @@ public void actionPerformed(ActionEvent e) {
 		}
 	}
 	
-	if (source == b6)
+	else if (source == b6)
 	{
 		try {
 			SpeakerClass talk = new SpeakerClass("btn6.txt");
@@ -362,9 +382,15 @@ public void actionPerformed(ActionEvent e) {
 			e1.printStackTrace();
 		}
 	}
-	if (source == configureButton)
+	else if (source == configureButton)
 	{
 		TalkBoxConfigurationApp prac = new TalkBoxConfigurationApp();
+		
+	}
+	else if (source == addButton)
+	{
+		
+		
 		
 	}
 }
