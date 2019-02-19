@@ -28,7 +28,8 @@ JPanel eastPanel;
 JPanel panel1Top;
 JPanel panel2;
 JButton b1, b2, b3, b4, b5, b6, configureButton;
-
+JButton cb1, cb2, cb3, cb4, cb5, cb6;
+JButton pb1, pb2, pb3, pb4, pb5, pb6;
 JLabel l1, l2, l3, l4, l5, l6;
 
 ImageIcon pic1, pic2, pic3, pic4, pic5, pic6;
@@ -37,13 +38,17 @@ AudioClip play1;
 /**
  * Default constructor. Initializes the buttons based on preset choices
   */ 
-public TalkBoxSimulator ()
+public TalkBoxSimulator()
 {
-	this("Happy","Sad","Angry","Hungry","Washroom","Done");
+	
+}
+public TalkBoxSimulator (Boolean custom)
+{
+	this(custom,"Happy","Sad","Angry","Hungry","Washroom","Done");
 
 }
 
-public TalkBoxSimulator (String button1,String button2,String button3,String button4, String button5, String button6)
+public TalkBoxSimulator (Boolean custom, String button1,String button2,String button3,String button4, String button5, String button6)
 {
 	super("TalkBox");
 	this.setMinimumSize(new Dimension(500,400));
@@ -71,8 +76,47 @@ public TalkBoxSimulator (String button1,String button2,String button3,String but
     b4 = new JButton(button4);
     b5 = new JButton(button5);
     b6 = new JButton(button6);
+    
+    cb1 = new JButton("Change Audio 1");
+    cb2 = new JButton("Change Audio 2");
+    cb3 = new JButton("Change Audio 3");
+    cb4 = new JButton("Change Audio 4");
+    cb5 = new JButton("Change Audio 5");
+    cb6 = new JButton("Change Audio 6");
+    
+    pb1 = new JButton("Change Picture 1");
+    pb2 = new JButton("Change Picture 2");
+    pb3 = new JButton("Change Picture 3");
+    pb4 = new JButton("Change Picture 4");
+    pb5 = new JButton("Change Picture 5");
+    pb6 = new JButton("Change Picture 6");
+    
+    
+    cb1.setVisible(custom);
+    cb2.setVisible(custom);
+    cb3.setVisible(custom);
+    cb4.setVisible(custom);
+    cb5.setVisible(custom);
+    cb6.setVisible(custom);
+    
+    pb1.setVisible(custom);
+    pb2.setVisible(custom);
+    pb3.setVisible(custom);
+    pb4.setVisible(custom);
+    pb5.setVisible(custom);
+    pb6.setVisible(custom);
+    
+    
     configureButton = new JButton("Configure");
-
+    if(custom == true)
+    {
+    	configureButton.setVisible(false);
+    }
+    else
+    {
+    	configureButton.setVisible(true);
+    }
+    
     l1 = new JLabel();
     l2 = new JLabel();
     l3 = new JLabel();
@@ -118,6 +162,13 @@ try {
     b6.addActionListener(this);
     configureButton.addActionListener(this);
     
+    cb1.addActionListener(this);
+    cb2.addActionListener(this);
+    cb3.addActionListener(this);
+    cb4.addActionListener(this);
+    cb5.addActionListener(this);
+    cb6.addActionListener(this);
+    
     //Panel Layout
     centerPanelbottom.add(b1);
     centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
@@ -130,6 +181,31 @@ try {
     centerPanelbottom.add(b5);
     centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
     centerPanelbottom.add(b6);
+    
+    centerPanelbottom.add(cb1);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(cb2);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(cb3);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(cb4);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(cb5);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(cb6);
+    
+    centerPanelbottom.add(pb1);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(pb2);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(pb3);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(pb4);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(pb5);
+    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
+    centerPanelbottom.add(pb6);
+    
     
     centerPaneltop.add(l1);
     centerPaneltop.add(Box.createRigidArea(labelSpacing));
@@ -160,7 +236,7 @@ try {
     mainPanel.setLayout(new BorderLayout());
     centerPanel.setLayout(new GridLayout(2,1));
     centerPaneltop.setLayout(new GridLayout(1,11));
-    centerPanelbottom.setLayout(new GridLayout(1,11));
+    centerPanelbottom.setLayout(new GridLayout(3,11));
     southPanel.setLayout(new GridLayout(2,3));
     
     
@@ -296,7 +372,7 @@ public void actionPerformed(ActionEvent e) {
 	
 	
 	public static void main(String[] args) {
-		TalkBoxSimulator test = new TalkBoxSimulator();
+		TalkBoxSimulator test = new TalkBoxSimulator(false);
 		test.setVisible(true);
 		test.pack();
 		

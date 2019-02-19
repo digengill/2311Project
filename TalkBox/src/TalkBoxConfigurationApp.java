@@ -9,7 +9,7 @@ import javax.swing.*;
 
 import javafx.scene.layout.Border;
 
-public class TalkBoxConfigurationApp extends JFrame implements ActionListener {
+public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionListener {
 
 
 	String b1Input;
@@ -20,7 +20,7 @@ public class TalkBoxConfigurationApp extends JFrame implements ActionListener {
 	String b6Input;
 	JLabel buttons [] = new JLabel [6];
 	JLabel labels [] = new JLabel [6];
-	JLabel main, center;
+	JLabel main, center, audioMain;
 	JButton apply, pickAudio;
 	JButton ttsConfig, audioConfig;
 	JTextField phrases [] = new JTextField[6];
@@ -28,7 +28,7 @@ public class TalkBoxConfigurationApp extends JFrame implements ActionListener {
 	int x, y;
 	
 	TalkBoxConfigurationApp(){
-		super("TalkBox Configuration");
+		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setMinimumSize(new Dimension(500,400));
@@ -37,12 +37,14 @@ public class TalkBoxConfigurationApp extends JFrame implements ActionListener {
 		audioConfig = new JButton("Change Audio");
 		ttsConfig = new JButton("Change TTS");
 		
+		
 		audioConfig.addActionListener(this);
 		ttsConfig.addActionListener(this);
 		
 		main = new JLabel();
 		center = new JLabel();
 		
+		audioMain = new JLabel();
 		
 		
 		main.setLayout(new BorderLayout());
@@ -103,11 +105,25 @@ public class TalkBoxConfigurationApp extends JFrame implements ActionListener {
 	
 	public void launchAudioConfig()
 	{
-		JFrame nframe = new JFrame();
-		nframe.setVisible(true);
-		nframe.setMinimumSize(new Dimension(500,400));
-		this.setVisible(false);
-		nframe.setDefaultCloseOperation(nframe.EXIT_ON_CLOSE);
+		
+		TalkBoxSimulator change = new TalkBoxSimulator(true);
+		change.setVisible(true);
+		change.pack();
+
+		
+
+	}
+	public void fileChooser()
+	{
+		JFileChooser chooser = new JFileChooser();
+		chooser.showOpenDialog(chooser);
+		
+		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		
+		   System.out.println("You chose to open this directory: " +
+		        chooser.getSelectedFile().getAbsolutePath());
+		
+		
 	}
 	//method to choose button and write content for that button
 	void writeToFile(String fileContent, String buttonFile) {
@@ -119,9 +135,7 @@ public class TalkBoxConfigurationApp extends JFrame implements ActionListener {
 		prac.pack();
 	}
 		
-	TalkBoxSimulator talk1= new TalkBoxSimulator();
-	TalkBoxSimulator talk2= new TalkBoxSimulator("sad","","","","","");
-	TalkBoxSimulator talk3= new TalkBoxSimulator("sad","Nice","","","","");
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -147,6 +161,10 @@ public class TalkBoxConfigurationApp extends JFrame implements ActionListener {
 		{
 			launchTTSConfig();
 			
+		}
+		else if (source == pickAudio)
+		{
+		fileChooser();
 		}
 		
 	}
