@@ -28,11 +28,12 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 	int x, y;
 	
 	TalkBoxConfigurationApp(){
-		
+		super();
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setMinimumSize(new Dimension(500,400));
 
+		System.out.println(buttonArray.size());
 		
 		audioConfig = new JButton("Change Audio");
 		ttsConfig = new JButton("Change TTS");
@@ -106,9 +107,45 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 	public void launchAudioConfig()
 	{
 		
-		TalkBoxSimulator change = new TalkBoxSimulator(true);
-		change.setVisible(true);
-		change.pack();
+		JFrame audioChange = new JFrame("Change Audio");
+		audioChange.setMinimumSize(new Dimension(800,500));
+		
+		addButton = new JButton("Add Button");
+		mainPanel = new JPanel();
+	    centerPanel = new JPanel();
+	    centerPaneltop = new JPanel();
+	    centerPanelbottom = new JPanel();
+	    westPanel = new JPanel();
+	    eastPanel = new JPanel();
+	    northPanel = new JPanel();
+	    southPanel = new JPanel();
+		mainPanel.setLayout(new BorderLayout());
+		
+		
+		 centerPaneltop.setBackground(Color.GRAY);
+		    northPanel.setBackground(Color.ORANGE);
+		    southPanel.setBackground(Color.ORANGE);
+		    centerPanelbottom.setBackground(Color.CYAN);
+		    
+		    
+		    mainPanel.setLayout(new BorderLayout());
+		    centerPanel.setLayout(new GridLayout(10,1));
+		    centerPaneltop.setLayout(new GridLayout(1,11));
+		    centerPanelbottom.setLayout(new GridLayout(3,11));
+		    southPanel.setLayout(new GridLayout(2,3));
+		    
+		    southPanel.add(addButton);
+		    centerPanel.add(centerPaneltop);
+		    centerPanel.add(centerPanelbottom);
+		    
+		    mainPanel.add(northPanel, BorderLayout.NORTH);
+		    mainPanel.add(centerPanel,BorderLayout.CENTER);
+		    mainPanel.add(southPanel, BorderLayout.SOUTH);
+		    
+		audioChange.setContentPane(mainPanel);
+		
+		audioChange.setVisible(true);
+		audioChange.pack();
 
 		
 

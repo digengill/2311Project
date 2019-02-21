@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
 import java.applet.*;
 
 import javafx.application.Application;
@@ -17,6 +18,8 @@ public class TalkBoxSimulator extends JFrame implements ActionListener {
 Dimension buttonSpacing;
 Dimension labelSpacing;
 Dimension buttonSize;
+ArrayList<JButton> buttonArray;
+ArrayList buttonName[];
 JPanel centerPanel;
 JPanel centerPaneltop;
 JPanel centerPanelbottom;
@@ -44,18 +47,19 @@ public TalkBoxSimulator()
 }
 public TalkBoxSimulator (Boolean custom)
 {
-	this(custom,"Happy","Sad","Angry","Hungry","Washroom","Done");
-
+	this(6,custom,"Happy","Sad","Angry","Hungry","Washroom","Done");
+	
 }
 
-public TalkBoxSimulator (Boolean custom, String button1,String button2,String button3,String button4, String button5, String button6)
+public TalkBoxSimulator (int numOfButtons,Boolean custom, String button1,String button2,String button3,String button4, String button5, String button6)
 {
 	super("TalkBox");
 	this.setMinimumSize(new Dimension(500,400));
     
 	final JFXPanel fxPanel = new JFXPanel();
 
-	
+	buttonArray = new ArrayList<JButton>();
+	buttonArray.add(b1);
 	setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	
     // JPanel initialization
@@ -68,7 +72,7 @@ public TalkBoxSimulator (Boolean custom, String button1,String button2,String bu
     northPanel = new JPanel();
     southPanel = new JPanel();
     northPanel.setPreferredSize(new Dimension(10,100));
-   // southPanel.setPreferredSize(new Dimension(100,200));
+   southPanel.setPreferredSize(new Dimension(100,200));
 
     b1 = new JButton(button1);
     b2 = new JButton(button2);
@@ -109,15 +113,7 @@ public TalkBoxSimulator (Boolean custom, String button1,String button2,String bu
     pb6.setVisible(custom);
     
     
-    configureButton = new JButton("Configure");
-    if(custom == true)
-    {
-    	configureButton.setVisible(false);
-    }
-    else
-    {
-    	configureButton.setVisible(true);
-    }
+   
     
     l1 = new JLabel();
     l2 = new JLabel();
@@ -167,7 +163,7 @@ try {
     b4.addActionListener(this);
     b5.addActionListener(this);
     b6.addActionListener(this);
-    configureButton.addActionListener(this);
+    //configureButton.addActionListener(this);
     addButton.addActionListener(this);
     
     cb1.addActionListener(this);
@@ -176,6 +172,7 @@ try {
     cb4.addActionListener(this);
     cb5.addActionListener(this);
     cb6.addActionListener(this);
+    
     
     //Panel Layout
     centerPanelbottom.add(b1);
@@ -233,7 +230,6 @@ try {
     southPanel.add(Box.createRigidArea(new Dimension(100,10)));
     southPanel.add(Box.createRigidArea(new Dimension(100,10)));
     southPanel.add(Box.createRigidArea(new Dimension(100,10)));
-    southPanel.add(configureButton);
     
     
     centerPaneltop.setBackground(Color.GRAY);
@@ -243,25 +239,21 @@ try {
     
     
     mainPanel.setLayout(new BorderLayout());
-    centerPanel.setLayout(new GridLayout(10,1));
+    centerPanel.setLayout(new GridLayout(3,1));
     centerPaneltop.setLayout(new GridLayout(1,11));
     centerPanelbottom.setLayout(new GridLayout(3,11));
     southPanel.setLayout(new GridLayout(2,3));
     
-    newButtons.setLayout(new GridLayout(1,11));
-    newLabels.setLayout(new GridLayout(1,11));
-    newConfigButtons.setLayout(new GridLayout(1,11));
-    newConfigLabels.setLayout(new GridLayout(1,11));
-    newLabels.add(b1);
-    newConfigButtons.add(b2);
-    newConfigLabels.add(b3);
     
+ 
+   
+   
     centerPanel.add(centerPaneltop);
     centerPanel.add(centerPanelbottom);
-    centerPanel.add(newLabels);
-    centerPanel.add(newLabels);
-    centerPanel.add(newConfigButtons);
-    centerPanel.add(newConfigLabels);
+   // centerPanel.add(newLabels);
+    //centerPanel.add(newLabels);
+    //centerPanel.add(newConfigButtons);
+   // centerPanel.add(newConfigLabels);
     
     mainPanel.add(northPanel, BorderLayout.NORTH);
     mainPanel.add(centerPanel,BorderLayout.CENTER);
