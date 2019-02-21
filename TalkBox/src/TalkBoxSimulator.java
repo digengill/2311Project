@@ -39,6 +39,7 @@ JLabel l1, l2, l3, l4, l5, l6;
 JButton addButton;
 ImageIcon pic1, pic2, pic3, pic4, pic5, pic6;
 AudioClip play1;
+
 /**
  * Default constructor. Initializes the buttons based on preset choices
   */ 
@@ -49,6 +50,19 @@ public TalkBoxSimulator()
 public TalkBoxSimulator (Boolean custom)
 {
 	this(6,custom,"Happy","Sad","Angry","Hungry","Washroom","Done");
+	 setImage(l1,"happy1.png");
+	    setImage(l2,"sad.png");
+	    setImage(l3,"angry.png");
+	    setImage(l4,"hungry.png");
+	    setImage(l5,"washroom.png");
+	    setImage(l6,"happy1.png");
+	    try {
+	        play1 = Applet.newAudioClip(new File("wavtest.wav").toURI().toURL());
+
+	    }
+	     catch(Exception e)
+	    {
+	    }
 	
 }
 
@@ -82,39 +96,18 @@ public TalkBoxSimulator (int numOfButtons,Boolean custom, String button1,String 
     b5 = new JButton(button5);
     b6 = new JButton(button6);
     
+    configureButton = new JButton("Configure");
     addButton = new JButton("Add Button");
+     
+    configureButton.addActionListener(this);
     
-    cb1 = new JButton("Change Audio 1");
-    cb2 = new JButton("Change Audio 2");
-    cb3 = new JButton("Change Audio 3");
-    cb4 = new JButton("Change Audio 4");
-    cb5 = new JButton("Change Audio 5");
-    cb6 = new JButton("Change Audio 6");
-    
-    pb1 = new JButton("Change Picture 1");
-    pb2 = new JButton("Change Picture 2");
-    pb3 = new JButton("Change Picture 3");
-    pb4 = new JButton("Change Picture 4");
-    pb5 = new JButton("Change Picture 5");
-    pb6 = new JButton("Change Picture 6");
-    
-    
-    cb1.setVisible(custom);
-    cb2.setVisible(custom);
-    cb3.setVisible(custom);
-    cb4.setVisible(custom);
-    cb5.setVisible(custom);
-    cb6.setVisible(custom);
-    
-    pb1.setVisible(custom);
-    pb2.setVisible(custom);
-    pb3.setVisible(custom);
-    pb4.setVisible(custom);
-    pb5.setVisible(custom);
-    pb6.setVisible(custom);
-    
-    
-   
+    labelName = new ArrayList<JLabel>();
+   	labelName.add(l1);
+   	labelName.add(l2);
+   	labelName.add(l3);
+   	labelName.add(l4);
+   	labelName.add(l5);
+   	labelName.add(l6);
     
     l1 = new JLabel();
     l2 = new JLabel();
@@ -123,13 +116,7 @@ public TalkBoxSimulator (int numOfButtons,Boolean custom, String button1,String 
     l5 = new JLabel();
     l6 = new JLabel();
     
-    labelName = new ArrayList<JLabel>();
-	labelName.add(l1);
-	labelName.add(l2);
-	labelName.add(l3);
-	labelName.add(l4);
-	labelName.add(l5);
-	labelName.add(l6);
+   
     
     newButtons = new JPanel();
     newLabels = new JPanel();
@@ -142,20 +129,8 @@ public TalkBoxSimulator (int numOfButtons,Boolean custom, String button1,String 
     pic4 = new ImageIcon();
     pic5 = new ImageIcon();
     pic6 = new ImageIcon();
-try {
-    play1 = Applet.newAudioClip(new File("wavtest.wav").toURI().toURL());
 
-}
- catch(Exception e)
-{
-	 
-	 }
-    setImage(l1,"happy1.png");
-    setImage(l2,"sad.png");
-    setImage(l3,"angry.png");
-    setImage(l4,"hungry.png");
-    setImage(l5,"washroom.png");
-    setImage(l6,"happy1.png");
+   
 
     
 
@@ -166,21 +141,7 @@ try {
     
 
     
-    b1.addActionListener(this);
-    b2.addActionListener(this);
-    b3.addActionListener(this);
-    b4.addActionListener(this);
-    b5.addActionListener(this);
-    b6.addActionListener(this);
-    //configureButton.addActionListener(this);
-    addButton.addActionListener(this);
     
-    cb1.addActionListener(this);
-    cb2.addActionListener(this);
-    cb3.addActionListener(this);
-    cb4.addActionListener(this);
-    cb5.addActionListener(this);
-    cb6.addActionListener(this);
     
     
     //Panel Layout
@@ -196,29 +157,7 @@ try {
     centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
     centerPanelbottom.add(b6);
     
-    centerPanelbottom.add(cb1);
-    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
-    centerPanelbottom.add(cb2);
-    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
-    centerPanelbottom.add(cb3);
-    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
-    centerPanelbottom.add(cb4);
-    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
-    centerPanelbottom.add(cb5);
-    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
-    centerPanelbottom.add(cb6);
     
-    centerPanelbottom.add(pb1);
-    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
-    centerPanelbottom.add(pb2);
-    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
-    centerPanelbottom.add(pb3);
-    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
-    centerPanelbottom.add(pb4);
-    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
-    centerPanelbottom.add(pb5);
-    centerPanelbottom.add(Box.createRigidArea(buttonSpacing));
-    centerPanelbottom.add(pb6);
     
     
     centerPaneltop.add(l1);
@@ -239,7 +178,7 @@ try {
     southPanel.add(Box.createRigidArea(new Dimension(100,10)));
     southPanel.add(Box.createRigidArea(new Dimension(100,10)));
     southPanel.add(Box.createRigidArea(new Dimension(100,10)));
-    
+    southPanel.add(configureButton);
     
     centerPaneltop.setBackground(Color.GRAY);
     northPanel.setBackground(Color.ORANGE);
@@ -250,7 +189,7 @@ try {
     mainPanel.setLayout(new BorderLayout());
     centerPanel.setLayout(new GridLayout(3,1));
     centerPaneltop.setLayout(new GridLayout(1,11));
-    centerPanelbottom.setLayout(new GridLayout(3,11));
+    centerPanelbottom.setLayout(new GridLayout(1,11));
     southPanel.setLayout(new GridLayout(2,3));
     
     
@@ -389,6 +328,7 @@ public void actionPerformed(ActionEvent e) {
 	else if (source == configureButton)
 	{
 		TalkBoxConfigurationApp prac = new TalkBoxConfigurationApp();
+		this.setVisible(false);
 		
 	}
 	else if (source == addButton)
@@ -402,7 +342,7 @@ public void actionPerformed(ActionEvent e) {
 	
 	
 	public static void main(String[] args) {
-		TalkBoxSimulator test = new TalkBoxSimulator(false);
+		TalkBoxSimulator test = new TalkBoxSimulator();
 		test.setVisible(true);
 		test.pack();
 		

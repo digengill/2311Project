@@ -24,18 +24,20 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 	JLabel labels [] = new JLabel [6];
 	JLabel main, center, audioMain;
 	JButton apply, pickAudio, pickPicture;
-	JButton ttsConfig, audioConfig;
+	JButton ttsConfig, audioConfig, launchSimulator;
 	JTextField phrases [] = new JTextField[6];
 	JTextField name [] = new JTextField[6];
-	int x, y;
-	int buttonNUM;
+	int x, y ,buttonNUM;
 	
 	TalkBoxConfigurationApp(){
+		super();
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setMinimumSize(new Dimension(500,400));
 
-		buttonNUM = 0;
+	//
+		
+		
 		
 		
 
@@ -55,7 +57,8 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 		
 		main.setLayout(new BorderLayout());
 		main.add(center,BorderLayout.CENTER);
-		center.setLayout(new GridLayout(1,2));
+		center.setLayout(new GridLayout());
+		
 		
 		center.add(audioConfig);
 		center.add(ttsConfig);
@@ -115,6 +118,8 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 		JFrame audioChange = new JFrame("Change Audio");
 		audioChange.setMinimumSize(new Dimension(800,500));
 		
+		launchSimulator = new JButton("Launch");
+		launchSimulator.addActionListener(this);
 		mainPanel = new JPanel();
 	    centerPanel = new JPanel();
 	    centerPaneltop = new JPanel();
@@ -154,6 +159,7 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 		centerPanel.add(chooseButton);
 		centerPanel.add(pickAudio);
 		centerPanel.add(pickPicture);
+		centerPanel.add(launchSimulator);
 		
 		
 		mainPanel.add(northPanel, BorderLayout.NORTH);
@@ -218,24 +224,48 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 		}
 		else if (source == pickAudio)
 		{
-			String test = "l"+buttonNUM;
-			//System.out.println(test);
-			System.out.println(labelName.get(1).getName());
-			for(int i=0; i< labelName.size();i++)
+			String test = fileChooser();
+			if (buttonNUM == 1)
 			{
-				if (test == labelName.get(i).getName())
-				{
-					setImage(labelName.get(i),fileChooser());
-				}
+				setImage(l1,test);
 			}
-			
-		//setImage(test,fileChooser());
+			else if (buttonNUM == 2)
+			{
+				setImage(l2,test);
+
+			}
+			else if (buttonNUM == 3)
+			{
+				setImage(l3,test);
+
+			}
+			else if (buttonNUM == 4)
+			{
+				setImage(l4,test);
+
+			}	
+			else if (buttonNUM == 5)
+			{
+				setImage(l5,test);
+
+			}	
+			else if (buttonNUM == 6)
+			{
+				setImage(l6,test);
+
+			}	
 		}
 		else if (source == pickPicture)
 		{
 		fileChooser();
 		}
-		
+		else if (source == launchSimulator)
+		{
+			
+			TalkBoxSimulator relaunch = new TalkBoxSimulator(1,true, "r1","r2","r3","r4","r5","r6");
+			relaunch.setVisible(true);
+			relaunch.pack();
+		}
 	}
 
 	public void Rewrite (String phrase, int i) throws IOException {
