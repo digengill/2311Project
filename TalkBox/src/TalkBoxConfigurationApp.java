@@ -19,6 +19,8 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 	String b4Input;
 	String b5Input;
 	String b6Input;
+	String rArray[];
+	String r1,r2,r3,r4,r5,r6;
 	JComboBox chooseButton;
 	JLabel buttons [] = new JLabel [6];
 	JLabel labels [] = new JLabel [6];
@@ -40,7 +42,7 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 		
 		
 		
-
+		rArray = new String[6];
 		
 		audioConfig = new JButton("Change Audio");
 		ttsConfig = new JButton("Change TTS");
@@ -190,11 +192,6 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 		File f1= new File("");
 	}
 	 
-	 public static void main(String[] args) {
-		TalkBoxConfigurationApp prac = new TalkBoxConfigurationApp();
-		prac.pack();
-	}
-		
 	
 
 	@Override
@@ -227,31 +224,38 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 			String test = fileChooser();
 			if (buttonNUM == 1)
 			{
-				setImage(l1,test);
+				r1 = test;
+				rArray[0] = test;
+				
 			}
 			else if (buttonNUM == 2)
 			{
-				setImage(l2,test);
+				r2 = test;
+				rArray[1] = test;
 
 			}
 			else if (buttonNUM == 3)
 			{
-				setImage(l3,test);
+				r3 = test;
+				rArray[2] = test;
 
 			}
 			else if (buttonNUM == 4)
 			{
-				setImage(l4,test);
+				r4 = test;
+				rArray[3] = test;
 
 			}	
 			else if (buttonNUM == 5)
 			{
-				setImage(l5,test);
+				r5 = test;
+				rArray[4] = test;
 
 			}	
 			else if (buttonNUM == 6)
 			{
-				setImage(l6,test);
+				r6 = test;
+				rArray[5] = test;
 
 			}	
 		}
@@ -262,9 +266,13 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 		else if (source == launchSimulator)
 		{
 			
-			TalkBoxSimulator relaunch = new TalkBoxSimulator(1,true, "r1","r2","r3","r4","r5","r6");
+			TalkBoxSimulator relaunch = new TalkBoxSimulator(rArray);
+			
 			relaunch.setVisible(true);
 			relaunch.pack();
+		    
+			
+			System.out.println("1  "+r1+" 2  "+r2+" 3  "+r3+" 4   "+r4+" 5   "+r5+" 6   "+r6);
 		}
 	}
 
@@ -279,7 +287,10 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 		printWriter.println(phrase);
 		*/
 	}
-	
+	 public static void main(String[] args) {
+			TalkBoxConfigurationApp prac = new TalkBoxConfigurationApp();
+			prac.pack();
+		}
 	
 		
 }

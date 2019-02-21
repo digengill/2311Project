@@ -45,17 +45,29 @@ AudioClip play1;
   */ 
 public TalkBoxSimulator()
 {
-	this(false);
+	this(null);
 }
-public TalkBoxSimulator (Boolean custom)
+public TalkBoxSimulator (String pname[])
 {
-	this(6,custom,"Happy","Sad","Angry","Hungry","Washroom","Done");
-	 setImage(l1,"happy1.png");
-	    setImage(l2,"sad.png");
-	    setImage(l3,"angry.png");
-	    setImage(l4,"hungry.png");
-	    setImage(l5,"washroom.png");
-	    setImage(l6,"happy1.png");
+	this(6,"Happy","Sad","Angry","Hungry","Washroom","Done");
+	if (pname != null)
+	{
+		setImage(l1,pname[0]);
+	    setImage(l2,pname[1]);
+	    setImage(l3,pname[2]);
+	    setImage(l4,pname[3]);
+	    setImage(l5,pname[4]);
+	    setImage(l6,pname[5]);
+	}
+	else
+	{
+		 setImage(l1,"happy1.png");
+		    setImage(l2,"sad.png");
+		    setImage(l3,"angry.png");
+		    setImage(l4,"hungry.png");
+		    setImage(l5,"washroom.png");
+		    setImage(l6,"happy1.png");
+	}
 	    try {
 	        play1 = Applet.newAudioClip(new File("wavtest.wav").toURI().toURL());
 
@@ -66,7 +78,7 @@ public TalkBoxSimulator (Boolean custom)
 	
 }
 
-public TalkBoxSimulator (int numOfButtons,Boolean custom, String button1,String button2,String button3,String button4, String button5, String button6)
+public TalkBoxSimulator (int numOfButtons, String button1,String button2,String button3,String button4, String button5, String button6)
 {
 	super("TalkBox");
 	this.setMinimumSize(new Dimension(500,400));
