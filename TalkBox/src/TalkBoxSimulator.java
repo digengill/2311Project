@@ -19,7 +19,8 @@ Dimension buttonSpacing;
 Dimension labelSpacing;
 Dimension buttonSize;
 ArrayList<JButton> buttonArray;
-ArrayList buttonName[];
+ArrayList buttonName;
+ArrayList<JLabel> labelName;
 JPanel centerPanel;
 JPanel centerPaneltop;
 JPanel centerPanelbottom;
@@ -43,7 +44,7 @@ AudioClip play1;
   */ 
 public TalkBoxSimulator()
 {
-	
+	this(false);
 }
 public TalkBoxSimulator (Boolean custom)
 {
@@ -122,6 +123,14 @@ public TalkBoxSimulator (int numOfButtons,Boolean custom, String button1,String 
     l5 = new JLabel();
     l6 = new JLabel();
     
+    labelName = new ArrayList<JLabel>();
+	labelName.add(l1);
+	labelName.add(l2);
+	labelName.add(l3);
+	labelName.add(l4);
+	labelName.add(l5);
+	labelName.add(l6);
+    
     newButtons = new JPanel();
     newLabels = new JPanel();
     newConfigButtons = new JPanel();
@@ -141,12 +150,12 @@ try {
 {
 	 
 	 }
-    setImage(l1,pic1,"happy1.png");
-    setImage(l2,pic2,"sad.png");
-    setImage(l3,pic3,"angry.png");
-    setImage(l4,pic4,"hungry.png");
-    setImage(l5,pic5,"washroom.png");
-    setImage(l6,pic6,"happy1.png");
+    setImage(l1,"happy1.png");
+    setImage(l2,"sad.png");
+    setImage(l3,"angry.png");
+    setImage(l4,"hungry.png");
+    setImage(l5,"washroom.png");
+    setImage(l6,"happy1.png");
 
     
 
@@ -265,10 +274,13 @@ try {
 }
 
 
-public void setImage(JLabel l, ImageIcon icon, String imageName)
+public void setImage(JLabel l, String path)
 {
-	icon.setImage(new ImageIcon(imageName).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-	l.setIcon(icon);
+	l.setIcon(new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+
+	//l.setIcon(new ImageIcon(path));
+	//icon.setImage(new ImageIcon(path).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+	//l.setIcon(icon);
 
 
 
