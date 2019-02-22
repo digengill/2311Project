@@ -3,6 +3,7 @@ package talkbot;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class Configuration implements TalkBoxConfiguration{
 //PRACTICE
@@ -17,6 +18,8 @@ public class Configuration implements TalkBoxConfiguration{
 		ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(new File("serial/log.bin")));
 
 		Configuration config = new Configuration();
+		//Test1 before sets
+		/*
 		//Get numbers
 		config.setAudioSets(1);
 		config.setBtnNum(6);
@@ -44,7 +47,56 @@ public class Configuration implements TalkBoxConfiguration{
 		config.setImagePath(1, 4, "Images/last.png");
 		config.setImagePath(1, 5, "Images/little.png");
 		config.setImagePath(1, 6, "Images/long.png");
-		
+		*/
+		//Test2 with sets added
+		//Get numbers
+				config.setAudioSets(2);
+				config.setBtnNum(12);
+				config.review(config.getNumberOfAudioSets(), config.getNumberOfAudioButtons());
+				//AUDIO
+				config.setAudioName(1, 1, "bad.wav");
+				config.setAudioName(1, 2, "first.wav");
+				config.setAudioName(1, 3, "good.wav");
+				config.setAudioName(1, 4, "last.wav");
+				config.setAudioName(1, 5, "little.wav");
+				config.setAudioName(1, 6, "long.wav");
+					config.setAudioName(2, 1, "first.wav");
+					config.setAudioName(2, 2, "good.wav");
+					config.setAudioName(2, 3, "last.wav");
+					config.setAudioName(2, 4, "little.wav");
+					config.setAudioName(2, 5, "long.wav");
+					config.setAudioName(2, 6, "bad.wav");
+				config.setRelativePath("Audio/");
+				//Buttons
+				config.setBtnName(1, 1, "Bad");
+				config.setBtnName(1, 2, "First");
+				config.setBtnName(1, 3, "Good");
+				config.setBtnName(1, 4, "Last");
+				config.setBtnName(1, 5, "Little");
+				config.setBtnName(1, 6, "Long");
+					config.setBtnName(2, 1, "First");
+					config.setBtnName(2, 2, "Good");
+					config.setBtnName(2, 3, "Last");
+					config.setBtnName(2, 4, "Little");
+					config.setBtnName(2, 5, "Long");
+					config.setBtnName(2, 6, "Bad");
+				config.setTotalBtnNum(14);
+				//Images
+				config.setImagePath(1, 1, "Images/bad.png");
+				config.setImagePath(1, 2, "Images/1st.png");
+				config.setImagePath(1, 3, "Images/good.png");
+				config.setImagePath(1, 4, "Images/last.png");
+				config.setImagePath(1, 5, "Images/little.png");
+				config.setImagePath(1, 6, "Images/long.png");
+					config.setImagePath(2, 1, "Images/1st.png");
+					config.setImagePath(2, 2, "Images/good.png");
+					config.setImagePath(2, 3, "Images/last.png");
+					config.setImagePath(2, 4, "Images/little.png");
+					config.setImagePath(2, 5, "Images/long.png");
+					config.setImagePath(2, 6, "Images/bad.png");
+		for (int i = 0; i < config.getSet1(); i++) {
+			System.out.println(config.getBtnName(1, i+1));
+		}
 		obj.writeObject(config);
 		obj.close();
 	}
@@ -93,6 +145,14 @@ public class Configuration implements TalkBoxConfiguration{
 		return this.btname [set-1][num-1];
 	}
 	
+	public int getSet1 () {
+		return this.btname[0].length;
+	}
+	
+	public int getSet2 () {
+		return this.btname[1].length;
+	}
+	
 	//Button sets
 	public void setBtnName (int set, int num, String name) {
 		this.btname[set-1][num-1] = name;
@@ -110,6 +170,51 @@ public class Configuration implements TalkBoxConfiguration{
 		this.aset = num;
 	}
 	
+	public void Removebtn (int set, int num) {
+		ArrayList<String> temp = new ArrayList<String>();
+		for (int i = 0; i < this.btname[set].length; i++) {
+			temp.add(btname[set][i]);
+		}
+		temp.remove(num-1);
+		this.btname[set] = new String [temp.size()];
+		this.btname[set] = temp.toArray(this.btname[set]);
+		temp = new ArrayList<String>();
+		for (int i = 0; i < this.aname[set].length; i++) {
+			temp.add(aname[set][i]);
+		}
+		temp.remove(num-1);
+		this.aname[set] = new String [temp.size()];
+		this.aname[set] = temp.toArray(this.aname[set]);
+		temp = new ArrayList<String>();
+		for (int i = 0; i < this.rpathImage[set].length; i++) {
+			temp.add(rpathImage[set][i]);
+		}
+		temp.remove(num-1);
+		this.rpathImage[set] = new String [temp.size()];
+		this.rpathImage[set] = temp.toArray(this.rpathImage[set]);
+		this.audiobtns--;
+		this.totalbtns--;
+	}
+	
+	public void Addbtn (int set, String bname, String audioname, String image) {
+		ArrayList<String> tempb = new ArrayList<String>();
+		ArrayList<String> tempa = new ArrayList<String>();
+		ArrayList<String> tempi = new ArrayList<String>();
+		for (int i = 0; i < aname[set].length; i++) {
+			tempb.add(this.btname[set][i]);
+			tempa.add(this.aname[set][i]);
+			tempi.add(this.rpathImage[set][i]);
+		}
+		tempb.add(bname); tempa.add(audioname); tempi.add(image);
+		this.btname[set] = new String [tempb.size()];
+		this.btname[set] = tempb.toArray(this.btname[set]);
+		this.aname[set] = new String [tempa.size()];
+		this.aname[set] = tempa.toArray(this.aname[set]);
+		this.rpathImage[set] = new String [tempi.size()];
+		this.rpathImage[set] = tempi.toArray(this.rpathImage[set]);
+		this.audiobtns++; this.totalbtns++;
+	}
+	
 	//Images
 	public void setImagePath (int set, int num, String path) {
 		this.rpathImage[set-1][num-1] = path;
@@ -125,9 +230,9 @@ public class Configuration implements TalkBoxConfiguration{
 	}
 	
 	public void review (int set, int num) {
-		this.aname = new String [set][num];
-		this.btname = new String [set][num];
-		this.rpathImage = new String[set][num];
+		this.aname = new String [2][6];
+		this.btname = new String [set][6];
+		this.rpathImage = new String[set][6];
 	}
 
 
