@@ -24,6 +24,7 @@ public class Buttons extends JButton{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		 
 		this.setIcon(pic); //Add pic to button
 	}
 }
