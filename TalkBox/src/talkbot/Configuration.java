@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Configuration implements TalkBoxConfiguration{
-
+//PRACTICE
 	private int totalbtns, aset, audiobtns;
 	//audio and image
 	private String rpathAfile, aname[][], rpathImage[][];
