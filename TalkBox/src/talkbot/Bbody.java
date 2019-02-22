@@ -16,6 +16,8 @@ import sun.audio.*;
 
 public class Bbody extends JPanel implements ActionListener {
 	
+	
+	//req
 	private JPanel sp;
 	private JScrollPane scroll;
 	private Configuration con;
@@ -23,6 +25,7 @@ public class Bbody extends JPanel implements ActionListener {
 	private JButton set1, set2;
 	private ArrayList<Buttons> track1, track2;
 	private Boolean on;
+	
 	
 	public void setup(JPanel mpanel) {
 		sp = new JPanel();
