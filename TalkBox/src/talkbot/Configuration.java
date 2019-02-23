@@ -60,12 +60,12 @@ public class Configuration implements TalkBoxConfiguration{
 				config.setAudioName(1, 4, "last.wav");
 				config.setAudioName(1, 5, "little.wav");
 				config.setAudioName(1, 6, "long.wav");
-					config.setAudioName(2, 1, "first.wav");
-					config.setAudioName(2, 2, "good.wav");
-					config.setAudioName(2, 3, "last.wav");
-					config.setAudioName(2, 4, "little.wav");
-					config.setAudioName(2, 5, "long.wav");
-					config.setAudioName(2, 6, "bad.wav");
+					config.setAudioName(2, 1, "jealous.wav");
+					config.setAudioName(2, 2, "sad.wav");
+					config.setAudioName(2, 3, "scared.wav");
+					config.setAudioName(2, 4, "suprised.wav");
+					config.setAudioName(2, 5, "angry.wav");
+					config.setAudioName(2, 6, "happy.wav");
 				config.setRelativePath("Audio/");
 				//Buttons
 				config.setBtnName(1, 1, "Bad");
@@ -74,12 +74,12 @@ public class Configuration implements TalkBoxConfiguration{
 				config.setBtnName(1, 4, "Last");
 				config.setBtnName(1, 5, "Little");
 				config.setBtnName(1, 6, "Long");
-					config.setBtnName(2, 1, "First");
-					config.setBtnName(2, 2, "Good");
-					config.setBtnName(2, 3, "Last");
-					config.setBtnName(2, 4, "Little");
-					config.setBtnName(2, 5, "Long");
-					config.setBtnName(2, 6, "Bad");
+					config.setBtnName(2, 1, "Jealous");
+					config.setBtnName(2, 2, "Sad");
+					config.setBtnName(2, 3, "Scared");
+					config.setBtnName(2, 4, "Suprised");
+					config.setBtnName(2, 5, "Angry");
+					config.setBtnName(2, 6, "Happy");
 				config.setTotalBtnNum(14);
 				//Images
 				config.setImagePath(1, 1, "Images/bad.png");
@@ -88,12 +88,12 @@ public class Configuration implements TalkBoxConfiguration{
 				config.setImagePath(1, 4, "Images/last.png");
 				config.setImagePath(1, 5, "Images/little.png");
 				config.setImagePath(1, 6, "Images/long.png");
-					config.setImagePath(2, 1, "Images/1st.png");
-					config.setImagePath(2, 2, "Images/good.png");
-					config.setImagePath(2, 3, "Images/last.png");
-					config.setImagePath(2, 4, "Images/little.png");
-					config.setImagePath(2, 5, "Images/long.png");
-					config.setImagePath(2, 6, "Images/bad.png");
+					config.setImagePath(2, 1, "Images/jealous.png");
+					config.setImagePath(2, 2, "Images/sad.png");
+					config.setImagePath(2, 3, "Images/scared.png");
+					config.setImagePath(2, 4, "Images/suprised.png");
+					config.setImagePath(2, 5, "Images/angry.png");
+					config.setImagePath(2, 6, "Images/happy.png");
 		for (int i = 0; i < config.getSet1(); i++) {
 			System.out.println(config.getBtnName(1, i+1));
 		}
