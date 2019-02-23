@@ -54,7 +54,7 @@ public class Configuration implements TalkBoxConfiguration{
 				config.setBtnNum(12);
 				config.review(config.getNumberOfAudioSets(), config.getNumberOfAudioButtons());
 				//AUDIO
-				config.setAudioName(1, 1, "bad.wav");
+				config.setAudioName(1, 1, "default.m4a");
 				config.setAudioName(1, 2, "first.wav");
 				config.setAudioName(1, 3, "good.wav");
 				config.setAudioName(1, 4, "last.wav");
@@ -82,7 +82,7 @@ public class Configuration implements TalkBoxConfiguration{
 					config.setBtnName(2, 6, "Bad");
 				config.setTotalBtnNum(14);
 				//Images
-				config.setImagePath(1, 1, "Images/bad.png");
+				config.setImagePath(1, 1, "Images/default.jpg");
 				config.setImagePath(1, 2, "Images/1st.png");
 				config.setImagePath(1, 3, "Images/good.png");
 				config.setImagePath(1, 4, "Images/last.png");

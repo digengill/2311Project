@@ -36,10 +36,10 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview;
 	JLabel imagePreview;
 	ImageIcon preview;
-	JComboBox chooseButton;
+	JComboBox chooseButton, chooseSet;
 	
 	JTextField btnName;
-	int buttonNUM;
+	int buttonNUM=1, set=1;
 	
 
 	 Configuration con;
@@ -97,17 +97,33 @@ try {
 		            public void actionPerformed(ActionEvent e){
 		                JComboBox combo = (JComboBox)e.getSource();
 		                buttonNUM = combo.getSelectedIndex();
+		                if (buttonNUM==(-1))
+		                	buttonNUM=1;
 		                System.out.println(buttonNUM);
 		            }
 		        }
 				);
-		
+		chooseSet = new JComboBox();
+		chooseSet.addItem("Phrases"); chooseSet.addItem("Emotions");
+		chooseSet.addActionListener(
+				new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+								// TODO Auto-generated method stub
+							JComboBox combo = (JComboBox)e.getSource();
+							set = combo.getSelectedIndex()+1;
+							if (set==(-1))
+								set=1;
+							System.out.println(set);
+						}
+				}
+				);
 		centerHold.setLayout(new GridLayout(6,1));
 		center.setLayout(new GridLayout(2,3));
 		namePanel.setLayout(new GridLayout(3,1));
 		previewPanel.setLayout(new GridLayout(1,3));
 		eastPanel.setLayout(new GridLayout(5,1));
 		
+		center.add(chooseSet); //Change made here
 		center.add(chooseButton);
 		centerHold.add(center);
 		centerHold.add(Box.createRigidArea(new Dimension(10, 30)));
@@ -183,14 +199,16 @@ try {
 			try {
 			    FileUtils.copyFileToDirectory(sourceOfFile, destinationofFile);
 			} catch (IOException a) {
-			    a.printStackTrace();
+			   // a.printStackTrace();
 			}
 			
             System.out.println(test+"   "+last);
             System.out.println(filename);
             System.out.println(con.getRelativePathToAudioFiles());
-
-            //con.setAudioName(1, buttonNUM, filename);
+            if (filename.endsWith(".wav") || filename.endsWith(".m4a"))
+            	con.setAudioName(1, buttonNUM, filename);
+            else 
+            	con.setAudioName(set, buttonNUM, "Audio/default.m4a");
 		}
 		else if(source == changeImage)
 		{
@@ -204,15 +222,17 @@ try {
 			try {
 			    FileUtils.copyFileToDirectory(sourceOfFile, destinationofFile);
 			} catch (IOException a) {
-			    a.printStackTrace();
+			   // a.printStackTrace();
 			}
 			
             System.out.println(test+"   "+last);
             System.out.println(filename);
             String imagepath = "Images/"+filename;
             System.out.println(imagepath);
-
-            con.setImagePath(1, buttonNUM, imagepath);
+            if (imagepath.endsWith(".png") || imagepath.endsWith(".jpeg") || imagepath.endsWith(".jpg")) 
+            	con.setImagePath(set, buttonNUM, imagepath);
+            else 
+            	con.setImagePath(set, buttonNUM, "Images/default.jpg");
             
 		}
 		else if (source == Apply)

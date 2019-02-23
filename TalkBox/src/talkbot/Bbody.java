@@ -36,8 +36,8 @@ public class Bbody extends JPanel implements ActionListener {
 	}
 	
 	public void sets() {
-		set1 = new JButton("Adjectives");
-		set2 = new JButton("Feelings");
+		set1 = new JButton("Phrases");
+		set2 = new JButton("Emotions");
 		this.add(set1);
 		this.add(set2);
 		set1.addActionListener(this);
