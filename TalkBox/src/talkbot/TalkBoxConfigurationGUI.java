@@ -32,7 +32,7 @@ import javafx.scene.paint.Color;
 
 public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
-	JPanel main, center,center2,centerHold, namePanel, previewPanel;
+	JPanel main, center,center2,centerHold, namePanel, previewPanel, eastPanel;
 	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview;
 	JLabel imagePreview;
 	ImageIcon preview;
@@ -63,12 +63,15 @@ try {
 		center2 = new JPanel();
 		centerHold = new JPanel();
 		namePanel = new JPanel();
+		previewPanel = new JPanel();
+		eastPanel = new JPanel();
 		
 		btnName = new JTextField(20);
 		btnName.addActionListener(this);
 		
+		audioPreview = new JButton("Audio Preview");
 		nameEnter = new JButton("Apply Name");
-		Apply = new JButton("Apply");
+		Apply = new JButton("SAVE SETTINGS");
 		Apply.addActionListener(this);
 		nameEnter.addActionListener(this);
 		
@@ -102,6 +105,8 @@ try {
 		centerHold.setLayout(new GridLayout(6,1));
 		center.setLayout(new GridLayout(2,3));
 		namePanel.setLayout(new GridLayout(3,1));
+		previewPanel.setLayout(new GridLayout(1,3));
+		eastPanel.setLayout(new GridLayout(5,1));
 		
 		center.add(chooseButton);
 		centerHold.add(center);
@@ -112,7 +117,8 @@ try {
 		centerHold.add(center2);
 		
 		previewPanel.add(imagePreview);
-		centerHold.add(imagePreview);
+		previewPanel.add(audioPreview);
+		centerHold.add(previewPanel);
 		centerHold.add(Box.createRigidArea(new Dimension(10, 30)));
 
 		namePanel.add(new JLabel("Enter Button Name"));
@@ -121,7 +127,11 @@ try {
 		
 		centerHold.add(namePanel);
 		
+		
+		eastPanel.add(Apply);
+		
 		main.add(centerHold,BorderLayout.CENTER);
+		main.add(eastPanel, BorderLayout.EAST);
 		
 		centerHold.setBackground(java.awt.Color.GREEN);
 		main.setBackground(java.awt.Color.GREEN);
