@@ -153,6 +153,13 @@ public class Configuration implements TalkBoxConfiguration{
 		return this.btname[1].length;
 	}
 	
+	public String [] getSet1Buttons () {
+		return this.btname[0];
+	}
+	
+	public String [] getSet2Buttons () {
+		return this.btname[1];
+	}
 	//Button sets
 	public void setBtnName (int set, int num, String name) {
 		this.btname[set-1][num-1] = name;
