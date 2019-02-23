@@ -30,14 +30,14 @@ import javafx.scene.paint.Color;
 public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
 	JPanel main, center,center2,centerHold;
-	JButton changeAudio, changeImage;
+	JButton changeAudio, changeImage, Apply;
 	JLabel imagePreview;
 	ImageIcon preview;
 	JComboBox chooseButton;
 	int buttonNUM;
 	
 
-	static Configuration con;
+	 Configuration con;
 	private ObjectInputStream in;
 	
 	public TalkBoxConfigurationGUI()
@@ -53,10 +53,19 @@ try {
 		this.setMinimumSize(new Dimension(800,500));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        con.setImagePath(1, 1, "1st.png");
+        con.setImagePath(1, 2, "1st.png");
+        con.setImagePath(1, 3, "1st.png");
+        con.setImagePath(1, 4, "1st.png");
+
+
 		main = new JPanel();
 		center = new JPanel();
 		center2 = new JPanel();
 		centerHold = new JPanel();
+		
+		Apply = new JButton("Apply");
+		Apply.addActionListener(this);
 		
 		try {
 			this.preview = new ImageIcon(ImageIO.read(new File("sad.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT));
@@ -93,6 +102,7 @@ try {
 		center.add(changeAudio);
 		center.add(changeImage);
 		center2.add(imagePreview);
+		center2.add(Apply);
 		
 		centerHold.add(center);
 		centerHold.add(Box.createRigidArea(new Dimension(10,50)));
@@ -127,7 +137,14 @@ try {
 		
 		return chooser.getSelectedFile().getAbsolutePath().toString();
 	}
-	
+	public void outputSerial() throws FileNotFoundException, IOException
+	{
+		ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(new File("serial/log.bin")));
+		
+		obj.writeObject(con);
+		obj.close();
+		
+	}
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object source = e.getSource();
@@ -135,27 +152,61 @@ try {
 		if (source == changeAudio)
 		{
 			String test = fileChooser();
-            System.out.println("CHANGE AUDIO"+ test);
-            con.setAudioName(1, buttonNUM-1, test);
+			int last = test.lastIndexOf('\\');
+			String filename = test.substring(last);
+			/**
+			File sourceOfFile = new File(test);
+			File destinationofFile = new File(con.getRelativePathToAudioFiles().toString());
+			try {
+			    FileUtils.copyDirectory(sourceOfFile, destinationofFile);
+			} catch (IOException a) {
+			    a.printStackTrace();
+			}
+			*/
+            System.out.println(test+"   "+last);
+            System.out.println(filename);
+            System.out.println(con.getRelativePathToAudioFiles());
+
+            con.setAudioName(1, buttonNUM, filename);
 		}
 		else if(source == changeImage)
 		{
+			// Images/filename.
 			String test = fileChooser();
-            System.out.println("CHANGE IMAGE"+ test);
-            con.setImagePath(1, buttonNUM-1, test);
+			int last = test.lastIndexOf('\\');
+			String filename = test.substring(last+1);
+			/**
+			File sourceOfFile = new File(test);
+			File destinationofFile = new File(con.getRelativePathToAudioFiles().toString());
+			try {
+			    FileUtils.copyDirectory(sourceOfFile, destinationofFile);
+			} catch (IOException a) {
+			    a.printStackTrace();
+			}
+			*/
+            System.out.println(test+"   "+last);
+            System.out.println(filename);
+            String imagepath = "Images/"+filename;
+            System.out.println(imagepath);
+
+            con.setImagePath(1, buttonNUM, imagepath);
             
 		}
+		else if (source == Apply)
+		{
+			
+		}
 	}
-	public static void main(String[] args) throws FileNotFoundException, IOException {
+	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
-		ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(new File("serial/log.bin")));
+		
 		
 		TalkBoxConfigurationGUI test = new TalkBoxConfigurationGUI();
 		test.setVisible(true);
 		test.pack();
 		
-		obj.writeObject(con);
-		obj.close();
+		
+		
 	}
 
 }
