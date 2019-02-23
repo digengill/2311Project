@@ -23,17 +23,22 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileSystemView;
+
+import org.apache.commons.io.FileUtils;
 
 import javafx.scene.paint.Color;
 
 public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
-	JPanel main, center,center2,centerHold;
-	JButton changeAudio, changeImage, Apply;
+	JPanel main, center,center2,centerHold, namePanel, previewPanel;
+	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview;
 	JLabel imagePreview;
 	ImageIcon preview;
 	JComboBox chooseButton;
+	
+	JTextField btnName;
 	int buttonNUM;
 	
 
@@ -53,19 +58,19 @@ try {
 		this.setMinimumSize(new Dimension(800,500));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        con.setImagePath(1, 1, "1st.png");
-        con.setImagePath(1, 2, "1st.png");
-        con.setImagePath(1, 3, "1st.png");
-        con.setImagePath(1, 4, "1st.png");
-
-
 		main = new JPanel();
 		center = new JPanel();
 		center2 = new JPanel();
 		centerHold = new JPanel();
+		namePanel = new JPanel();
 		
+		btnName = new JTextField(20);
+		btnName.addActionListener(this);
+		
+		nameEnter = new JButton("Apply Name");
 		Apply = new JButton("Apply");
 		Apply.addActionListener(this);
+		nameEnter.addActionListener(this);
 		
 		try {
 			this.preview = new ImageIcon(ImageIO.read(new File("sad.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT));
@@ -94,20 +99,28 @@ try {
 		        }
 				);
 		
-		centerHold.setLayout(new GridLayout(3,1));
-		center.setLayout(new GridLayout(1,3));
-		
+		centerHold.setLayout(new GridLayout(6,1));
+		center.setLayout(new GridLayout(2,3));
+		namePanel.setLayout(new GridLayout(3,1));
 		
 		center.add(chooseButton);
-		center.add(changeAudio);
-		center.add(changeImage);
-		center2.add(imagePreview);
-		center2.add(Apply);
-		
 		centerHold.add(center);
-		centerHold.add(Box.createRigidArea(new Dimension(10,50)));
+		centerHold.add(Box.createRigidArea(new Dimension(10, 30)));
+		
+		center2.add(changeAudio);
+		center2.add(changeImage);
 		centerHold.add(center2);
+		
+		previewPanel.add(imagePreview);
+		centerHold.add(imagePreview);
+		centerHold.add(Box.createRigidArea(new Dimension(10, 30)));
 
+		namePanel.add(new JLabel("Enter Button Name"));
+		namePanel.add(btnName);
+		namePanel.add(nameEnter);
+		
+		centerHold.add(namePanel);
+		
 		main.add(centerHold,BorderLayout.CENTER);
 		
 		centerHold.setBackground(java.awt.Color.GREEN);
@@ -127,7 +140,6 @@ try {
 	{
 		
 		JFileChooser chooser = new JFileChooser();
-		
 		chooser.showOpenDialog(chooser);
 		
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -152,22 +164,23 @@ try {
 		if (source == changeAudio)
 		{
 			String test = fileChooser();
+			
 			int last = test.lastIndexOf('\\');
 			String filename = test.substring(last);
-			/**
+			
 			File sourceOfFile = new File(test);
 			File destinationofFile = new File(con.getRelativePathToAudioFiles().toString());
 			try {
-			    FileUtils.copyDirectory(sourceOfFile, destinationofFile);
+			    FileUtils.copyFileToDirectory(sourceOfFile, destinationofFile);
 			} catch (IOException a) {
 			    a.printStackTrace();
 			}
-			*/
+			
             System.out.println(test+"   "+last);
             System.out.println(filename);
             System.out.println(con.getRelativePathToAudioFiles());
 
-            con.setAudioName(1, buttonNUM, filename);
+            //con.setAudioName(1, buttonNUM, filename);
 		}
 		else if(source == changeImage)
 		{
@@ -175,15 +188,15 @@ try {
 			String test = fileChooser();
 			int last = test.lastIndexOf('\\');
 			String filename = test.substring(last+1);
-			/**
+			
 			File sourceOfFile = new File(test);
-			File destinationofFile = new File(con.getRelativePathToAudioFiles().toString());
+			File destinationofFile = new File("Images");
 			try {
-			    FileUtils.copyDirectory(sourceOfFile, destinationofFile);
+			    FileUtils.copyFileToDirectory(sourceOfFile, destinationofFile);
 			} catch (IOException a) {
 			    a.printStackTrace();
 			}
-			*/
+			
             System.out.println(test+"   "+last);
             System.out.println(filename);
             String imagepath = "Images/"+filename;
