@@ -194,7 +194,12 @@ try {
 		}
 		else if (source == Apply)
 		{
-			
+			try {
+				outputSerial();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	public static void main(String[] args)  {
