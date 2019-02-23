@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
@@ -220,9 +221,13 @@ try {
             System.out.println(filename);
             System.out.println(con.getRelativePathToAudioFiles());
             if (filename.endsWith(".wav"))
-            	con.setAudioName(1, buttonNUM, filename);
-            else 
+            	con.setAudioName(set, buttonNUM, filename);
+            else { //If wrong file 
+					File f = new File(con.getRelativePathToAudioFiles()+filename);
+					f.delete();
+				
             	con.setAudioName(set, buttonNUM, "default.wav");
+            }
 		}
 		else if(source == changeImage)
 		{
@@ -245,8 +250,11 @@ try {
             System.out.println(imagepath);
             if (imagepath.endsWith(".png")) 
             	con.setImagePath(set, buttonNUM, imagepath);
-            else 
+            else {
+            	File f = new File(imagepath);
+            	f.delete();
             	con.setImagePath(set, buttonNUM, "Images/default.png");
+            }
             
 		}
 		else if (source == Apply)
