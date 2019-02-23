@@ -1,7 +1,9 @@
 package talkbot;
 
+import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -25,6 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileSystemView;
+import javax.swing.*;
 
 import org.apache.commons.io.FileUtils;
 
@@ -32,7 +35,9 @@ import javafx.scene.paint.Color;
 
 public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
-	JPanel main, center,center2,centerHold, namePanel, previewPanel, eastPanel;
+	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel;
+	JPanel options;
+	JButton add, remove, change;
 	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview;
 	JLabel imagePreview;
 	ImageIcon preview;
@@ -57,7 +62,16 @@ try {
 		}
 		this.setMinimumSize(new Dimension(800,500));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		org = new JPanel();
+		//content pane layout
+		org.setLayout(new FlowLayout());
+		//Setting up Options
+		options= new JPanel();
+		options.setPreferredSize(new Dimension(800, 500));
+		options.setBackground(java.awt.Color.GRAY);
+		
+		add = new JButton("Add"); remove = new JButton("Remove"); change = new JButton("Change");
+		
 		main = new JPanel();
 		center = new JPanel();
 		center2 = new JPanel();
@@ -153,8 +167,8 @@ try {
 		main.setBackground(java.awt.Color.GREEN);
 		center2.setBackground(java.awt.Color.GREEN);
 
-
-		this.setContentPane(main);
+		org.add(main);
+		this.setContentPane(org);
 	}
 	
 	public void imagePreview()
@@ -205,10 +219,10 @@ try {
             System.out.println(test+"   "+last);
             System.out.println(filename);
             System.out.println(con.getRelativePathToAudioFiles());
-            if (filename.endsWith(".wav") || filename.endsWith(".m4a"))
+            if (filename.endsWith(".wav"))
             	con.setAudioName(1, buttonNUM, filename);
             else 
-            	con.setAudioName(set, buttonNUM, "Audio/default.m4a");
+            	con.setAudioName(set, buttonNUM, "default.wav");
 		}
 		else if(source == changeImage)
 		{
@@ -229,10 +243,10 @@ try {
             System.out.println(filename);
             String imagepath = "Images/"+filename;
             System.out.println(imagepath);
-            if (imagepath.endsWith(".png") || imagepath.endsWith(".jpeg") || imagepath.endsWith(".jpg")) 
+            if (imagepath.endsWith(".png")) 
             	con.setImagePath(set, buttonNUM, imagepath);
             else 
-            	con.setImagePath(set, buttonNUM, "Images/default.jpg");
+            	con.setImagePath(set, buttonNUM, "Images/default.png");
             
 		}
 		else if (source == Apply)
