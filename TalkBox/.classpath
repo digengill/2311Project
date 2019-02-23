@@ -17,10 +17,10 @@
 	<classpathentry kind="lib" path="libraries/jsapi.jar"/>
 	<classpathentry kind="lib" path="libraries/mbrola.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="C:/Users/s4gil/git/2311Project/TalkBox/libraries/commons-io-2.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/s4gil/git/2311Project/TalkBox/libraries/commons-io-2.6-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/s4gil/git/2311Project/TalkBox/libraries/commons-io-2.6-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/s4gil/git/2311Project/TalkBox/libraries/commons-io-2.6-tests.jar"/>
-	<classpathentry kind="lib" path="C:/Users/s4gil/git/2311Project/TalkBox/libraries/commons-io-2.6-test-sources.jar"/>
+	<classpathentry kind="lib" path="libraries/commons-io-2.6-javadoc.jar"/>
+	<classpathentry kind="lib" path="libraries/commons-io-2.6-sources.jar"/>
+	<classpathentry kind="lib" path="libraries/commons-io-2.6-test-sources.jar"/>
+	<classpathentry kind="lib" path="libraries/commons-io-2.6-tests.jar"/>
+	<classpathentry kind="lib" path="libraries/commons-io-2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
