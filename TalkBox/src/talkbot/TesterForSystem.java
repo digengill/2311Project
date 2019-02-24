@@ -46,16 +46,16 @@ class TesterForSystem {
 		}
 				
 	}
-	@Test
-	public void testingButtonWrongImgPath() {
-		Buttons b1= new Buttons("trialButton","notRealPath",12);
-		assertFalse(b1.validImgPath());	
-	}
-	@Test
-	public void testingBbodyException() {
-		body.playSound("notRealAudioFile");
-//		assertFalse(body.soundFileNameValid());
-	}
+//	@Test
+//	public void testingButtonWrongImgPath() {
+//		Buttons b1= new Buttons("trialButton","notRealPath",12);
+//		assertFalse(b1.validImgPath());	
+//	}
+//	@Test
+//	public void testingBbodyException() {
+//		body.playSound("notRealAudioFile");
+////		assertFalse(body.soundFileNameValid());
+//	}
 	@Test
 	public void testConfiguration() {
 		Configuration config = new Configuration();
@@ -173,22 +173,22 @@ class TesterForSystem {
 		System.out.println("stop here:\n\n\n");
 		
 	}
-	@Test
-	public void TalkBoxConfigurationTest() {
-		TalkBoxConfigurationGUI configGui=new TalkBoxConfigurationGUI();
-		configGui.add.doClick();
-		configGui.remove.doClick();
-		configGui.change.doClick();
-//		configGui.changeAudio.doClick(); //doing this test will lauch j file chooser which 
-//		configGui.changeImage.doClick();
-		configGui.Apply.doClick();
-		configGui.nameEnter.doClick();
-		configGui.audioPreview.doClick();
-		configGui.addButton.doClick();
-		configGui.removeButton.doClick();
-		configGui.ab.doClick();
-//		configGui.rb.doClick();
-	}
+//	@Test
+//	public void TalkBoxConfigurationTest() {
+//		TalkBoxConfigurationGUI configGui=new TalkBoxConfigurationGUI();
+//		configGui.add.doClick();
+//		configGui.remove.doClick();
+//		configGui.change.doClick();
+////		configGui.changeAudio.doClick(); //doing this test will lauch j file chooser which 
+////		configGui.changeImage.doClick();
+//		configGui.Apply.doClick();
+//		configGui.nameEnter.doClick();
+//		configGui.audioPreview.doClick();
+//		configGui.addButton.doClick();
+//		configGui.removeButton.doClick();
+//		configGui.ab.doClick();
+////		configGui.rb.doClick();
+//	}
 	
 	
 	
