@@ -156,7 +156,7 @@ class TesterForSystem {
 		System.out.println("Start here 1:\n\n\n");
 		//when a button added, test that it's in  the set btname in the correct index
 		for(int i =0; i <config.getSet1();i++) {
-//			assertEquals(set1BtnNames[i],(config.getSet1Buttons()[i]));
+			assertEquals(set1BtnNames[i],(config.getSet1Buttons()[i]));
 			System.out.println(config.getSet1Buttons()[i]);
 		}
 		
@@ -166,16 +166,29 @@ class TesterForSystem {
 		for(int i =0; i <addResult.length;i++) {
 			for(int j=0; j<addResult[i].length;j++) {
 				System.out.println(addResult[i][j]);
-//				assertEquals(audioFileNamesExpected[i][j],addResult[i][j]);
+				assertEquals(audioFileNamesExpected[i][j],addResult[i][j]);
 			}
 		}
 		
 		System.out.println("stop here:\n\n\n");
 		
-		
-		
 	}
-	
+	@Test
+	public void TalkBoxConfigurationTest() {
+		TalkBoxConfigurationGUI configGui=new TalkBoxConfigurationGUI();
+		configGui.add.doClick();
+		configGui.remove.doClick();
+		configGui.change.doClick();
+//		configGui.changeAudio.doClick(); //doing this test will lauch j file chooser which 
+//		configGui.changeImage.doClick();
+		configGui.Apply.doClick();
+		configGui.nameEnter.doClick();
+		configGui.audioPreview.doClick();
+		configGui.addButton.doClick();
+		configGui.removeButton.doClick();
+		configGui.ab.doClick();
+//		configGui.rb.doClick();
+	}
 	
 	
 	
