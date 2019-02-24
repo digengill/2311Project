@@ -94,6 +94,8 @@ public class Configuration implements TalkBoxConfiguration{
 					config.setImagePath(2, 4, "Images/suprised.png");
 					config.setImagePath(2, 5, "Images/angry.png");
 					config.setImagePath(2, 6, "Images/happy.png");
+					//config.Addbtn(1, "test", "Happy.wav", "Images/happy.png");
+					//config.Removebtn(1, 7);
 		for (int i = 0; i < config.getSet1(); i++) {
 			System.out.println(config.getBtnName(1, i+1));
 		}
@@ -178,6 +180,7 @@ public class Configuration implements TalkBoxConfiguration{
 	}
 	
 	public void Removebtn (int set, int num) {
+		set--;
 		ArrayList<String> temp = new ArrayList<String>();
 		for (int i = 0; i < this.btname[set].length; i++) {
 			temp.add(btname[set][i]);
@@ -204,6 +207,7 @@ public class Configuration implements TalkBoxConfiguration{
 	}
 	
 	public void Addbtn (int set, String bname, String audioname, String image) {
+		set--;
 		ArrayList<String> tempb = new ArrayList<String>();
 		ArrayList<String> tempa = new ArrayList<String>();
 		ArrayList<String> tempi = new ArrayList<String>();
@@ -213,11 +217,15 @@ public class Configuration implements TalkBoxConfiguration{
 			tempi.add(this.rpathImage[set][i]);
 		}
 		tempb.add(bname); tempa.add(audioname); tempi.add(image);
+		
 		this.btname[set] = new String [tempb.size()];
 		this.btname[set] = tempb.toArray(this.btname[set]);
+		
 		this.aname[set] = new String [tempa.size()];
 		this.aname[set] = tempa.toArray(this.aname[set]);
-		this.rpathImage[set] = new String [tempi.size()];
+		for (int i = 0; i < tempb.size(); i++) {
+			System.out.println(this.aname[set][i]);
+		}this.rpathImage[set] = new String [tempi.size()];
 		this.rpathImage[set] = tempi.toArray(this.rpathImage[set]);
 		this.audiobtns++; this.totalbtns++;
 	}
