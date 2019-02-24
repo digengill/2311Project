@@ -39,12 +39,17 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel;
 	JPanel options;
 	JButton add, remove, change;
-	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview, addButton, removeButton, ab, rb;
+	JButton enterName;
+	JButton aAudio;
+	JButton aImage;
+	
+	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview, addButton, removeButton, ab,rb;
 	JLabel imagePreview;
 	ImageIcon preview;
 	JComboBox chooseButton, chooseSet;
 	
-	JTextField btnName;
+	String hold, newbtnImg, newbtnAudio;
+	JTextField btnName, btnName2;
 	int buttonNUM=1, set=1;
 	private final static String newline = "\n";
 
@@ -62,6 +67,8 @@ try {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+
 		this.setMinimumSize(new Dimension(800,500));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		org = new JPanel();
@@ -84,12 +91,21 @@ try {
 		westPanel = new JPanel();
 		
 		btnName = new JTextField(20);
+		btnName2 = new JTextField(20);
+
 		btnName.addActionListener(this);
+		btnName2.addActionListener(this);
+
 		
 		addButton = new JButton("Add Button");
 		removeButton = new JButton("Remove Button");
 		addButton.addActionListener(this);
 		removeButton.addActionListener(this);
+		
+		 enterName = new JButton("Apply Name");
+		 aAudio = new JButton("Add Audio");
+		 aImage = new JButton("Add Image");
+		
 
 		
 		audioPreview = new JButton("Audio Preview");
@@ -202,24 +218,84 @@ try {
 		
 		org.add(main);
 		this.setContentPane(org);
+		
+		
+		
 	}
 	
 	public void addButton()
 	{
-		JFrame add = new JFrame("Add Button");
-		add.setVisible(true);
-		add.setMinimumSize(new Dimension(300,500));
+		set =1;
+		JFrame addB = new JFrame("Add Button");
+		JPanel amain = new JPanel();
+		
+		aAudio.addActionListener(this);
+		aImage.addActionListener(this);
+
+		enterName.addActionListener(this);
+		addB.setVisible(true);
+		addB.setMinimumSize(new Dimension(500,500));
 		
 		ab = new JButton("ADD BUTTON");
+		ab.addActionListener(this);
+		
+		
+		
+		amain.setLayout(new GridLayout(6,3));
+		
+		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+		amain.add(chooseSet);
+		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+		amain.add(new JLabel("Enter Button Name"));
+		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+
+		amain.add(btnName2);
+		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+		amain.add(aAudio);
+		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+		amain.add(aImage);
+		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+		amain.add(ab);
+		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+
+		addB.setContentPane(amain);
 		//public void Addbtn (int set, String bname, String audioname, String image) {
+		 
 		
 	}
 	
 	public void removeButton()
 	{
+		set = 1;
 		JFrame rmv = new JFrame("Remove Button");
+		rmv.setMinimumSize(new Dimension(400,500));
+
 		rmv.setVisible(true);
+		JPanel rmain = new JPanel();
+		rb = new JButton("REMOVE BUTTON");
+		rb.addActionListener(this);
 		
+		rmain.setLayout(new GridLayout(4,3));
+		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
+		rmain.add(chooseSet);
+		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
+		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
+		rmain.add(new JLabel("Enter Button Number"));
+		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
+		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
+		rmain.add(btnName2);
+		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
+		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
+		rmain.add(rb);
+		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
+		
+		rmv.setContentPane(rmain);
+
 	}
 	
 	public void imagePreview()
@@ -340,6 +416,7 @@ try {
 				e1.printStackTrace();
 			}
 		}
+		
 		else if (source == nameEnter)
 		{
 			String text = btnName.getText();
@@ -348,6 +425,7 @@ try {
 		    btnName.setText("");
 			
 		}
+	
 		else if (source == addButton)
 		{
 			addButton();
@@ -356,6 +434,86 @@ try {
 		{
 			removeButton();
 		}
+		/**
+		else if (source == enterName)
+		{
+			 hold = btnName.getText();
+			System.out.println(hold);
+		    btnName2.setText("");
+		}
+		*/
+		else if (source == aAudio)
+		{
+			String test = fileChooser();
+			if (test == null)
+			{
+				System.out.println("null");
+			}
+			else
+			{
+			int last = test.lastIndexOf('\\');
+			String filename = test.substring(last);
+			
+			File sourceOfFile = new File(test);
+			File destinationofFile = new File(con.getRelativePathToAudioFiles().toString());
+			try {
+			    FileUtils.copyFileToDirectory(sourceOfFile, destinationofFile);
+			} catch (IOException a) {
+			   // a.printStackTrace();
+			}
+			
+            System.out.println(test+"   "+last);
+            System.out.println(filename);
+            newbtnAudio = filename;
+			}
+		}
+		else if (source == aImage)
+		{
+			String test = fileChooser();
+			if (test == null)
+			{
+				System.out.println("null");
+			}
+			else
+			{
+			int last = test.lastIndexOf('\\');
+			String filename = test.substring(last+1);
+			
+			File sourceOfFile = new File(test);
+			File destinationofFile = new File("Images");
+			try {
+			    FileUtils.copyFileToDirectory(sourceOfFile, destinationofFile);
+			} catch (IOException a) {
+			   // a.printStackTrace();
+			}
+			
+            System.out.println(test+"   "+last);
+            System.out.println(filename);
+            newbtnImg = "Images/"+filename;
+			}
+		}
+		else if (source == ab)
+		{
+			 hold = btnName2.getText();
+				System.out.println(hold);
+			    btnName2.setText("");
+			con.Addbtn(set,hold,newbtnAudio,newbtnImg);
+			//public void Addbtn (int set, String bname, String audioname, String image) {
+
+		}
+		else if (source == rb)
+		{
+			int hold = Integer.parseInt(btnName2.getText());
+			System.out.println(hold);
+		    btnName2.setText("");
+		    con.Removebtn(set, hold);
+			
+		//	public void Removebtn (int set, int num) {
+
+			
+			
+		}
+	
 	}
 	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
