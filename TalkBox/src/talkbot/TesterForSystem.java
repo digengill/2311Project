@@ -196,7 +196,6 @@ class TesterForSystem {
 		
 		configGui.addButton();
 		configGui.removeButton();
-//		configGui.fileChooser();
 		
 	}
 	
