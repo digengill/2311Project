@@ -131,7 +131,47 @@ class TesterForSystem {
 		for(int i =0; i <config.getSet2();i++) {
 			assertEquals(set2BtnNames[i],(config.getSet2Buttons()[i]));
 		}
-
+		
+		
+		config.Removebtn(1,6);
+		//when button removed test that it's no longer in  the set btname
+		String [] set1NewBtnNames= {"Bad","First","Good","Last","Little"};
+		for(int i =0; i <config.getSet1();i++) {
+			assertEquals(set1NewBtnNames[i],(config.getSet1Buttons()[i]));
+		}
+		String[][] audioFileNamesExpectedNew= {
+				{"bad.wav","first.wav","good.wav","last.wav","little.wav"},
+				{"jealous.wav","sad.wav","scared.wav","suprised.wav","angry.wav","happy.wav"}
+				};
+		//when button removed test that it's no longer in  the set aset, i.e audio files name set
+		String[][] removedResult=config.getAudioFileNames();
+		for(int i =0; i <removedResult.length;i++) {
+			for(int j=0; j<removedResult[i].length;j++) {
+				assertEquals(audioFileNamesExpected[i][j],removedResult[i][j]);
+			}
+		}
+		
+		config.Addbtn(1, "Long", "long.wav", "Images/long.png");
+		
+		System.out.println("Start here 1:\n\n\n");
+		//when a button added, test that it's in  the set btname in the correct index
+		for(int i =0; i <config.getSet1();i++) {
+//			assertEquals(set1BtnNames[i],(config.getSet1Buttons()[i]));
+			System.out.println(config.getSet1Buttons()[i]);
+		}
+		
+		System.out.println("Start here 2:\n\n\n");
+		//when button added, test that it is longer in  the set aset, i.e audio files name set
+		String[][]addResult=config.getAudioFileNames();
+		for(int i =0; i <addResult.length;i++) {
+			for(int j=0; j<addResult[i].length;j++) {
+				System.out.println(addResult[i][j]);
+//				assertEquals(audioFileNamesExpected[i][j],addResult[i][j]);
+			}
+		}
+		
+		System.out.println("stop here:\n\n\n");
+		
 		
 		
 	}

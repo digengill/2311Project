@@ -25,7 +25,7 @@ public class Bbody extends JPanel implements ActionListener {
 	public JButton set1, set2;
 	public ArrayList<Buttons> track1, track2;
 	private Boolean on;
-	
+	 
 	
 	public void setup(JPanel mpanel) {
 		sp = new JPanel();
@@ -74,6 +74,7 @@ public class Bbody extends JPanel implements ActionListener {
 			
 	}
 	
+	
 	public Bbody (JPanel mpanel) {
 		super();
 		//Read in serialized file
@@ -83,6 +84,7 @@ public class Bbody extends JPanel implements ActionListener {
 			con = (Configuration) in.readObject();
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
 		this.setMinimumSize(new Dimension(mpanel.getWidth()-50, 400));
 		this.setMaximumSize(new Dimension(mpanel.getWidth()-50, 400));
