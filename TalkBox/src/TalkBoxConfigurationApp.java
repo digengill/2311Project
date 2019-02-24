@@ -300,7 +300,7 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 		else if (source == launchSimulator)
 		{
 			
-			TalkBoxSimulator relaunch = new TalkBoxSimulator(rArraya);
+			TalkBoxSimulator relaunch = new TalkBoxSimulator();
 			
 			relaunch.setVisible(true);
 			relaunch.pack();
