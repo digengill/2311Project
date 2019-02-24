@@ -21,7 +21,7 @@ public class TalkBotSimulator extends JFrame {
 		info.setMaximumSize(new Dimension(mpanel.getWidth()-100, 200));
 		info.setBackground(n);
 		info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
-		
+		 
 		
 		i = new JTextArea();
 		i.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));

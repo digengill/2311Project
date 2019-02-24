@@ -20,7 +20,7 @@ class TalkBoxSimulatorTest {
 		tbb.pack();
         tbb.setVisible(true); 
 	}
-	@Test
+	@Test 
 	public void testClickingButtons() throws InterruptedException{
         Thread.sleep(1000);
 		tbb.b1.doClick();

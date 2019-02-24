@@ -20,7 +20,7 @@ public class Bbody extends JPanel implements ActionListener {
 	//req
 	private JPanel sp;
 	private JScrollPane scroll;
-	private Configuration con;
+	protected Configuration con;
 	private ObjectInputStream in;
 	public JButton set1, set2;
 	public ArrayList<Buttons> track1, track2;
