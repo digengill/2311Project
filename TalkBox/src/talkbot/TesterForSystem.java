@@ -2,11 +2,15 @@ package talkbot;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 class TesterForSystem {
+	
 	TalkBotSimulator tbb= new TalkBotSimulator();
 	Bbody body= new Bbody(tbb.mpanel);
+	
 	@Test
 	public void testingSimulatorGUIClickingBtns() throws InterruptedException {
 		
@@ -20,8 +24,7 @@ class TesterForSystem {
 		for(int i =0; i <body.track2.size();i++) {
 			body.track2.get(i).doClick();
 		}
-		
-		
+			
 	}
 
 	@Test
@@ -41,11 +44,17 @@ class TesterForSystem {
 		for(int i =0; i <body.track2.size();i++) {
 			body.track2.get(i).doClick();
 			assertEquals(track2Expect[i],body.track2.get(i).getText());
-
 		}
 		
-		
+		body.con.setImagePath(1, 1, "nonthing");
 		
 	}
+	@Test
+	public void testingButtonWrongImgPath() {
+		
+		Buttons b1= new Buttons("trialButton","notRealPath",1);
+		assertFalse(b1.validImgPath());	
+	}
+		
 	
 }

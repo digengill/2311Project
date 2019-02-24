@@ -10,6 +10,11 @@ public class Buttons extends JButton{
 	private ImageIcon pic;
 	private String ifile;
 	private int num;
+	private boolean validImgPath=true;
+	
+	public boolean validImgPath() {
+		return validImgPath;
+	}
 	
 	public int getbtnNumber() {
 		return this.num;
@@ -22,6 +27,7 @@ public class Buttons extends JButton{
 		try {
 			this.pic = new ImageIcon(ImageIO.read(new File(ifile)).getScaledInstance(200, 230, Image.SCALE_DEFAULT));
 		} catch (IOException e) {
+			validImgPath=false;
 			e.printStackTrace();
 		}
 		 
