@@ -46,7 +46,8 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
 	JTextField btnName;
 	int buttonNUM=1, set=1;
-	
+	private final static String newline = "\n";
+
 
 	 Configuration con;
 	private ObjectInputStream in;
@@ -167,6 +168,9 @@ try {
 		centerHold.setBackground(java.awt.Color.GREEN);
 		main.setBackground(java.awt.Color.GREEN);
 		center2.setBackground(java.awt.Color.GREEN);
+		
+		org.setBackground(java.awt.Color.GREEN);
+
 
 		org.add(main);
 		this.setContentPane(org);
@@ -289,6 +293,14 @@ try {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		}
+		else if (source == nameEnter)
+		{
+			String text = btnName.getText();
+			con.setBtnName(set, buttonNUM, text);
+			System.out.println(text);
+		    btnName.setText("");
+			
 		}
 	}
 	public static void main(String[] args)  {
