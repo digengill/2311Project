@@ -36,10 +36,10 @@ import javafx.scene.paint.Color;
 
 public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
-	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel;
+	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel;
 	JPanel options;
 	JButton add, remove, change;
-	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview;
+	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview, addButton, removeButton, ab, rb;
 	JLabel imagePreview;
 	ImageIcon preview;
 	JComboBox chooseButton, chooseSet;
@@ -81,9 +81,16 @@ try {
 		namePanel = new JPanel();
 		previewPanel = new JPanel();
 		eastPanel = new JPanel();
+		westPanel = new JPanel();
 		
 		btnName = new JTextField(20);
 		btnName.addActionListener(this);
+		
+		addButton = new JButton("Add Button");
+		removeButton = new JButton("Remove Button");
+		addButton.addActionListener(this);
+		removeButton.addActionListener(this);
+
 		
 		audioPreview = new JButton("Audio Preview");
 		nameEnter = new JButton("Apply Name");
@@ -133,12 +140,21 @@ try {
 						}
 				}
 				);
+		main.setLayout(new BorderLayout());
 		centerHold.setLayout(new GridLayout(6,1));
 		center.setLayout(new GridLayout(2,3));
 		namePanel.setLayout(new GridLayout(3,1));
 		previewPanel.setLayout(new GridLayout(1,3));
-		eastPanel.setLayout(new GridLayout(5,1));
+		eastPanel.setLayout(new GridLayout(5,2));
+		westPanel.setLayout(new GridLayout(3,2));
 		
+		westPanel.add(addButton);
+		westPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+		westPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+		westPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+		westPanel.add(removeButton);
+		westPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+
 		center.add(chooseSet); //Change made here
 		center.add(chooseButton);
 		centerHold.add(center);
@@ -159,21 +175,51 @@ try {
 		
 		centerHold.add(namePanel);
 		
-		
+		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+
 		eastPanel.add(Apply);
 		
 		main.add(centerHold,BorderLayout.CENTER);
 		main.add(eastPanel, BorderLayout.EAST);
+		main.add(westPanel, BorderLayout.WEST);
 		
 		centerHold.setBackground(java.awt.Color.GREEN);
 		main.setBackground(java.awt.Color.GREEN);
 		center2.setBackground(java.awt.Color.GREEN);
+		westPanel.setBackground(java.awt.Color.GREEN);
+		eastPanel.setBackground(java.awt.Color.GREEN);
 		
 		org.setBackground(java.awt.Color.GREEN);
 
-
+		
 		org.add(main);
 		this.setContentPane(org);
+	}
+	
+	public void addButton()
+	{
+		JFrame add = new JFrame("Add Button");
+		add.setVisible(true);
+		add.setMinimumSize(new Dimension(300,500));
+		
+		ab = new JButton("ADD BUTTON");
+		//public void Addbtn (int set, String bname, String audioname, String image) {
+		
+	}
+	
+	public void removeButton()
+	{
+		JFrame rmv = new JFrame("Remove Button");
+		rmv.setVisible(true);
+		
 	}
 	
 	public void imagePreview()
@@ -301,6 +347,14 @@ try {
 			System.out.println(text);
 		    btnName.setText("");
 			
+		}
+		else if (source == addButton)
+		{
+			addButton();
+		}
+		else if (source == removeButton)
+		{
+			removeButton();
 		}
 	}
 	public static void main(String[] args)  {
