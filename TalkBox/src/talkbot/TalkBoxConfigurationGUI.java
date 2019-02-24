@@ -397,7 +397,7 @@ try {
             System.out.println(filename);
             String imagepath = "Images/"+filename;
             System.out.println(imagepath);
-            if (imagepath.endsWith(".png")) 
+            if (imagepath.endsWith(".png") || imagepath.endsWith(".PNG"))
             	con.setImagePath(set, buttonNUM, imagepath);
             else {
             	File f = new File(imagepath);
@@ -464,7 +464,14 @@ try {
 			
             System.out.println(test+"   "+last);
             System.out.println(filename);
-            newbtnAudio = filename;
+            if (filename.endsWith(".wav"))
+            	newbtnAudio = filename;
+
+            else { //If wrong file 
+				File f = new File(con.getRelativePathToAudioFiles()+filename);
+				f.delete();
+				newbtnAudio = "default.wav";
+            }
 			}
 		}
 		else if (source == aImage)
@@ -489,15 +496,33 @@ try {
 			
             System.out.println(test+"   "+last);
             System.out.println(filename);
-            newbtnImg = "Images/"+filename;
+            if (filename.endsWith(".wav"))
+            	newbtnImg = "Images/"+filename;
+            	
+            else { //If wrong file 
+					File f = new File("Images/"+filename);
+					f.delete();
+				newbtnImg = "Images/default.png";
+            }
 			}
 		}
 		else if (source == ab)
 		{
 			 hold = btnName2.getText();
+			 if (hold=="" || hold==null)
+				 hold="N/A";
 				System.out.println(hold);
 			    btnName2.setText("");
 			con.Addbtn(set,hold,newbtnAudio,newbtnImg);
+			try {
+				outputSerial();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			//public void Addbtn (int set, String bname, String audioname, String image) {
 
 		}
@@ -507,7 +532,15 @@ try {
 			System.out.println(hold);
 		    btnName2.setText("");
 		    con.Removebtn(set, hold);
-			
+			try {
+				outputSerial();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		//	public void Removebtn (int set, int num) {
 
 			
