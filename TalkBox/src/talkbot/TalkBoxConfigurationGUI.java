@@ -181,14 +181,24 @@ try {
 	{
 		
 		JFileChooser chooser = new JFileChooser();
-		chooser.showOpenDialog(chooser);
 		
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		int result = chooser.showOpenDialog(null);
+		 String filename = null;
+        File f = chooser.getSelectedFile();
+        if (JFileChooser.CANCEL_OPTION == result) {
+            System.out.println("canceled");
+        } else if (JFileChooser.APPROVE_OPTION== result) {
+            filename = f.getAbsolutePath();
+            System.out.println(filename+"   APPROVE");
+        }else{
+            System.out.println(result);
+        }
 		
-		   System.out.println("You chose to open this directory: " +
-		        chooser.getSelectedFile().getAbsolutePath());
+		String path = filename;
+		   
 		
-		return chooser.getSelectedFile().getAbsolutePath().toString();
+		return path;
 	}
 	public void outputSerial() throws FileNotFoundException, IOException
 	{
@@ -205,7 +215,12 @@ try {
 		if (source == changeAudio)
 		{
 			String test = fileChooser();
-			
+			if (test == null)
+			{
+				System.out.println("null");
+			}
+			else
+			{
 			int last = test.lastIndexOf('\\');
 			String filename = test.substring(last);
 			
@@ -228,11 +243,18 @@ try {
 				
             	con.setAudioName(set, buttonNUM, "default.wav");
             }
+			}
 		}
 		else if(source == changeImage)
 		{
 			// Images/filename.
 			String test = fileChooser();
+			if (test == null)
+			{
+				System.out.println("null");
+			}
+			else
+			{
 			int last = test.lastIndexOf('\\');
 			String filename = test.substring(last+1);
 			
@@ -255,6 +277,7 @@ try {
             	f.delete();
             	con.setImagePath(set, buttonNUM, "Images/default.png");
             }
+			}
             
 		}
 		else if (source == Apply)
