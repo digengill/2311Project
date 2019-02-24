@@ -15,12 +15,11 @@ class TesterForSystem {
 	public void testingSimulatorGUIClickingBtns() throws InterruptedException {
 		
 	
-		body.set1.doClick(); //checking for phrases
-		body.set1.doClick();//checking for emotions
-		
+		body.set1.doClick(); //checking for phrases		
 		for(int i =0; i <body.track1.size();i++) {
 			body.track1.get(i).doClick();
 		}
+		body.set2.doClick();//checking for emotions
 		for(int i =0; i <body.track2.size();i++) {
 			body.track2.get(i).doClick();
 		}
@@ -51,7 +50,7 @@ class TesterForSystem {
 	public void testingButtonWrongImgPath() {
 		Buttons b1= new Buttons("trialButton","notRealPath",1);
 		assertFalse(b1.validImgPath());	
+	
 	}
-		
 	
 }
