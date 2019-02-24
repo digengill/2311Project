@@ -20,6 +20,7 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 	String b5Input;
 	String b6Input;
 	String rArray[];
+	String audioArray[];
 	String r1,r2,r3,r4,r5,r6;
 	JComboBox chooseButton;
 	JLabel buttons [] = new JLabel [6];
@@ -43,6 +44,8 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 		
 		
 		rArray = new String[6];
+		audioArray = new String[6];
+
 		
 		audioConfig = new JButton("Change Audio");
 		ttsConfig = new JButton("Change TTS");
@@ -224,55 +227,91 @@ public class TalkBoxConfigurationApp extends TalkBoxSimulator implements ActionL
 			String test = fileChooser();
 			if (buttonNUM == 1)
 			{
-				r1 = test;
-				rArray[0] = test;
+				audioArray[0] = test;
 				
 			}
 			else if (buttonNUM == 2)
 			{
-				r2 = test;
-				rArray[1] = test;
+				audioArray[1] = test;
 
 			}
 			else if (buttonNUM == 3)
 			{
-				r3 = test;
-				rArray[2] = test;
+				audioArray[2] = test;
 
 			}
 			else if (buttonNUM == 4)
 			{
-				r4 = test;
-				rArray[3] = test;
+				audioArray[3] = test;
 
 			}	
 			else if (buttonNUM == 5)
 			{
-				r5 = test;
-				rArray[4] = test;
+				audioArray[4] = test;
 
 			}	
 			else if (buttonNUM == 6)
 			{
-				r6 = test;
-				rArray[5] = test;
+				audioArray[5] = test;
 
-			}	
+			}		
 		}
 		else if (source == pickPicture)
 		{
-		fileChooser();
+		
+		String test = fileChooser();
+		if (buttonNUM == 1)
+		{
+			r1 = test;
+			rArray[0] = test;
+			
+		}
+		else if (buttonNUM == 2)
+		{
+			r2 = test;
+			rArray[1] = test;
+
+		}
+		else if (buttonNUM == 3)
+		{
+			r3 = test;
+			rArray[2] = test;
+
+		}
+		else if (buttonNUM == 4)
+		{
+			r4 = test;
+			rArray[3] = test;
+
+		}	
+		else if (buttonNUM == 5)
+		{
+			r5 = test;
+			rArray[4] = test;
+
+		}	
+		else if (buttonNUM == 6)
+		{
+			r6 = test;
+			rArray[5] = test;
+
+		}
 		}
 		else if (source == launchSimulator)
 		{
 			
-			TalkBoxSimulator relaunch = new TalkBoxSimulator(rArray);
+			TalkBoxSimulator relaunch = new TalkBoxSimulator(rArraya);
 			
 			relaunch.setVisible(true);
 			relaunch.pack();
 		    
 			
 			System.out.println("1  "+r1+" 2  "+r2+" 3  "+r3+" 4   "+r4+" 5   "+r5+" 6   "+r6);
+			for(int i=0; i< audioArray.length;i++)
+			{
+				System.out.println(audioArray[i]);
+				
+			}
 		}
 	}
 
