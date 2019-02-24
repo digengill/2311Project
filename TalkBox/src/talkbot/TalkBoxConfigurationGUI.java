@@ -128,7 +128,11 @@ try {
 		changeAudio.addActionListener(this);
 		changeImage.addActionListener(this);
 		
-		String[] bnames = {"Pick Button","1","2","3","4","5","6"};
+		String[] bnames = new String [con.getSet1()];//{"Pick Button","1","2","3","4","5","6"};
+		bnames[0] = "Pick Button";
+		for (int i = 1; i < bnames.length; i++) {
+			bnames[i] = ""+i;
+		}
 		chooseButton = new JComboBox(bnames);
 		chooseButton.addActionListener(
 
@@ -138,7 +142,7 @@ try {
 		                buttonNUM = combo.getSelectedIndex();
 		                if (buttonNUM==(-1))
 		                	buttonNUM=1;
-		                System.out.println(buttonNUM);
+		                //System.out.println(buttonNUM);
 		            }
 		        }
 				);
@@ -152,7 +156,22 @@ try {
 							set = combo.getSelectedIndex()+1;
 							if (set==(-1))
 								set=1;
-							System.out.println(set);
+							//System.out.println(set);
+							if (set==1) {
+								String[] bnames = new String [con.getSet1()];//{"Pick Button","1","2","3","4","5","6"};
+								bnames[0] = "Pick Button";
+								for (int i = 1; i < bnames.length; i++) {
+									bnames[i] = ""+i;
+								}
+								chooseButton = new JComboBox(bnames);
+							} else if (set==2) {
+								String[] bnames = new String [con.getSet2()];//{"Pick Button","1","2","3","4","5","6"};
+								bnames[0] = "Pick Button";
+								for (int i = 1; i < bnames.length; i++) {
+									bnames[i] = ""+i;
+								}
+								chooseButton = new JComboBox(bnames);
+							}
 						}
 				}
 				);
@@ -314,12 +333,12 @@ try {
 		 String filename = null;
         File f = chooser.getSelectedFile();
         if (JFileChooser.CANCEL_OPTION == result) {
-            System.out.println("canceled");
+           // System.out.println("canceled");
         } else if (JFileChooser.APPROVE_OPTION== result) {
             filename = f.getAbsolutePath();
-            System.out.println(filename+"   APPROVE");
+            //System.out.println(filename+"   APPROVE");
         }else{
-            System.out.println(result);
+            //System.out.println(result);
         }
 		
 		String path = filename;
@@ -344,7 +363,7 @@ try {
 			String test = fileChooser();
 			if (test == null)
 			{
-				System.out.println("null");
+				//System.out.println("null");
 			}
 			else
 			{
@@ -359,9 +378,9 @@ try {
 			   // a.printStackTrace();
 			}
 			
-            System.out.println(test+"   "+last);
-            System.out.println(filename);
-            System.out.println(con.getRelativePathToAudioFiles());
+           // System.out.println(test+"   "+last);
+           // System.out.println(filename);
+           // System.out.println(con.getRelativePathToAudioFiles());
             if (filename.endsWith(".wav"))
             	con.setAudioName(set, buttonNUM, filename);
             else { //If wrong file 
@@ -378,7 +397,7 @@ try {
 			String test = fileChooser();
 			if (test == null)
 			{
-				System.out.println("null");
+				//System.out.println("null");
 			}
 			else
 			{
@@ -393,10 +412,10 @@ try {
 			   // a.printStackTrace();
 			}
 			
-            System.out.println(test+"   "+last);
-            System.out.println(filename);
+           // System.out.println(test+"   "+last);
+           // System.out.println(filename);
             String imagepath = "Images/"+filename;
-            System.out.println(imagepath);
+          //  System.out.println(imagepath);
             if (imagepath.endsWith(".png") || imagepath.endsWith(".PNG"))
             	con.setImagePath(set, buttonNUM, imagepath);
             else {
@@ -421,7 +440,7 @@ try {
 		{
 			String text = btnName.getText();
 			con.setBtnName(set, buttonNUM, text);
-			System.out.println(text);
+			//System.out.println(text);
 		    btnName.setText("");
 			
 		}
@@ -447,7 +466,7 @@ try {
 			String test = fileChooser();
 			if (test == null)
 			{
-				System.out.println("null");
+			//	System.out.println("null");
 			}
 			else
 			{
@@ -462,8 +481,8 @@ try {
 			   // a.printStackTrace();
 			}
 			
-            System.out.println(test+"   "+last);
-            System.out.println(filename);
+          //  System.out.println(test+"   "+last);
+           // System.out.println(filename);
             if (filename.endsWith(".wav"))
             	newbtnAudio = filename;
 
@@ -479,7 +498,7 @@ try {
 			String test = fileChooser();
 			if (test == null)
 			{
-				System.out.println("null");
+			//	System.out.println("null");
 			}
 			else
 			{
@@ -494,9 +513,9 @@ try {
 			   // a.printStackTrace();
 			}
 			
-            System.out.println(test+"   "+last);
-            System.out.println(filename);
-            if (filename.endsWith(".wav"))
+          //  System.out.println(test+"   "+last);
+          //  System.out.println(filename);
+            if (filename.endsWith(".png"))
             	newbtnImg = "Images/"+filename;
             	
             else { //If wrong file 
@@ -511,7 +530,7 @@ try {
 			 hold = btnName2.getText();
 			 if (hold=="" || hold==null)
 				 hold="N/A";
-				System.out.println(hold);
+				//System.out.println(hold);
 			    btnName2.setText("");
 			con.Addbtn(set,hold,newbtnAudio,newbtnImg);
 			try {
@@ -529,8 +548,10 @@ try {
 		else if (source == rb)
 		{
 			int hold = Integer.parseInt(btnName2.getText());
-			System.out.println(hold);
+			//System.out.println(hold);
 		    btnName2.setText("");
+		    if ((set==1 && (hold<1 || hold>con.getSet1()) || (set==2 && (hold<1 || hold>con.getSet2()))))
+		    	hold=1;
 		    con.Removebtn(set, hold);
 			try {
 				outputSerial();
