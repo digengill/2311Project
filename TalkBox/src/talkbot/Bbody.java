@@ -48,9 +48,9 @@ public class Bbody extends JPanel implements ActionListener {
 		track1 = new ArrayList<Buttons>();
 		track2 = new ArrayList<Buttons>(); on=true;
 		for (int h = 0; h < 2; h++) {
-			if (h==0) { System.out.println(con.getSet1());
+			if (h==0) { //System.out.println(con.getSet1());
 				for (int i = 0; i < con.getSet1(); i++) {
-					System.out.println(con.getPathToImageFile(1, i+1)); System.out.println(i);
+					//System.out.println(con.getPathToImageFile(1, i+1)); System.out.println(i);
 					Buttons btn = new Buttons(con.getBtnName(1, i+1), con.getPathToImageFile(1, i+1), i+1);
 					btn.addActionListener(this);
 					track1.add(btn);
@@ -60,7 +60,7 @@ public class Bbody extends JPanel implements ActionListener {
 					//////////////////////MAYBE SURROUND WITH TRY CATCH
 				}
 			} else if (h==1) {
-				for (int i = 0; i < con.getSet2(); i++) {System.out.println(con.getPathToImageFile(2, i+1));
+				for (int i = 0; i < con.getSet2(); i++) {//System.out.println(con.getPathToImageFile(2, i+1));
 					Buttons btn = new Buttons(con.getBtnName(2, i+1), con.getPathToImageFile(2, i+1), i+1);
 					//btn.addActionListener(this);
 					track2.add(btn);
@@ -95,7 +95,6 @@ public class Bbody extends JPanel implements ActionListener {
 		this.sets();
 		//Set scroll features
 		scroll = new JScrollPane(sp);
-		//scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll.setPreferredSize(new Dimension(mpanel.getWidth()-100, 270));
 		//scroll.setMinimumSize(new Dimension(400, this.getHeight()));
@@ -150,7 +149,7 @@ public class Bbody extends JPanel implements ActionListener {
 	        clip.open(audioInputStream);
 	        clip.start();
 	    } catch(Exception e) {
-	        System.out.println("Error with sound.");
+	       // System.out.println("Error with sound.");
 	        e.printStackTrace();
 	    }
 	}

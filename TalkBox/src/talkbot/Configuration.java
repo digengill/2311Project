@@ -96,9 +96,9 @@ public class Configuration implements TalkBoxConfiguration{
 					config.setImagePath(2, 6, "Images/happy.png");
 					//config.Addbtn(1, "test", "Happy.wav", "Images/happy.png");
 					//config.Removebtn(1, 7);
-		for (int i = 0; i < config.getSet1(); i++) {
-			System.out.println(config.getBtnName(1, i+1));
-		}
+		//for (int i = 0; i < config.getSet1(); i++) {
+		//	System.out.println(config.getBtnName(1, i+1));
+		//}
 		obj.writeObject(config);
 		obj.close();
 	}
@@ -223,9 +223,7 @@ public class Configuration implements TalkBoxConfiguration{
 		
 		this.aname[set] = new String [tempa.size()];
 		this.aname[set] = tempa.toArray(this.aname[set]);
-		for (int i = 0; i < tempb.size(); i++) {
-			System.out.println(this.aname[set][i]);
-		}this.rpathImage[set] = new String [tempi.size()];
+		this.rpathImage[set] = new String [tempi.size()];
 		this.rpathImage[set] = tempi.toArray(this.rpathImage[set]);
 		this.audiobtns++; this.totalbtns++;
 	}

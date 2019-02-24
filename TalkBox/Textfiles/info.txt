@@ -3,4 +3,5 @@ This acts as an emulator for the actual TalkBox, and can be used on any platform
 How to use:
 	-There are many buttons in the panel below this
 	-Clicking any button will activate the audio file it correlates to
+	-If you wish to change which category you are in, click either 'Phrases' or 'Emotions'
 	-If any changes need to be made to the buttons, use the Configuration app

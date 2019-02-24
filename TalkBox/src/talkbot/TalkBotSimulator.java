@@ -68,7 +68,7 @@ public class TalkBotSimulator extends JFrame {
 		setInfo();	
 		body = new Bbody(mpanel);
 
-		mpanel.add(title); System.out.println("here1");
+		mpanel.add(title); //System.out.println("here1");
 		mpanel.revalidate();
 		mpanel.repaint();
 		mpanel.add(info);
@@ -91,7 +91,7 @@ public class TalkBotSimulator extends JFrame {
 		mpanel = new JPanel();	
 		//frame.setContentPane(mpanel);
 		
-		System.out.println("here2");
+		//System.out.println("here2");
 		frame.setContentPane(mpanel);
 		frame.setVisible(true);
 		settings();
