@@ -193,6 +193,11 @@ class TesterForSystem {
 		
 //		configGui.ab.doClick();
 ////	configGui.rb.doClick();
+		
+		configGui.addButton();
+		configGui.removeButton();
+//		configGui.fileChooser();
+		
 	}
 	
 	
