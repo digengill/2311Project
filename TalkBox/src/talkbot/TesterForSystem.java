@@ -151,7 +151,7 @@ class TesterForSystem {
 			}
 		}
 		
-		config.Addbtn(5, "Long", "long.wav", "Images/long.png");
+		config.Addbtn(1, "Long", "long.wav", "Images/long.png");
 		
 		System.out.println("Start here 1:\n\n\n");
 		//when a button added, test that it's in  the set btname in the correct index
