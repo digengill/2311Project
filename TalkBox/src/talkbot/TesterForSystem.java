@@ -22,7 +22,7 @@ class TesterForSystem {
 		body.set2.doClick();//checking for emotions
 		for(int i =0; i <body.track2.size();i++) {
 			body.track2.get(i).doClick();
-		}
+		} 
 			 
 	}
 
