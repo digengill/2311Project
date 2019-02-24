@@ -201,6 +201,10 @@ try {
 		
 		previewPanel.add(imagePreview);
 		previewPanel.add(audioPreview);
+		imagePreview.setVisible(false);
+		audioPreview.setVisible(false);
+
+		
 		centerHold.add(previewPanel);
 		centerHold.add(Box.createRigidArea(new Dimension(10, 30)));
 
@@ -231,7 +235,7 @@ try {
 		center2.setBackground(java.awt.Color.GREEN);
 		westPanel.setBackground(java.awt.Color.GREEN);
 		eastPanel.setBackground(java.awt.Color.GREEN);
-		
+		previewPanel.setBackground(java.awt.Color.yellow);
 		org.setBackground(java.awt.Color.GREEN);
 
 		
