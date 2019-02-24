@@ -68,13 +68,7 @@ public TalkBoxSimulator (String pname[])
 		    setImage(l5,"washroom.png");
 		    setImage(l6,"happy1.png");
 	}
-	    try {
-	        play1 = Applet.newAudioClip(new File("wavtest.wav").toURI().toURL());
-
-	    }
-	     catch(Exception e)
-	    {
-	    }
+	    
 	
 }
 
@@ -108,6 +102,14 @@ public TalkBoxSimulator (int numOfButtons, String button1,String button2,String 
     b5 = new JButton(button5);
     b6 = new JButton(button6);
     
+    b1.addActionListener(this);
+    b2.addActionListener(this);
+    b3.addActionListener(this);
+    b4.addActionListener(this);
+    b5.addActionListener(this);
+    b6.addActionListener(this);
+
+    
     configureButton = new JButton("Configure");
     addButton = new JButton("Add Button");
      
@@ -128,6 +130,13 @@ public TalkBoxSimulator (int numOfButtons, String button1,String button2,String 
     l5 = new JLabel();
     l6 = new JLabel();
     
+    try {
+        play1 = Applet.newAudioClip(new File("wavtest.wav").toURI().toURL());
+
+    }
+     catch(Exception e)
+    {
+    }
    
     
     newButtons = new JPanel();
