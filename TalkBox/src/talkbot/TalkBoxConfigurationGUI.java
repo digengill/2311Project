@@ -128,7 +128,7 @@ try {
 		changeAudio.addActionListener(this);
 		changeImage.addActionListener(this);
 		
-		String[] bnames = new String [con.getSet1()];//{"Pick Button","1","2","3","4","5","6"};
+		String[] bnames = new String [con.getSet1()+1];//{"Pick Button","1","2","3","4","5","6"};
 		bnames[0] = "Pick Button";
 		for (int i = 1; i < bnames.length; i++) {
 			bnames[i] = ""+i;
@@ -158,18 +158,19 @@ try {
 								set=1;
 							//System.out.println(set);
 							if (set==1) {
-								String[] bnames = new String [con.getSet1()];//{"Pick Button","1","2","3","4","5","6"};
+								String[] bnames = new String [con.getSet1()+1];//{"Pick Button","1","2","3","4","5","6"};
 								bnames[0] = "Pick Button";
 								for (int i = 1; i < bnames.length; i++) {
 									bnames[i] = ""+i;
 								}
 								chooseButton = new JComboBox(bnames);
 							} else if (set==2) {
-								String[] bnames = new String [con.getSet2()];//{"Pick Button","1","2","3","4","5","6"};
+								String[] bnames = new String [con.getSet2()+1];//{"Pick Button","1","2","3","4","5","6"};
 								bnames[0] = "Pick Button";
 								for (int i = 1; i < bnames.length; i++) {
 									bnames[i] = ""+i;
 								}
+								//System.out.println(con.getSet2()+1);
 								chooseButton = new JComboBox(bnames);
 							}
 						}
@@ -536,6 +537,10 @@ try {
 				 hold="N/A";
 				//System.out.println(hold);
 			    btnName2.setText("");
+			    if (newbtnAudio=="" || newbtnAudio==null)
+			    	newbtnAudio="default.wav";
+			    if (newbtnImg=="" || newbtnImg==null)
+			    	newbtnImg="Images/default.png";
 			con.Addbtn(set,hold,newbtnAudio,newbtnImg);
 			try {
 				outputSerial();
