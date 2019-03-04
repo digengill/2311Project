@@ -475,7 +475,7 @@ try {
 			}
 			else
 			{
-			int last = test.lastIndexOf('\\');
+			int last = test.lastIndexOf('\\'); System.out.println(last);
 			String filename = test.substring(last);
 			
 			File sourceOfFile = new File(test);
