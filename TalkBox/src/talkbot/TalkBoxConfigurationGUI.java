@@ -36,16 +36,16 @@ import javafx.scene.paint.Color;
 
 public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
-	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel;
+	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel, menu;
 	JPanel options;
 	JButton add, remove, change;
 	JButton enterName;
 	JButton aAudio;
 	JButton aImage;
 	
-	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview, addButton, removeButton, ab,rb;
+	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview, addButton, removeButton, changeButton, ab,rb, back;
 	JLabel imagePreview;
-	ImageIcon preview;
+	ImageIcon preview, goBack;
 	JComboBox chooseButton, chooseSet;
 	
 	String hold, newbtnImg, newbtnAudio;
@@ -67,115 +67,149 @@ try {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+org = new JPanel();
+//content pane layout
+org.setLayout(new FlowLayout());
+//Setting up Options
+options= new JPanel();
+options.setPreferredSize(new Dimension(800, 500));
+options.setBackground(java.awt.Color.GRAY);
+
+add = new JButton("Add"); remove = new JButton("Remove"); change = new JButton("Change");
+try {
+	this.goBack = new ImageIcon(ImageIO.read(new File("angry.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+} catch (IOException e) {
+	e.printStackTrace();
+}
+back = new JButton(goBack);
+back.addActionListener(this);
+
+main = new JPanel();
+center = new JPanel();
+center2 = new JPanel();
+centerHold = new JPanel();
+namePanel = new JPanel();
+previewPanel = new JPanel();
+eastPanel = new JPanel();
+westPanel = new JPanel();
+
+btnName = new JTextField(20);
+btnName2 = new JTextField(20);
+
+btnName.addActionListener(this);
+btnName2.addActionListener(this);
+
+imagePreview = new JLabel("Image",preview, JLabel.CENTER );
+
+changeAudio = new JButton("Change Audio");
+changeImage = new JButton("Change Image");
+
+changeAudio.addActionListener(this);
+changeImage.addActionListener(this);
 
 
-		this.setMinimumSize(new Dimension(800,500));
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		org = new JPanel();
-		//content pane layout
-		org.setLayout(new FlowLayout());
-		//Setting up Options
-		options= new JPanel();
-		options.setPreferredSize(new Dimension(800, 500));
-		options.setBackground(java.awt.Color.GRAY);
-		
-		add = new JButton("Add"); remove = new JButton("Remove"); change = new JButton("Change");
-		
-		main = new JPanel();
-		center = new JPanel();
-		center2 = new JPanel();
-		centerHold = new JPanel();
-		namePanel = new JPanel();
-		previewPanel = new JPanel();
-		eastPanel = new JPanel();
-		westPanel = new JPanel();
-		
-		btnName = new JTextField(20);
-		btnName2 = new JTextField(20);
 
-		btnName.addActionListener(this);
-		btnName2.addActionListener(this);
+ enterName = new JButton("Apply Name");
+ aAudio = new JButton("Add Audio");
+ aImage = new JButton("Add Image");
 
-		
-		addButton = new JButton("Add Button");
-		removeButton = new JButton("Remove Button");
-		addButton.addActionListener(this);
-		removeButton.addActionListener(this);
-		
-		 enterName = new JButton("Apply Name");
-		 aAudio = new JButton("Add Audio");
-		 aImage = new JButton("Add Image");
-		
 
+
+audioPreview = new JButton("Audio Preview");
+nameEnter = new JButton("Apply Name");
+Apply = new JButton("SAVE SETTINGS");
+Apply.addActionListener(this);
+nameEnter.addActionListener(this);
+
+String[] bnames = new String [con.getSet1()+1];//{"Pick Button","1","2","3","4","5","6"};
+bnames[0] = "Pick Button";
+for (int i = 1; i < bnames.length; i++) {
+	bnames[i] = ""+i;
+}
+chooseButton = new JComboBox(bnames);
+chooseButton.addActionListener(
+
+        new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                JComboBox combo = (JComboBox)e.getSource();
+                buttonNUM = combo.getSelectedIndex();
+                if (buttonNUM==(-1))
+                	buttonNUM=1;
+                //System.out.println(buttonNUM);
+            }
+        }
+		);
+chooseSet = new JComboBox();
+chooseSet.addItem("Phrases"); chooseSet.addItem("Emotions");
+chooseSet.addActionListener(
+		new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+					JComboBox combo = (JComboBox)e.getSource();
+					set = combo.getSelectedIndex()+1;
+					if (set==(-1))
+						set=1;
+					//System.out.println(set);
+					if (set==1) {
+						String[] bnames = new String [con.getSet1()+1];//{"Pick Button","1","2","3","4","5","6"};
+						bnames[0] = "Pick Button";
+						for (int i = 1; i < bnames.length; i++) {
+							bnames[i] = ""+i;
+						}
+						chooseButton = new JComboBox(bnames);
+					} else if (set==2) {
+						String[] bnames = new String [con.getSet2()+1];//{"Pick Button","1","2","3","4","5","6"};
+						bnames[0] = "Pick Button";
+						for (int i = 1; i < bnames.length; i++) {
+							bnames[i] = ""+i;
+						}
+						//System.out.println(con.getSet2()+1);
+						chooseButton = new JComboBox(bnames);
+					}
+				}
+		}
+		);
+
+
+
+	addButton = new JButton("Add Button");
+	removeButton = new JButton("Remove Button");
+	changeButton = new JButton("Change Button");
+	addButton.addActionListener(this);
+	removeButton.addActionListener(this);
+	changeButton.addActionListener(this);
+	
+		menu = new JPanel();
+		menu.setLayout(new GridLayout());
+		menu.add(addButton);
+		menu.add(Box.createRigidArea(new Dimension(100, 100)));
+		menu.add(removeButton);
+		menu.add(Box.createRigidArea(new Dimension(100, 100)));
+		menu.add(changeButton);
 		
-		audioPreview = new JButton("Audio Preview");
-		nameEnter = new JButton("Apply Name");
-		Apply = new JButton("SAVE SETTINGS");
-		Apply.addActionListener(this);
-		nameEnter.addActionListener(this);
-		
-		try {
+	this.add(menu, BorderLayout.CENTER);
+	this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.NORTH);
+	this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
+	this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
+	this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.WEST);
+
+	}
+	public void changeButton()
+	{
+		JFrame cb = new JFrame();
+		cb.setVisible(true);
+		cb.setMinimumSize(new Dimension(800,600));
+		cb.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				try {
 			this.preview = new ImageIcon(ImageIO.read(new File("sad.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		imagePreview = new JLabel("Image",preview, JLabel.CENTER );
+				
 		
-		changeAudio = new JButton("Change Audio");
-		changeImage = new JButton("Change Image");
-
-		changeAudio.addActionListener(this);
-		changeImage.addActionListener(this);
-		
-		String[] bnames = new String [con.getSet1()+1];//{"Pick Button","1","2","3","4","5","6"};
-		bnames[0] = "Pick Button";
-		for (int i = 1; i < bnames.length; i++) {
-			bnames[i] = ""+i;
-		}
-		chooseButton = new JComboBox(bnames);
-		chooseButton.addActionListener(
-
-		        new ActionListener(){
-		            public void actionPerformed(ActionEvent e){
-		                JComboBox combo = (JComboBox)e.getSource();
-		                buttonNUM = combo.getSelectedIndex();
-		                if (buttonNUM==(-1))
-		                	buttonNUM=1;
-		                //System.out.println(buttonNUM);
-		            }
-		        }
-				);
-		chooseSet = new JComboBox();
-		chooseSet.addItem("Phrases"); chooseSet.addItem("Emotions");
-		chooseSet.addActionListener(
-				new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-								// TODO Auto-generated method stub
-							JComboBox combo = (JComboBox)e.getSource();
-							set = combo.getSelectedIndex()+1;
-							if (set==(-1))
-								set=1;
-							//System.out.println(set);
-							if (set==1) {
-								String[] bnames = new String [con.getSet1()+1];//{"Pick Button","1","2","3","4","5","6"};
-								bnames[0] = "Pick Button";
-								for (int i = 1; i < bnames.length; i++) {
-									bnames[i] = ""+i;
-								}
-								chooseButton = new JComboBox(bnames);
-							} else if (set==2) {
-								String[] bnames = new String [con.getSet2()+1];//{"Pick Button","1","2","3","4","5","6"};
-								bnames[0] = "Pick Button";
-								for (int i = 1; i < bnames.length; i++) {
-									bnames[i] = ""+i;
-								}
-								//System.out.println(con.getSet2()+1);
-								chooseButton = new JComboBox(bnames);
-							}
-						}
-				}
-				);
 		main.setLayout(new BorderLayout());
 		centerHold.setLayout(new GridLayout(6,1));
 		center.setLayout(new GridLayout(2,3));
@@ -184,12 +218,7 @@ try {
 		eastPanel.setLayout(new GridLayout(5,2));
 		westPanel.setLayout(new GridLayout(3,2));
 		
-		westPanel.add(addButton);
-		westPanel.add(Box.createRigidArea(new Dimension(10, 30)));
-		westPanel.add(Box.createRigidArea(new Dimension(10, 30)));
-		westPanel.add(Box.createRigidArea(new Dimension(10, 30)));
-		westPanel.add(removeButton);
-		westPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+		westPanel.add(back);
 
 		center.add(chooseSet); //Change made here
 		center.add(chooseButton);
@@ -241,12 +270,8 @@ try {
 
 		
 		org.add(main);
-		this.setContentPane(org);
-		
-		
-		
+		cb.setContentPane(org);
 	}
-	
 	public void addButton()
 	{
 		set =1;
@@ -576,7 +601,18 @@ try {
 			
 			
 		}
-	
+		else if (source == changeButton)
+		{
+			
+			changeButton();
+		}
+		else if(source == back)
+		{
+			TalkBoxConfigurationGUI test1 = new TalkBoxConfigurationGUI();
+			
+			test1.setVisible(true);
+			test1.pack();
+		}
 	}
 	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
