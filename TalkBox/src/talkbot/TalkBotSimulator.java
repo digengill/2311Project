@@ -26,7 +26,7 @@ public class TalkBotSimulator extends JFrame {
 		i = new JTextArea();
 		i.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
 		i.setBackground(b);
-		i.setForeground(h);
+		//i.setForeground(h);
 		i.setLineWrap(true);
 		//Read info
 		File file = new File("Textfiles/info.txt");
@@ -36,12 +36,11 @@ public class TalkBotSimulator extends JFrame {
 	            	String line = scanner.nextLine();
 	            	i.append(line); i.append("\n");
 	         }
-		} catch (FileNotFoundException e) {
+			 scanner.close();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		} 
     	//Finish reading info
     	info.add(i);
     	//info.setVisible(true);
@@ -69,8 +68,8 @@ public class TalkBotSimulator extends JFrame {
 		body = new Bbody(mpanel);
 
 		mpanel.add(title); //System.out.println("here1");
-		mpanel.revalidate();
-		mpanel.repaint();
+		//mpanel.revalidate();
+		//mpanel.repaint();
 		mpanel.add(info);
 		mpanel.revalidate();
 		mpanel.repaint();
@@ -103,6 +102,6 @@ public class TalkBotSimulator extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		TalkBotSimulator bot = new TalkBotSimulator();
+		TalkBotSimulator bot = new TalkBotSimulator(); // why isnt this used?
 	}
 }

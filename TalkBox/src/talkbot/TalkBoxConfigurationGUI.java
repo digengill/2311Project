@@ -34,6 +34,8 @@ import org.apache.commons.io.FileUtils;
 
 import javafx.scene.paint.Color;
 
+import java.util.*;
+
 public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
 	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel, menu;
@@ -51,6 +53,14 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	String hold, newbtnImg, newbtnAudio;
 	JTextField btnName, btnName2;
 	int buttonNUM=1, set=1;
+	
+	//new testing PresetPanel
+	JPanel PresetSelect;
+	JButton AddPreset, RemovePreset;
+	JComboBox<Preset> ChoosePreset;
+	JLabel ChoosePreLabel;
+	
+	
 	private final static String newline = "\n";
 
 
@@ -172,7 +182,7 @@ chooseSet.addActionListener(
 		}
 		);
 
-
+	this.setLayout(new GridBagLayout());
 
 	addButton = new JButton("Add Button");
 	removeButton = new JButton("Remove Button");
@@ -181,21 +191,103 @@ chooseSet.addActionListener(
 	removeButton.addActionListener(this);
 	changeButton.addActionListener(this);
 	
+	
+	GridBagConstraints GBC = new GridBagConstraints();
+	GBC.gridy = 2;
+	GBC.ipady = 100;
+	GBC.ipadx = 50;
+
+	
 		menu = new JPanel();
-		menu.setLayout(new GridLayout());
-		menu.add(addButton);
-		menu.add(Box.createRigidArea(new Dimension(100, 100)));
-		menu.add(removeButton);
-		menu.add(Box.createRigidArea(new Dimension(100, 100)));
-		menu.add(changeButton);
+		menu.setLayout(new GridBagLayout());
+		menu.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
+		menu.add(addButton, GBC);
+		menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
+		menu.add(removeButton, GBC);
+		//GBC.gridy = 3;
+		menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
+		menu.add(changeButton, GBC);
+		menu.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
 		
-	this.add(menu, BorderLayout.CENTER);
-	this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.NORTH);
-	this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
-	this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
-	this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.WEST);
+	
+	this.add(menu);// BorderLayout.CENTER);
+	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.NORTH);
+	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
+	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
+	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.WEST);
+	
+	
+	
+	//Testing PresetPanel
+	
+	
+	ArrayList<Buttons> test = new ArrayList<Buttons>();
+	Preset P = new Preset("Weather", test);
+	Preset B = new Preset("Weather2", test);
+	PresetSelect = new JPanel();
+	PresetSelect.setLayout(new GridBagLayout());
+	AddPreset = new JButton("Add Preset");
+	RemovePreset = new JButton("Remove Preset");
+	
+	
+	ActionListener PresetPanelListener= new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == AddPreset)
+			{
+				ChoosePreset.addItem(B);
+				menu.revalidate();
+				menu.repaint();
+			}
+			else if (e.getSource() == RemovePreset)
+			{
+				ChoosePreset.remove(ChoosePreset.getSelectedIndex());
+				menu.revalidate();
+				menu.repaint();
+			}
+			//else if(e.getSource() == ChoosePreset)
+//			{
+//				
+//			}
+			// TODO Auto-generated method stub
+			
+		}
+	};
+	
+	AddPreset.addActionListener(PresetPanelListener);
+	RemovePreset.addActionListener(PresetPanelListener);
+	
+	ChoosePreset = new JComboBox<Preset>();
+	ChoosePreset.addActionListener(PresetPanelListener);
+	ChoosePreset.addItem(P);
+	ChoosePreset.addItem(B);
+	ChoosePreLabel = new JLabel("Choose a Preset");
+	GBC.gridy = 0;
+	
+	menu.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
+	/*PresetSelect*/menu.add(AddPreset, GBC);
+	
+	menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
+	/*PresetSelect*/menu.add(ChoosePreset, GBC);
+	menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
+	//menu.add(Box.createRigidArea(new Dimension(150, 100)), GBC);
+	/*PresetSelect*/menu.add(RemovePreset, GBC);
+	menu.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
+	//menu.setMinimumSize(new Dimension(500, 500));
+	
+	//PresetSelect.add(ChoosePreLabel);
+	//this.add(PresetSelect);
+	//this.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
 
 	}
+	
+	
+
+	
+	
+	
+	
 	public void changeButton()
 	{
 		JFrame cb = new JFrame();
