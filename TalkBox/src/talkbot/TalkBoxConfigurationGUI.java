@@ -36,7 +36,7 @@ import javafx.scene.paint.Color;
 
 public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
-	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel, menu;
+	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel, menu, menuMain;
 	JPanel options;
 	JButton add, remove, change;
 	JButton enterName;
@@ -51,7 +51,6 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	String hold, newbtnImg, newbtnAudio;
 	JTextField btnName, btnName2;
 	int buttonNUM=1, set=1;
-	private final static String newline = "\n";
 
 
 	 Configuration con;
@@ -94,6 +93,7 @@ namePanel = new JPanel();
 previewPanel = new JPanel();
 eastPanel = new JPanel();
 westPanel = new JPanel();
+menuMain = new JPanel();
 
 btnName = new JTextField(20);
 btnName2 = new JTextField(20);
@@ -183,25 +183,30 @@ chooseSet.addActionListener(
 	
 		menu = new JPanel();
 		menu.setLayout(new GridLayout());
+		menuMain.setLayout(new BorderLayout());
 		menu.add(addButton);
 		menu.add(Box.createRigidArea(new Dimension(100, 100)));
 		menu.add(removeButton);
 		menu.add(Box.createRigidArea(new Dimension(100, 100)));
 		menu.add(changeButton);
 		
-	this.add(menu, BorderLayout.CENTER);
-	this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.NORTH);
-	this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
-	this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
-	this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.WEST);
-
+	menuMain.add(menu, BorderLayout.CENTER);
+	
+	menu.setBackground(java.awt.Color.cyan);
+	menuMain.setBackground(java.awt.Color.cyan);
+	
+	menuMain.add(Box.createRigidArea(new Dimension(100, 300)),BorderLayout.NORTH);
+	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
+	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
+	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.WEST);
+	this.setContentPane(menuMain);
 	}
 	public void changeButton()
 	{
 		JFrame cb = new JFrame();
 		cb.setVisible(true);
 		cb.setMinimumSize(new Dimension(800,600));
-		cb.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//cb.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				try {
 			this.preview = new ImageIcon(ImageIO.read(new File("sad.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 		} catch (IOException e) {
@@ -520,6 +525,8 @@ chooseSet.addActionListener(
 				File f = new File(con.getRelativePathToAudioFiles()+filename);
 				f.delete();
 				newbtnAudio = "default.wav";
+	    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Audio. Default Audio is set.");
+
             }
 			}
 		}
@@ -552,6 +559,8 @@ chooseSet.addActionListener(
 					File f = new File("Images/"+filename);
 					f.delete();
 				newbtnImg = "Images/default.png";
+	    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Image. Default image is set.");
+
             }
 			}
 		}
@@ -567,6 +576,8 @@ chooseSet.addActionListener(
 			    if (newbtnImg=="" || newbtnImg==null)
 			    	newbtnImg="Images/default.png";
 			con.Addbtn(set,hold,newbtnAudio,newbtnImg);
+    		JOptionPane.showMessageDialog(new JFrame(), "New button added.\n Button Set: "+set+"\n Button Name: "+hold+"\n Audio Name: "+newbtnAudio+"\n Image Name: "+newbtnImg);
+
 			try {
 				outputSerial();
 			} catch (FileNotFoundException e1) {
@@ -585,8 +596,16 @@ chooseSet.addActionListener(
 			//System.out.println(hold);
 		    btnName2.setText("");
 		    if ((set==1 && (hold<1 || hold>con.getSet1()) || (set==2 && (hold<1 || hold>con.getSet2()))))
-		    	hold=1;
+		    	{
+		    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Button Number.\n Try Again.");
+		    	}
+		    else
+		    {
+	    	JOptionPane.showMessageDialog(new JFrame(), "Button removed.\n Button Set: "+set+"Button Name: "+con.getBtnName(set, hold));
+
 		    con.Removebtn(set, hold);
+
+		    }
 			try {
 				outputSerial();
 			} catch (FileNotFoundException e1) {
