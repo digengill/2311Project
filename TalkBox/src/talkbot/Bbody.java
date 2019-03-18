@@ -24,7 +24,8 @@ public class Bbody extends JPanel implements ActionListener {
 	private ObjectInputStream in;
 	public JButton set1, set2;
 	public ArrayList<Buttons> track1, track2;
-	private Boolean on;
+	private Boolean on, play=false;
+	private Clip clip;
 	 
 	
 	public void setup(JPanel mpanel) {
@@ -144,10 +145,22 @@ public class Bbody extends JPanel implements ActionListener {
 	
 	public void playSound(String temp) {
 	    try {
-	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(temp));
-	        Clip clip = AudioSystem.getClip();
-	        clip.open(audioInputStream);
-	        clip.start();
+	       // Clip clip = AudioSystem.getClip();
+	        
+	        if (play==false) {
+		        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(temp));
+	        	clip = AudioSystem.getClip();
+	        	clip.open(audioInputStream);
+	        	clip.start();
+	        	play=true;
+	        }
+	        else {
+	        	clip.stop();
+		        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(temp));
+	        	clip = AudioSystem.getClip();
+	        	clip.open(audioInputStream);
+	        	clip.start();
+	        }
 	    } catch(Exception e) {
 	       // System.out.println("Error with sound.");
 	        e.printStackTrace();
