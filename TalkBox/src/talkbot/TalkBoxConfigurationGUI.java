@@ -57,7 +57,8 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	//new testing PresetPanel
 	JPanel PresetSelect;
 	JButton AddPreset, RemovePreset;
-	JComboBox<Preset> ChoosePreset;
+	ArrayList<Preset> ChoosePreset;
+	JComboBox<String> PresetNames;
 	JLabel ChoosePreLabel;
 	
 	
@@ -230,25 +231,45 @@ chooseSet.addActionListener(
 	RemovePreset = new JButton("Remove Preset");
 	
 	
+	
 	ActionListener PresetPanelListener= new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == AddPreset)
 			{
-				ChoosePreset.addItem(B);
+				Preset Q = new Preset("TestName");
+				ChoosePreset.add(Q);
+				PresetNames.addItem(Q.GetName());
+				
+				PresetNames.updateUI();
 				menu.revalidate();
 				menu.repaint();
 			}
 			else if (e.getSource() == RemovePreset)
 			{
-				ChoosePreset.remove(ChoosePreset.getSelectedIndex());
-				menu.revalidate();
-				menu.repaint();
+				if(ChoosePreset.size() > 0 )
+				{
+					//System.out.println(PresetNames.getSelectedIndex());
+					//System.out.println(ChoosePreset.get(PresetNames.getSelectedIndex()));
+					
+					ChoosePreset.remove(PresetNames.getSelectedIndex());
+					PresetNames.removeItemAt(PresetNames.getSelectedIndex());
+					PresetNames.updateUI();
+					menu.revalidate();
+					menu.repaint();
+				}
+				else
+				{
+				System.out.println("Error cannot remove 0 presets");
+				}
 			}
-			//else if(e.getSource() == ChoosePreset)
+//			else if(e.getSource() == PresetNames)
 //			{
+//				System.out.println(PresetNames.getSelectedIndex());
 //				
+//				menu.revalidate();
+//				menu.repaint();
 //			}
 			// TODO Auto-generated method stub
 			
@@ -258,10 +279,15 @@ chooseSet.addActionListener(
 	AddPreset.addActionListener(PresetPanelListener);
 	RemovePreset.addActionListener(PresetPanelListener);
 	
-	ChoosePreset = new JComboBox<Preset>();
-	ChoosePreset.addActionListener(PresetPanelListener);
-	ChoosePreset.addItem(P);
-	ChoosePreset.addItem(B);
+	ChoosePreset = new ArrayList<Preset>();
+	PresetNames = new JComboBox<String>();
+
+	ChoosePreset.add(P);
+	ChoosePreset.add(B);
+	PresetNames.addItem(P.GetName());
+	PresetNames.addItem(B.GetName());
+	PresetNames.addActionListener(PresetPanelListener);
+	
 	ChoosePreLabel = new JLabel("Choose a Preset");
 	GBC.gridy = 0;
 	
@@ -269,7 +295,7 @@ chooseSet.addActionListener(
 	/*PresetSelect*/menu.add(AddPreset, GBC);
 	
 	menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
-	/*PresetSelect*/menu.add(ChoosePreset, GBC);
+	/*PresetSelect*/menu.add(PresetNames, GBC);
 	menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
 	//menu.add(Box.createRigidArea(new Dimension(150, 100)), GBC);
 	/*PresetSelect*/menu.add(RemovePreset, GBC);
@@ -293,7 +319,7 @@ chooseSet.addActionListener(
 		JFrame cb = new JFrame();
 		cb.setVisible(true);
 		cb.setMinimumSize(new Dimension(800,600));
-		cb.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//cb.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				try {
 			this.preview = new ImageIcon(ImageIO.read(new File("sad.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 		} catch (IOException e) {
@@ -364,9 +390,11 @@ chooseSet.addActionListener(
 		org.add(main);
 		cb.setContentPane(org);
 	}
+	
 	public void addButton()
 	{
-		set =1;
+		//set = 1;
+		
 		JFrame addB = new JFrame("Add Button");
 		JPanel amain = new JPanel();
 		

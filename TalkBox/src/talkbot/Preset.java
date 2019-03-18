@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Preset {
 	
-	ArrayList<Buttons> myButtons = new ArrayList<Buttons>();
-	String name;
+	private ArrayList<Buttons> myButtons = new ArrayList<Buttons>();
+	private String name;
 	/** A Preset Is an arrayList of buttons. 
 	 * It contains the buttons, the number of buttons, as well as the ability to remove buttons and add buttons.
 	 * 
@@ -63,6 +63,22 @@ public class Preset {
 	public void RemoveButton(Buttons button)
 	{
 		myButtons.remove(button);
+	}
+	/** returns the name of the preset
+	 * 
+	 * @return name
+	 */
+	public String GetName()
+	{
+		return name;
+	}
+	/** sets the name of the preset to the input string
+	 * 
+	 * @param inName
+	 */
+	public void SetName(String inName)
+	{
+		name = inName;
 	}
 
 }
