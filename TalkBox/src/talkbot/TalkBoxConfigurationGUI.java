@@ -1,11 +1,6 @@
 package talkbot;
 
 import java.awt.*;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -183,7 +178,7 @@ chooseSet.addActionListener(
 		}
 		);
 
-	this.setLayout(new GridBagLayout());
+	this.setLayout(new GridLayout());
 
 	addButton = new JButton("Add Button");
 	removeButton = new JButton("Remove Button");
