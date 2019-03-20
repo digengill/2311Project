@@ -33,7 +33,7 @@ import java.util.*;
 
 public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
-	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel, menu;
+	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel, menu, menuMain;
 	JPanel options;
 	JButton add, remove, change;
 	JButton enterName;
@@ -48,6 +48,7 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	String hold, newbtnImg, newbtnAudio;
 	JTextField btnName, btnName2;
 	int buttonNUM=1, set=1;
+
 	
 	//new testing PresetPanel
 	JPanel PresetSelect;
@@ -58,6 +59,7 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
 	
 	private final static String newline = "\n";
+
 
 
 	 Configuration con;
@@ -100,6 +102,7 @@ namePanel = new JPanel();
 previewPanel = new JPanel();
 eastPanel = new JPanel();
 westPanel = new JPanel();
+menuMain = new JPanel();
 
 btnName = new JTextField(20);
 btnName2 = new JTextField(20);
@@ -188,24 +191,34 @@ chooseSet.addActionListener(
 	changeButton.addActionListener(this);
 	
 	
-	GridBagConstraints GBC = new GridBagConstraints();
-	GBC.gridy = 2;
-	GBC.ipady = 100;
-	GBC.ipadx = 50;
+//	GridBagConstraints GBC = new GridBagConstraints();
+//	GBC.gridy = 2;
+//	GBC.ipady = 100;
+//	GBC.ipadx = 50;
 
 	
 		menu = new JPanel();
-		menu.setLayout(new GridBagLayout());
-		menu.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
-		menu.add(addButton, GBC);
-		menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
-		menu.add(removeButton, GBC);
-		//GBC.gridy = 3;
-		menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
-		menu.add(changeButton, GBC);
-		menu.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
 		
-	
+//		menu.setLayout(new GridBagLayout());
+//		menu.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
+//		menu.add(addButton, GBC);
+//		menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
+//		menu.add(removeButton, GBC);
+//		//GBC.gridy = 3;
+//		menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
+//		menu.add(changeButton, GBC);
+//		menu.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
+
+		menu.setLayout(new GridLayout(2, 3, 100, 100));
+		menuMain.setLayout(new BorderLayout());
+		menu.add(addButton);
+		menu.add(Box.createRigidArea(new Dimension(100, 100)));
+		menu.add(removeButton);
+		menu.add(Box.createRigidArea(new Dimension(100, 100)));
+		menu.add(changeButton);
+
+		
+
 	this.add(menu);// BorderLayout.CENTER);
 	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.NORTH);
 	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
@@ -259,15 +272,6 @@ chooseSet.addActionListener(
 				System.out.println("Error cannot remove 0 presets");
 				}
 			}
-//			else if(e.getSource() == PresetNames)
-//			{
-//				System.out.println(PresetNames.getSelectedIndex());
-//				
-//				menu.revalidate();
-//				menu.repaint();
-//			}
-			// TODO Auto-generated method stub
-			
 		}
 	};
 	
@@ -284,22 +288,34 @@ chooseSet.addActionListener(
 	PresetNames.addActionListener(PresetPanelListener);
 	
 	ChoosePreLabel = new JLabel("Choose a Preset");
-	GBC.gridy = 0;
+	//GBC.gridy = 0;
 	
-	menu.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
-	/*PresetSelect*/menu.add(AddPreset, GBC);
+	menu.add(Box.createRigidArea(new Dimension(70, 100))); //,GBC);
+	/*PresetSelect*/menu.add(AddPreset);//, GBC);
 	
-	menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
-	/*PresetSelect*/menu.add(PresetNames, GBC);
-	menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
+	menu.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
+	/*PresetSelect*/menu.add(PresetNames);//, GBC);
+	menu.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
 	//menu.add(Box.createRigidArea(new Dimension(150, 100)), GBC);
-	/*PresetSelect*/menu.add(RemovePreset, GBC);
-	menu.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
+	/*PresetSelect*/menu.add(RemovePreset);//, GBC);
+	menu.add(Box.createRigidArea(new Dimension(70, 100)));//, GBC);
 	//menu.setMinimumSize(new Dimension(500, 500));
 	
 	//PresetSelect.add(ChoosePreLabel);
 	//this.add(PresetSelect);
 	//this.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
+
+
+//	menuMain.add(menu, BorderLayout.CENTER);
+//	
+//	menu.setBackground(java.awt.Color.cyan);
+//	menuMain.setBackground(java.awt.Color.cyan);
+//	
+//	menuMain.add(Box.createRigidArea(new Dimension(100, 300)),BorderLayout.NORTH);
+//	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
+//	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
+//	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.WEST);
+//	this.setContentPane(menuMain);
 
 	}
 	
@@ -635,6 +651,8 @@ chooseSet.addActionListener(
 				File f = new File(con.getRelativePathToAudioFiles()+filename);
 				f.delete();
 				newbtnAudio = "default.wav";
+	    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Audio. Default Audio is set.");
+
             }
 			}
 		}
@@ -667,6 +685,8 @@ chooseSet.addActionListener(
 					File f = new File("Images/"+filename);
 					f.delete();
 				newbtnImg = "Images/default.png";
+	    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Image. Default image is set.");
+
             }
 			}
 		}
@@ -682,6 +702,8 @@ chooseSet.addActionListener(
 			    if (newbtnImg=="" || newbtnImg==null)
 			    	newbtnImg="Images/default.png";
 			con.Addbtn(set,hold,newbtnAudio,newbtnImg);
+    		JOptionPane.showMessageDialog(new JFrame(), "New button added.\n Button Set: "+set+"\n Button Name: "+hold+"\n Audio Name: "+newbtnAudio+"\n Image Name: "+newbtnImg);
+
 			try {
 				outputSerial();
 			} catch (FileNotFoundException e1) {
@@ -700,8 +722,16 @@ chooseSet.addActionListener(
 			//System.out.println(hold);
 		    btnName2.setText("");
 		    if ((set==1 && (hold<1 || hold>con.getSet1()) || (set==2 && (hold<1 || hold>con.getSet2()))))
-		    	hold=1;
+		    	{
+		    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Button Number.\n Try Again.");
+		    	}
+		    else
+		    {
+	    	JOptionPane.showMessageDialog(new JFrame(), "Button removed.\n Button Set: "+set+"Button Name: "+con.getBtnName(set, hold));
+
 		    con.Removebtn(set, hold);
+
+		    }
 			try {
 				outputSerial();
 			} catch (FileNotFoundException e1) {

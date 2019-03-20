@@ -15,7 +15,7 @@ public class Configuration implements TalkBoxConfiguration{
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		// TODO Auto-generated method stub
-		ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(new File("serial/log.bin")));
+		ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(new File("serial" + File.separator + "log.bin")));
 
 		Configuration config = new Configuration();
 		//Test1 before sets
@@ -66,7 +66,7 @@ public class Configuration implements TalkBoxConfiguration{
 					config.setAudioName(2, 4, "suprised.wav");
 					config.setAudioName(2, 5, "angry.wav");
 					config.setAudioName(2, 6, "happy.wav");
-				config.setRelativePath("Audio/");
+				config.setRelativePath("Audio" + File.separator);
 				//Buttons
 				config.setBtnName(1, 1, "Bad");
 				config.setBtnName(1, 2, "First");
@@ -82,18 +82,18 @@ public class Configuration implements TalkBoxConfiguration{
 					config.setBtnName(2, 6, "Happy");
 				config.setTotalBtnNum(14);
 				//Images
-				config.setImagePath(1, 1, "Images/bad.png");
-				config.setImagePath(1, 2, "Images/1st.png");
-				config.setImagePath(1, 3, "Images/good.png");
-				config.setImagePath(1, 4, "Images/last.png");
-				config.setImagePath(1, 5, "Images/little.png");
-				config.setImagePath(1, 6, "Images/long.png");
-					config.setImagePath(2, 1, "Images/jealous.png");
-					config.setImagePath(2, 2, "Images/sad.png");
-					config.setImagePath(2, 3, "Images/scared.png");
-					config.setImagePath(2, 4, "Images/suprised.png");
-					config.setImagePath(2, 5, "Images/angry.png");
-					config.setImagePath(2, 6, "Images/happy.png");
+				config.setImagePath(1, 1, "Images" + File.separator + "bad.png");
+				config.setImagePath(1, 2, "Images" + File.separator + "1st.png");
+				config.setImagePath(1, 3, "Images"+ File.separator +"good.png");
+				config.setImagePath(1, 4, "Images" + File.separator + "last.png");
+				config.setImagePath(1, 5, "Images" + File.separator + "little.png");
+				config.setImagePath(1, 6, "Images" + File.separator + "long.png");
+					config.setImagePath(2, 1, "Images" + File.separator + "jealous.png");
+					config.setImagePath(2, 2, "Images" + File.separator + "sad.png");
+					config.setImagePath(2, 3, "Images" + File.separator + "scared.png");
+					config.setImagePath(2, 4, "Images" + File.separator + "suprised.png");
+					config.setImagePath(2, 5, "Images" + File.separator + "angry.png");
+					config.setImagePath(2, 6, "Images" + File.separator + "happy.png");
 					//config.Addbtn(1, "test", "Happy.wav", "Images/happy.png");
 					//config.Removebtn(1, 7);
 		//for (int i = 0; i < config.getSet1(); i++) {
