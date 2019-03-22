@@ -3,25 +3,9 @@ package talkbot;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.*;
 
 import javax.imageio.ImageIO;
-import javax.swing.Box;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.*;
 
@@ -38,7 +22,7 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	JButton add, remove, change;
 	JButton enterName;
 	JButton aAudio;
-	JButton aImage;
+	JButton aImage, simLog;
 	
 	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview, addButton, removeButton, changeButton, ab,rb, back;
 	JLabel imagePreview;
@@ -123,6 +107,9 @@ changeImage.addActionListener(this);
  enterName = new JButton("Apply Name");
  aAudio = new JButton("Add Audio");
  aImage = new JButton("Add Image");
+ 
+ simLog = new JButton("Log");
+ simLog.addActionListener(this);
 
 
 
@@ -216,10 +203,11 @@ chooseSet.addActionListener(
 		menu.add(removeButton);
 		menu.add(Box.createRigidArea(new Dimension(100, 100)));
 		menu.add(changeButton);
-
+		menu.add(simLog);
 		
 
-	this.add(menu);// BorderLayout.CENTER);
+	this.add(menu);
+	// BorderLayout.CENTER);
 	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.NORTH);
 	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
 	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
@@ -300,7 +288,6 @@ chooseSet.addActionListener(
 	/*PresetSelect*/menu.add(RemovePreset);//, GBC);
 	menu.add(Box.createRigidArea(new Dimension(70, 100)));//, GBC);
 	//menu.setMinimumSize(new Dimension(500, 500));
-	
 	//PresetSelect.add(ChoosePreLabel);
 	//this.add(PresetSelect);
 	//this.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
@@ -319,7 +306,28 @@ chooseSet.addActionListener(
 
 	}
 	
-	
+	public void simulatorLog()
+	{
+		JFrame simFrame = new JFrame();
+		simFrame.setVisible(true);
+		simFrame.setMinimumSize(new Dimension(800,600));
+		JTextArea text = new JTextArea(10,10);
+		File fname = new File("Textfiles/info.txt");
+		try {
+	          BufferedReader input = new BufferedReader(new InputStreamReader(
+	              new FileInputStream(fname)));
+	          text.read(input, "READING FILE :-)");
+	        } catch (Exception e) {
+	          e.printStackTrace();
+	        }
+		simFrame.getContentPane().add(text, BorderLayout.CENTER);
+		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.NORTH);
+		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.SOUTH);
+		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.EAST);
+		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.WEST);
+
+		
+	}
 
 	
 	
@@ -757,6 +765,11 @@ chooseSet.addActionListener(
 			
 			test1.setVisible(true);
 			test1.pack();
+		}
+		else if( source == simLog)
+		{
+			
+			simulatorLog();
 		}
 	}
 	public static void main(String[] args)  {
