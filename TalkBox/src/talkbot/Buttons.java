@@ -8,7 +8,7 @@ import javax.swing.*;
 public class Buttons extends JButton{
 	
 	private ImageIcon pic;
-	private String ifile;
+	private String imageFile;
 	private int num;
 	private boolean validImgPath=true;
 	
@@ -19,13 +19,13 @@ public class Buttons extends JButton{
 	public int getbtnNumber() {
 		return this.num;
 	}
-	public Buttons (String name, String ifile, int num) {
+	public Buttons (String name, String iFile, int num) {
 		//Identifiers for the button
 		super(name);
 		this.num = num;
-		this.ifile = ifile;
+		this.imageFile = iFile;
 		try {
-			this.pic = new ImageIcon(ImageIO.read(new File(ifile)).getScaledInstance(200, 230, Image.SCALE_DEFAULT));
+			this.pic = new ImageIcon(ImageIO.read(new File(iFile)).getScaledInstance(200, 230, Image.SCALE_DEFAULT));
 		} catch (IOException e) {
 			validImgPath=false;
 			e.printStackTrace();
@@ -33,4 +33,9 @@ public class Buttons extends JButton{
 		 
 		this.setIcon(pic); //Add pic to button
 	}
+//	@Override
+//	public String getName()
+//	{
+//		return this.getName();
+//	}
 }

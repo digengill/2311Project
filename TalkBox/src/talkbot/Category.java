@@ -2,7 +2,7 @@ package talkbot;
 
 import java.util.ArrayList;
 
-public class Preset {
+public class Category {
 	
 	private ArrayList<Buttons> myButtons = new ArrayList<Buttons>();
 	private String name;
@@ -11,7 +11,7 @@ public class Preset {
 	 * 
 	 * This Preset Constructor requires an ArrayList of buttons of at least size one, as well as a name to properly construct. 
 	 */
-	public Preset(String inName, ArrayList<Buttons> input)
+	public Category(String inName, ArrayList<Buttons> input)
 	{
 		name = inName;
 		for(Buttons B : input)
@@ -25,9 +25,14 @@ public class Preset {
 	 * 
 	 * This Constructor does not require any ArrayList, but does require a name to work Properly
 	 */
-	public Preset(String inName) 
+	public Category(String inName) 
 	{
 		name = inName;
+	}
+	public ArrayList<Buttons> GetButtons()
+	{
+		return myButtons;
+		
 	}
 	public int GetButtonNum()
 	{

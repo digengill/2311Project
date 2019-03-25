@@ -147,6 +147,7 @@ public class Configuration implements TalkBoxConfiguration{
 		return this.btname [set-1][num-1];
 	}
 	
+	//make this variable
 	public int getSet1 () {
 		return this.btname[0].length;
 	}
@@ -162,6 +163,8 @@ public class Configuration implements TalkBoxConfiguration{
 	public String [] getSet2Buttons () {
 		return this.btname[1];
 	}
+	//
+	
 	//Button sets
 	public void setBtnName (int set, int num, String name) {
 		this.btname[set-1][num-1] = name;
@@ -248,5 +251,6 @@ public class Configuration implements TalkBoxConfiguration{
 		this.rpathImage = new String[set][6];
 	}
 
+	
 
 }
