@@ -45,10 +45,10 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	ImageIcon preview, goBack;
 	JComboBox chooseButton;//,chooseSet;
 	
-	String hold, newbtnImg, newbtnAudio;
+	String buttonName, newbtnImg, newbtnAudio;
 	JTextField btnName, btnName2;
 	int buttonNUM=1, set=1;
-
+	//set needs reworking button num is redundant 
 	
 	//new testing CatPanel
 	//AddCatFrame vars
@@ -689,8 +689,8 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 		/**
 		else if (source == enterName)
 		{
-			 hold = btnName.getText();
-			System.out.println(hold);
+			 buttonName = btnName.getText();
+			System.out.println(buttonName);
 		    btnName2.setText("");
 		}
 		*/
@@ -764,20 +764,20 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 		}
 		else if (e.getSource() == ab)
 		{
-			 hold = btnName2.getText();
-			 if (hold=="" || hold==null)
-				 hold="N/A";
-				//System.out.println(hold);
+			 buttonName = btnName2.getText();
+			 if (buttonName=="" || buttonName==null)
+				 buttonName="N/A";
+				//System.out.println(buttonName);
 			    btnName2.setText("");
 			    if (newbtnAudio=="" || newbtnAudio==null)
 			    	newbtnAudio="default.wav";
 			    if (newbtnImg=="" || newbtnImg==null)
 			    	newbtnImg="Images/default.png";
 			    
-			    ChooseCat.get(CatNames.getSelectedIndex()).AddButton(new Buttons(hold,newbtnImg,CatNames.getMaximumRowCount()));
+			    ChooseCat.get(CatNames.getSelectedIndex()).AddButton(new Buttons(buttonName,newbtnImg,CatNames.getMaximumRowCount()));
 			    
-			con.Addbtn(set,hold,newbtnAudio,newbtnImg);
-    		JOptionPane.showMessageDialog(new JFrame(), "New button added.\n Button Set: "+set+"\n Button Name: "+hold+"\n Audio Name: "+newbtnAudio+"\n Image Name: "+newbtnImg);
+			con.Addbtn(set,buttonName,newbtnAudio,newbtnImg);
+    		JOptionPane.showMessageDialog(new JFrame(), "New button added.\n Button Set: "+set+"\n Button Name: "+buttonName+"\n Audio Name: "+newbtnAudio+"\n Image Name: "+newbtnImg);
 
 			try {
 				outputSerial();
@@ -793,18 +793,18 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 		}
 		else if (source == rb)
 		{
-			int hold = Integer.parseInt(btnName2.getText());
-			//System.out.println(hold);
+			int buttonName = Integer.parseInt(btnName2.getText());
+			//System.out.println(buttonName);
 		    btnName2.setText("");
-		    if ((set==1 && (hold<1 || hold>con.getSet1()) || (set==2 && (hold<1 || hold>con.getSet2()))))
+		    if ((set==1 && (buttonName<1 || buttonName>con.getSet1()) || (set==2 && (buttonName<1 || buttonName>con.getSet2()))))
 		    	{
 		    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Button Number.\n Try Again.");
 		    	}
 		    else
 		    {
-	    	JOptionPane.showMessageDialog(new JFrame(), "Button removed.\n Button Set: "+set+"Button Name: "+con.getBtnName(set, hold));
+	    	JOptionPane.showMessageDialog(new JFrame(), "Button removed.\n Button Set: "+set+"Button Name: "+con.getBtnName(set, buttonName));
 
-		    con.Removebtn(set, hold);
+		    con.Removebtn(set, buttonName);
 
 		    }
 			try {
