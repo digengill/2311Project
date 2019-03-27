@@ -126,9 +126,6 @@ public class Configuration implements TalkBoxConfiguration{
 		// TODO Auto-generated method stub
 		return Paths.get(this.rpathAfile);
 	}
-	
-	
-
 	@Override
 	public String[][] getAudioFileNames() {
 		// TODO Auto-generated method stub
@@ -154,6 +151,16 @@ public class Configuration implements TalkBoxConfiguration{
 	public int getSet2 () {
 		return this.btname[1].length;
 	}
+	/**
+	 * gets the set length at the given location
+	 * 
+	 * @param location
+	 * @return
+	 */
+	public int getSetAt(int location)
+	{
+		return this.btname[location].length;
+	}
 	
 	public String [] getSet1Buttons () {
 		return this.btname[0];
@@ -162,6 +169,16 @@ public class Configuration implements TalkBoxConfiguration{
 	public String [] getSet2Buttons () {
 		return this.btname[1];
 	}
+	/**returns the buttons at the set specified by location
+	 * note location 0 is the first spot in the array
+	 * 
+	 * @param location
+	 * @return
+	 */
+	public String [] getSetButtonsAt(int location) {
+		return this.btname[location];
+	}
+	
 	//Button sets
 	public void setBtnName (int set, int num, String name) {
 		this.btname[set-1][num-1] = name;
@@ -248,5 +265,26 @@ public class Configuration implements TalkBoxConfiguration{
 		this.rpathImage = new String[set][6];
 	}
 
+	protected void removeSetAt(int location)
+	{
+//		aname[location]= null;
+//		rpathImage[location] = null;
+//		btname[location] = null;
+		for(int i = 0; i < 6; i++)
+		{
+			try
+			{
+				Removebtn(location, i);
+			}
+			catch(IndexOutOfBoundsException E)
+			{
+				System.out.println("out of bounds");
+			}
+		}
+	}
+	protected void addSetAt(int location, String name)
+	{
+		aname[location][0] = name;
+	}
 
 }

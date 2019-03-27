@@ -27,19 +27,18 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview, addButton, removeButton, changeButton, ab,rb, back;
 	JLabel imagePreview;
 	ImageIcon preview, goBack;
-	JComboBox chooseButton, chooseSet;
+	JComboBox chooseButton;
+	JComboBox<String> chooseSet, chooseSetMain;
 	
-	String hold, newbtnImg, newbtnAudio;
+	String holdName, newbtnImg, newbtnAudio;
 	JTextField btnName, btnName2;
-	int buttonNUM=1, set=1;
+	int buttonNUM = 1, set = 1;
 
 	
-	//new testing PresetPanel
-	JPanel PresetSelect;
-	JButton AddPreset, RemovePreset;
-	ArrayList<Preset> ChoosePreset;
-	JComboBox<String> PresetNames;
-	JLabel ChoosePreLabel;
+	//new testing Sets
+	JPanel SetSelect;
+	JButton AddSet, RemoveSet;
+	
 	
 	
 	private final static String newline = "\n";
@@ -119,7 +118,7 @@ Apply = new JButton("SAVE SETTINGS");
 Apply.addActionListener(this);
 nameEnter.addActionListener(this);
 
-String[] bnames = new String [con.getSet1()+1];//{"Pick Button","1","2","3","4","5","6"};
+String[] bnames = new String [con.getSetAt(0)+1];//{"Pick Button","1","2","3","4","5","6"};
 bnames[0] = "Pick Button";
 for (int i = 1; i < bnames.length; i++) {
 	bnames[i] = ""+i;
@@ -137,33 +136,36 @@ chooseButton.addActionListener(
             }
         }
 		);
-chooseSet = new JComboBox();
+chooseSet = new JComboBox<String>();
 chooseSet.addItem("Phrases"); chooseSet.addItem("Emotions");
 chooseSet.addActionListener(
 		new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
+				public void actionPerformed(ActionEvent e) 
+				{		
 					JComboBox combo = (JComboBox)e.getSource();
-					set = combo.getSelectedIndex()+1;
-					if (set==(-1))
+					set = combo.getSelectedIndex();
+					if (set < (1))
 						set=1;
 					//System.out.println(set);
-					if (set==1) {
-						String[] bnames = new String [con.getSet1()+1];//{"Pick Button","1","2","3","4","5","6"};
-						bnames[0] = "Pick Button";
-						for (int i = 1; i < bnames.length; i++) {
-							bnames[i] = ""+i;
-						}
-						chooseButton = new JComboBox(bnames);
-					} else if (set==2) {
-						String[] bnames = new String [con.getSet2()+1];//{"Pick Button","1","2","3","4","5","6"};
-						bnames[0] = "Pick Button";
-						for (int i = 1; i < bnames.length; i++) {
-							bnames[i] = ""+i;
-						}
-						//System.out.println(con.getSet2()+1);
-						chooseButton = new JComboBox(bnames);
+					//if (set==1) {
+					
+					String[] bnames = new String [con.getSetAt(set)+1];//{"Pick Button","1","2","3","4","5","6"};
+					bnames[0] = "Pick Button";
+					for (int i = 1; i < bnames.length; i++) {
+						bnames[i] = ""+i;
 					}
+					chooseButton = new JComboBox(bnames);
+					
+				//	} 
+//						else if (set==2) {
+//						String[] bnames = new String [con.getSetAt(1)+1];//{"Pick Button","1","2","3","4","5","6"};
+//						bnames[0] = "Pick Button";
+//						for (int i = 1; i < bnames.length; i++) {
+//							bnames[i] = ""+i;
+//						}
+						//System.out.println(con.getSetAt(1)+1);
+						//chooseButton = new JComboBox(bnames);
+				//	}
 				}
 		}
 		);
@@ -218,13 +220,13 @@ chooseSet.addActionListener(
 	//Testing PresetPanel
 	
 	
-	ArrayList<Buttons> test = new ArrayList<Buttons>();
-	Preset P = new Preset("Weather", test);
-	Preset B = new Preset("Weather2", test);
-	PresetSelect = new JPanel();
-	PresetSelect.setLayout(new GridBagLayout());
-	AddPreset = new JButton("Add Preset");
-	RemovePreset = new JButton("Remove Preset");
+//	ArrayList<Buttons> test = new ArrayList<Buttons>();
+//	Preset P = new Preset("Weather", test);
+//	Preset B = new Preset("Weather2", test);
+//	PresetSelect = new JPanel();
+//	PresetSelect.setLayout(new GridBagLayout());
+	AddSet = new JButton("Add Set");
+	RemoveSet = new JButton("Remove Set");
 	
 	
 	
@@ -232,26 +234,31 @@ chooseSet.addActionListener(
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (e.getSource() == AddPreset)
+			if (e.getSource() == AddSet)
 			{
-				Preset Q = new Preset("TestName");
-				ChoosePreset.add(Q);
-				PresetNames.addItem(Q.GetName());
+//				Preset Q = new Preset("TestName");
+//				ChoosePreset.add(Q);
+//				PresetNames.addItem(Q.GetName());
+//				
+//				PresetNames.updateUI();
+				con.addSetAt(set + 1, "TestName");
 				
-				PresetNames.updateUI();
 				menu.revalidate();
 				menu.repaint();
 			}
-			else if (e.getSource() == RemovePreset)
+			else if (e.getSource() == RemoveSet)
 			{
-				if(ChoosePreset.size() > 0 )
+				if(chooseSet.getSelectedIndex() >= 0)
 				{
+					System.out.println(con.getSetButtonsAt(chooseSet.getSelectedIndex()));
+					con.removeSetAt(chooseSet.getSelectedIndex());
+				
 					//System.out.println(PresetNames.getSelectedIndex());
 					//System.out.println(ChoosePreset.get(PresetNames.getSelectedIndex()));
 					
-					ChoosePreset.remove(PresetNames.getSelectedIndex());
-					PresetNames.removeItemAt(PresetNames.getSelectedIndex());
-					PresetNames.updateUI();
+//					ChoosePreset.remove(PresetNames.getSelectedIndex());
+//					PresetNames.removeItemAt(PresetNames.getSelectedIndex());
+					chooseSet.updateUI();
 					menu.revalidate();
 					menu.repaint();
 				}
@@ -263,29 +270,29 @@ chooseSet.addActionListener(
 		}
 	};
 	
-	AddPreset.addActionListener(PresetPanelListener);
-	RemovePreset.addActionListener(PresetPanelListener);
+	AddSet.addActionListener(PresetPanelListener);
+	RemoveSet.addActionListener(PresetPanelListener);
 	
-	ChoosePreset = new ArrayList<Preset>();
-	PresetNames = new JComboBox<String>();
+	//chooseSetMain = new ArrayList<String>();
+	chooseSetMain = new JComboBox<String>();
 
-	ChoosePreset.add(P);
-	ChoosePreset.add(B);
-	PresetNames.addItem(P.GetName());
-	PresetNames.addItem(B.GetName());
-	PresetNames.addActionListener(PresetPanelListener);
+//	ChoosePreset.add(P);
+//	ChoosePreset.add(B);
+//	PresetNames.addItem(P.GetName());
+//	PresetNames.addItem(B.GetName());
+	chooseSetMain.addActionListener(PresetPanelListener);
 	
-	ChoosePreLabel = new JLabel("Choose a Preset");
+	//ChoosePreLabel = new JLabel("Choose a Preset");
 	//GBC.gridy = 0;
 	
 	menu.add(Box.createRigidArea(new Dimension(70, 100))); //,GBC);
-	/*PresetSelect*/menu.add(AddPreset);//, GBC);
+	/*PresetSelect*/menu.add(AddSet);//, GBC);
 	
 	menu.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
-	/*PresetSelect*/menu.add(PresetNames);//, GBC);
+	/*PresetSelect*/menu.add(chooseSet);//(chooseSetMain);//, GBC);
 	menu.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
 	//menu.add(Box.createRigidArea(new Dimension(150, 100)), GBC);
-	/*PresetSelect*/menu.add(RemovePreset);//, GBC);
+	/*PresetSelect*/menu.add(RemoveSet);//, GBC);
 	menu.add(Box.createRigidArea(new Dimension(70, 100)));//, GBC);
 	//menu.setMinimumSize(new Dimension(500, 500));
 	//PresetSelect.add(ChoosePreLabel);
@@ -354,6 +361,14 @@ chooseSet.addActionListener(
 		previewPanel.setLayout(new GridLayout(1,3));
 		eastPanel.setLayout(new GridLayout(5,2));
 		westPanel.setLayout(new GridLayout(3,2));
+		
+		main.removeAll();
+		centerHold.removeAll();
+		center.removeAll();
+		namePanel.removeAll();
+		previewPanel.removeAll();
+		eastPanel.removeAll();
+		westPanel.removeAll();
 		
 		westPanel.add(back);
 
@@ -625,8 +640,8 @@ chooseSet.addActionListener(
 		/**
 		else if (source == enterName)
 		{
-			 hold = btnName.getText();
-			System.out.println(hold);
+			 holdName = btnName.getText();
+			System.out.println(holdName);
 		    btnName2.setText("");
 		}
 		*/
@@ -700,17 +715,17 @@ chooseSet.addActionListener(
 		}
 		else if (source == ab)
 		{
-			 hold = btnName2.getText();
-			 if (hold=="" || hold==null)
-				 hold="N/A";
-				//System.out.println(hold);
+			 holdName = btnName2.getText();
+			 if (holdName=="" ||holdName==null)
+				 holdName="N/A";
+				//System.out.println(holdName);
 			    btnName2.setText("");
 			    if (newbtnAudio=="" || newbtnAudio==null)
 			    	newbtnAudio="default.wav";
 			    if (newbtnImg=="" || newbtnImg==null)
 			    	newbtnImg="Images/default.png";
-			con.Addbtn(set,hold,newbtnAudio,newbtnImg);
-    		JOptionPane.showMessageDialog(new JFrame(), "New button added.\n Button Set: "+set+"\n Button Name: "+hold+"\n Audio Name: "+newbtnAudio+"\n Image Name: "+newbtnImg);
+			con.Addbtn(set,holdName,newbtnAudio,newbtnImg);
+    		JOptionPane.showMessageDialog(new JFrame(), "New button added.\n Button Set: "+set+"\n Button Name: "+holdName+"\n Audio Name: "+newbtnAudio+"\n Image Name: "+newbtnImg);
 
 			try {
 				outputSerial();
@@ -726,18 +741,22 @@ chooseSet.addActionListener(
 		}
 		else if (source == rb)
 		{
-			int hold = Integer.parseInt(btnName2.getText());
-			//System.out.println(hold);
+			int holdName = Integer.parseInt(btnName2.getText());
+			//System.out.println(holdName);
 		    btnName2.setText("");
-		    if ((set==1 && (hold<1 || hold>con.getSet1()) || (set==2 && (hold<1 || hold>con.getSet2()))))
-		    	{
-		    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Button Number.\n Try Again.");
-		    	}
+//		    if ((set==1 && (holdName < 1 || holdName > con.getSetAt(0)) || (set==2 && (holdName<1 || holdName>con.getSetAt(0)))))
+//		    	{
+//		    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Button Number.\n Try Again.");
+//		    	}
+		    if (holdName < 1 || holdName > con.getSetAt(0) || holdName > con.getSetAt(1))
+	    	{
+	    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Button Number.\n Try Again.");
+	    	}
 		    else
 		    {
-	    	JOptionPane.showMessageDialog(new JFrame(), "Button removed.\n Button Set: "+set+"Button Name: "+con.getBtnName(set, hold));
+	    	JOptionPane.showMessageDialog(new JFrame(), "Button removed.\n Button Set: "+set+"Button Name: "+con.getBtnName(set, holdName));
 
-		    con.Removebtn(set, hold);
+		    con.Removebtn(set, holdName);
 
 		    }
 			try {
