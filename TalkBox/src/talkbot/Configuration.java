@@ -277,16 +277,27 @@ public class Configuration implements TalkBoxConfiguration{
 			try
 			{
 				Removebtn(location + 1, i + 1);
+				System.out.println("Button removed");
 			}
 			catch(IndexOutOfBoundsException E)
 			{
-				System.out.println("out of bounds");
+				System.out.println("Removal out of bounds");
+				E.printStackTrace();
 			}
 		}
 	}
 	protected void addSetAt(int location, String name)
 	{
-		btname[location][0] = name;
+		try 
+		{
+			btname[location][0] = name;
+			System.out.println(name);
+		}
+		catch(IndexOutOfBoundsException E)
+		{
+			System.out.println("New out of bounds");
+			E.printStackTrace();
+		}
 	}
 
 }

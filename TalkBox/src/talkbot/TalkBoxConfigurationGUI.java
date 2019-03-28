@@ -37,7 +37,8 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
 	//new testing Sets
 	JPanel SetSelect;
-	JButton AddSet, RemoveSet;
+	JButton AddSet, RemoveSet, CREATE, REMOVE;
+	JTextField SetName;
 	
 	
 	
@@ -236,27 +237,11 @@ chooseSet.addActionListener(
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == AddSet)
 			{
-				con.addSetAt(set + 1, "TestName");
-				
-				chooseSet.updateUI();
-				menu.revalidate();
-				menu.repaint();
+				AddNewSet();
 			}
 			else if (e.getSource() == RemoveSet)
 			{
-				if(chooseSet.getSelectedIndex() >= 0)
-				{
-					System.out.println(con.getSetButtonsAt(chooseSet.getSelectedIndex()));
-					con.removeSetAt(chooseSet.getSelectedIndex());
-			
-					chooseSet.updateUI();
-					menu.revalidate();
-					menu.repaint();
-				}
-				else
-				{
-				System.out.println("Error cannot remove 0 presets");
-				}
+				RemoveOldSet();
 			}
 		}
 	};
@@ -529,6 +514,38 @@ chooseSet.addActionListener(
 		obj.close();
 		
 	}
+	
+	
+	public void AddNewSet() 
+	{
+		JFrame AddSetFrame = new JFrame("AddSetFrame");
+		JPanel panel = new JPanel(); 
+		panel.setLayout(new GridLayout(3, 2)); 
+		CREATE = new JButton("CREATE"); 
+		CREATE.addActionListener(this); 
+		SetName = new JTextField("Set Name"); 
+		SetName.addActionListener(this); 
+		panel.add(chooseSet); 
+		panel.add(SetName); 
+		panel.add(CREATE); 
+		AddSetFrame.add(panel); 
+		AddSetFrame.setVisible(true); 
+		AddSetFrame.setMinimumSize(new Dimension(500, 500)); 
+		}
+	public void RemoveOldSet() 
+	{ 
+		JFrame RemoveSetFrame = new JFrame("RemoveSetFrame"); 
+		JPanel panel = new JPanel(); 
+		panel.setLayout(new GridLayout(3, 2)); 
+		REMOVE = new JButton("REMOVE"); 
+		REMOVE.addActionListener(this); 
+		panel.add(chooseSet); 
+		panel.add(REMOVE); 
+		RemoveSetFrame.add(panel); 
+		RemoveSetFrame.setVisible(true); 
+		RemoveSetFrame.setMinimumSize(new Dimension(500, 500)); 
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object source = e.getSource();
@@ -776,7 +793,67 @@ chooseSet.addActionListener(
 			test1.setVisible(true);
 			test1.pack();
 		}
-		else if( source == simLog)
+		
+		else if(e.getSource() == REMOVE)
+		{
+//			if(.size() > 0)
+//			{
+//				ChooseCat.remove(CatNames.getSelectedIndex());
+//				MainDisplayCatNames.removeItemAt(CatNames.getSelectedIndex());
+//				CatNames.removeItemAt(CatNames.getSelectedIndex());
+//				CatNames.updateUI();
+//				MainDisplayCatNames.updateUI();
+//			}
+			if(chooseSet.getSelectedIndex() >= 0)
+			{
+				System.out.println(con.getSetButtonsAt(chooseSet.getSelectedIndex()));
+				con.removeSetAt(chooseSet.getSelectedIndex());
+				chooseSet.removeItemAt(chooseSet.getSelectedIndex());
+				chooseSet.updateUI();
+				menu.revalidate();
+				menu.repaint();
+			}
+			else
+			{
+				System.out.println("Error cannot remove 0 presets");
+			}
+		}
+//		else if(e.getSource() == SetCatName)
+//		{
+//			NewSetName = SeName.getText();	
+//		}
+		
+		else if(e.getSource() == CREATE)
+		{
+//			Category Q = new Category(NewCatName);
+//			ChooseCat.add(Q);
+//			CatNames.addItem(Q.GetName());
+//			CatNames.updateUI();
+//			MainDisplayCatNames.addItem(Q.GetName());
+//			MainDisplayCatNames.updateUI();
+			
+			con.addSetAt(set + 1, SetName.getText());
+			chooseSet.addItem(SetName.getText());
+			chooseSet.updateUI();
+			menu.revalidate();
+			menu.repaint();
+			
+		}
+//		else if(e.getSource() == CatNames )
+//		{
+//			ButtonList.clear();
+//			ButtonNameList.removeAll();
+//			
+//			ButtonList.addAll(ChooseCat.get(CatNames.getSelectedIndex()).GetButtons());
+//			for(Buttons b : ButtonList)
+//			{
+//				System.out.println(b.getName());
+//				ButtonNameList.addItem(b.getName());
+//			}
+//			ButtonNameList.updateUI();
+//		}
+		
+		else if(source == simLog)
 		{
 			
 			simulatorLog();
