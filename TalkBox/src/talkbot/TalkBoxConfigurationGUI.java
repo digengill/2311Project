@@ -236,13 +236,9 @@ chooseSet.addActionListener(
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == AddSet)
 			{
-//				Preset Q = new Preset("TestName");
-//				ChoosePreset.add(Q);
-//				PresetNames.addItem(Q.GetName());
-//				
-//				PresetNames.updateUI();
 				con.addSetAt(set + 1, "TestName");
 				
+				chooseSet.updateUI();
 				menu.revalidate();
 				menu.repaint();
 			}
@@ -252,12 +248,7 @@ chooseSet.addActionListener(
 				{
 					System.out.println(con.getSetButtonsAt(chooseSet.getSelectedIndex()));
 					con.removeSetAt(chooseSet.getSelectedIndex());
-				
-					//System.out.println(PresetNames.getSelectedIndex());
-					//System.out.println(ChoosePreset.get(PresetNames.getSelectedIndex()));
-					
-//					ChoosePreset.remove(PresetNames.getSelectedIndex());
-//					PresetNames.removeItemAt(PresetNames.getSelectedIndex());
+			
 					chooseSet.updateUI();
 					menu.revalidate();
 					menu.repaint();

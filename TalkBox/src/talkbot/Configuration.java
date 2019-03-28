@@ -206,6 +206,7 @@ public class Configuration implements TalkBoxConfiguration{
 		this.btname[set] = new String [temp.size()];
 		this.btname[set] = temp.toArray(this.btname[set]);
 		temp = new ArrayList<String>();
+		
 		for (int i = 0; i < this.aname[set].length; i++) {
 			temp.add(aname[set][i]);
 		}
@@ -213,6 +214,7 @@ public class Configuration implements TalkBoxConfiguration{
 		this.aname[set] = new String [temp.size()];
 		this.aname[set] = temp.toArray(this.aname[set]);
 		temp = new ArrayList<String>();
+		
 		for (int i = 0; i < this.rpathImage[set].length; i++) {
 			temp.add(rpathImage[set][i]);
 		}
@@ -270,11 +272,11 @@ public class Configuration implements TalkBoxConfiguration{
 //		aname[location]= null;
 //		rpathImage[location] = null;
 //		btname[location] = null;
-		for(int i = 0; i < 6; i++)
+		for(int i = 0; i <= 6; i++)
 		{
 			try
 			{
-				Removebtn(location, i);
+				Removebtn(location + 1, i + 1);
 			}
 			catch(IndexOutOfBoundsException E)
 			{
@@ -284,7 +286,7 @@ public class Configuration implements TalkBoxConfiguration{
 	}
 	protected void addSetAt(int location, String name)
 	{
-		aname[location][0] = name;
+		btname[location][0] = name;
 	}
 
 }
