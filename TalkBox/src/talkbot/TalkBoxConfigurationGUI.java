@@ -10,6 +10,10 @@ import javax.swing.filechooser.FileSystemView;
 import javax.swing.*;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.core.message.*;
+
 
 
 import java.util.*;
@@ -35,6 +39,9 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	JPanel SetSelect;
 	JButton AddSet, RemoveSet, CREATE, REMOVE;
 	JTextField SetName;
+	
+	//for logger
+	private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(TalkBoxConfigurationGUI.class);
 	
 	 Configuration con;
 	private ObjectInputStream in;
@@ -106,6 +113,7 @@ for (int i = 1; i < bnames.length; i++) {
                 if (buttonNUM==(-1))
                 	buttonNUM=1;
                 //System.out.println(buttonNUM);
+            	logger.info("TestMessage " + buttonNUM);
             }
         }
 		);
@@ -113,7 +121,7 @@ chooseSet = new JComboBox<String>();
 for(int i = 0; i < con.getNumberOfAudioSets(); i++)
 {
 	//System.out.println(con.getSetName(i));
-	chooseSet.addItem(con.getSetName(i));
+	chooseSet.addItem(con.getcatNames(i));
 }
 //chooseSet.addItem(con.getSetName(0)); chooseSet.addItem(con.getSetName(1));
 chooseSet.addActionListener(
@@ -142,7 +150,7 @@ chooseSet.addActionListener(
 					{
 						E.printStackTrace();
 					}
-					
+					logger.info("TestMessage " + set);
 				//	} 
 //						else if (set==2) {
 //						String[] bnames = new String [con.getSetAt(1)+1];//{"Pick Button","1","2","3","4","5","6"};
@@ -224,11 +232,12 @@ chooseSet.addActionListener(
 			if (e.getSource() == AddSet)
 			{
 				AddNewSet();
+				logger.info("TestMessage");
 			}
 			else if (e.getSource() == RemoveSet)
 			{
-
 				RemoveOldSet();
+				logger.info("TestMessage");
 			}
 		}
 	};
@@ -244,7 +253,7 @@ chooseSet.addActionListener(
 //	PresetNames.addItem(P.GetName());
 //	PresetNames.addItem(B.GetName());
 //	chooseSetMain.addActionListener(PresetPanelListener);
-	chooseSetMain.addItem(con.getSetName(0)); chooseSetMain.addItem(con.getSetName(1));
+	chooseSetMain.addItem(con.getcatNames(0)); chooseSetMain.addItem(con.getcatNames(1));
 	
 	
 	//ChoosePreLabel = new JLabel("Choose a Preset");
@@ -255,7 +264,7 @@ chooseSet.addActionListener(
 	
 
 	menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
-	/*PresetSelect*/menuButtons.add(chooseSet);//(chooseSetMain);//, GBC);
+	/*PresetSelect*/menuButtons.add(chooseSetMain);//(chooseSetMain);//, GBC);
 	menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
 	//menuButtons.add(Box.createRigidArea(new Dimension(150, 100)), GBC);
 	/*PresetSelect*/menuButtons.add(RemoveSet);//, GBC);
@@ -286,7 +295,7 @@ chooseSet.addActionListener(
 		simFrame.setVisible(true);
 		simFrame.setMinimumSize(new Dimension(800,600));
 		JTextArea text = new JTextArea(10,10);
-		File fname = new File("Textfiles/info.txt");
+		File fname = new File("logs" + File.separator + "Mylogs.log");
 		try {
 	          BufferedReader input = new BufferedReader(new InputStreamReader(
 	              new FileInputStream(fname)));
@@ -433,8 +442,8 @@ chooseSet.addActionListener(
 		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
 
 		addFrame.setContentPane(addMain);
+		
 		//public void Addbtn (int set, String bname, String audioname, String image) {
-		 
 		
 	}
 	
@@ -571,6 +580,7 @@ chooseSet.addActionListener(
             	con.setAudioName(set, buttonNUM, "default.wav");
             }
 			}
+			logger.info("TestMessage");
 		}
 		else if(source == changeImage)
 		{
@@ -605,7 +615,7 @@ chooseSet.addActionListener(
             	con.setImagePath(set, buttonNUM, "Images/default.png");
             }
 			}
-            
+			logger.info("TestMessage"); 
 		}
 		else if (source == Apply)
 		{
@@ -615,6 +625,7 @@ chooseSet.addActionListener(
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			logger.info("TestMessage");
 		}
 		
 		else if (source == nameEnter)
@@ -623,16 +634,18 @@ chooseSet.addActionListener(
 			con.setBtnName(set, buttonNUM, text);
 			//System.out.println(text);
 		    btnName.setText("");
-			
+		    logger.info("TestMessage");
 		}
 	
 		else if (source == addButton)
 		{
 			addButton();
+			logger.info("TestMessage");
 		}
 		else if (source == removeButton)
 		{
 			removeButton();
+			logger.info("TestMessage");
 		}
 		
 		else if (source == addAudio)
@@ -666,6 +679,7 @@ chooseSet.addActionListener(
 
             }
 			}
+			logger.info("TestMessage");
 		}
 		else if (source == addImage)
 		{
@@ -698,6 +712,7 @@ chooseSet.addActionListener(
 
             }
 			}
+			logger.info("TestMessage");
 		}
 		else if (source == addButtonSave)
 		{
@@ -721,6 +736,7 @@ chooseSet.addActionListener(
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			logger.info("TestMessage");
 
 		}
 		else if (source == removeButtonSave)
@@ -752,10 +768,12 @@ chooseSet.addActionListener(
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			logger.info("TestMessage");
 		}
 		else if (source == changeButton)
 		{	
 			changeButton();
+			logger.info("TestMessage");
 		}
 		else if(source == back)
 		{
@@ -763,6 +781,7 @@ chooseSet.addActionListener(
 			
 			test1.setVisible(true);
 			test1.pack();
+			logger.info("TestMessage");
 		}
 		
 		else if(e.getSource() == REMOVE)
@@ -772,7 +791,7 @@ chooseSet.addActionListener(
 			{
 				System.out.println(con.getSetButtonsAt(chooseSet.getSelectedIndex()));
 				
-				con.removeSetAt(chooseSet.getSelectedIndex());
+				con.removecat((String)chooseSet.getSelectedItem());
 				
 				for(int i = con.getSetAt(chooseSet.getSelectedIndex() + 1); i < 1000; i++)
 				{
@@ -792,12 +811,13 @@ chooseSet.addActionListener(
 			{
 				System.out.println("Error cannot remove 0 presets");
 			}
+			logger.info("TestMessage");
 		}
 
 		else if(e.getSource() == CREATE)
 		{
 			String name = SetName.getText();
-			con.addSet(name);
+			con.addcat(name);
 			
 //			System.out.println(con.getSetName(0));
 //			con.setAudioSets(con.getNumberOfAudioSets() + 1);
@@ -808,13 +828,13 @@ chooseSet.addActionListener(
 			chooseSetMain.updateUI();
 			menuButtons.revalidate();
 			menuButtons.repaint();
-				
+			logger.info("TestMessage");	
 		}
 		
 		else if(source == simLog)
 		{
-			
 			simulatorLog();
+			logger.info("TestMessage");
 		}
 	}
 	public static void main(String[] args)  {

@@ -375,27 +375,27 @@ public class Configuration implements TalkBoxConfiguration{
 		this.aset--;
 	}
 
-	protected void removeSetAt(int location)
-	{
-//		aname[location]= null;
-//		rpathImage[location] = null;
-//		btname[location] = null;
-		for(int i = 0; i < 6; i++)
-		{
-			try
-			{
-				Removebtn(location, i);
-			}
-			catch(IndexOutOfBoundsException E)
-			{
-				System.out.println("out of bounds");
-			}
-		}
-	}
-	protected void addSetAt(int location, String name)
-	{
-		aname[location][0] = name;
-	}
+//	protected void removeSetAt(int location)
+//	{
+////		aname[location]= null;
+////		rpathImage[location] = null;
+////		btname[location] = null;
+//		for(int i = 0; i < 6; i++)
+//		{
+//			try
+//			{
+//				Removebtn(location, i);
+//			}
+//			catch(IndexOutOfBoundsException E)
+//			{
+//				System.out.println("out of bounds");
+//			}
+//		}
+//	}
+//	protected void addSetAt(int location, String name)
+//	{
+//		aname[location][0] = name;
+//	}
 
 	public String getcatNames (int num) {
 		for (int i = 0; i < catnames.size(); i++) {
