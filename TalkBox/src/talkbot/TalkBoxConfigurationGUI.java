@@ -11,26 +11,22 @@ import javax.swing.*;
 
 import org.apache.commons.io.FileUtils;
 
-import javafx.scene.paint.Color;
 
 import java.util.*;
 
 public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
-	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel, menu, menuMain;
-	JPanel options;
-	JButton add, remove, change;
-	JButton enterName;
-	JButton aAudio;
-	JButton aImage, simLog;
+	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel, menuButtons, menuMain;
+	JButton addAudio, addImage;
+	JButton simLog;
 	
-	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview, addButton, removeButton, changeButton, ab,rb, back;
+	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview, addButton, removeButton, changeButton, addButtonSave,removeButtonSave, back;
 	JLabel imagePreview;
 	ImageIcon preview, goBack;
 	JComboBox chooseButton;
 	JComboBox<String> chooseSet, chooseSetMain;
 	
-	String holdName, newbtnImg, newbtnAudio;
+	String buttonText, newbtnImg, newbtnAudio;
 	JTextField btnName, btnName2;
 	int buttonNUM = 1, set = 1;
 
@@ -40,12 +36,6 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	JButton AddSet, RemoveSet, CREATE, REMOVE;
 	JTextField SetName;
 	
-	
-	
-	private final static String newline = "\n";
-
-
-
 	 Configuration con;
 	private ObjectInputStream in;
 	
@@ -64,20 +54,22 @@ this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 org = new JPanel();
 //content pane layout
 org.setLayout(new FlowLayout());
-//Setting up Options
-options= new JPanel();
-options.setPreferredSize(new Dimension(800, 500));
-options.setBackground(java.awt.Color.GRAY);
 
-add = new JButton("Add"); remove = new JButton("Remove"); change = new JButton("Change");
+
 try {
 	this.goBack = new ImageIcon(ImageIO.read(new File("angry.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 } catch (IOException e) {
 	e.printStackTrace();
 }
 back = new JButton(goBack);
+addAudio = new JButton("Add Audio");
+addImage = new JButton("Add Image");
+changeAudio = new JButton("Change Audio");
+changeImage = new JButton("Change Image");
+audioPreview = new JButton("Audio Preview");
+nameEnter = new JButton("Apply Name");
+Apply = new JButton("SAVE SETTINGS");
 back.addActionListener(this);
-
 main = new JPanel();
 center = new JPanel();
 center2 = new JPanel();
@@ -87,45 +79,25 @@ previewPanel = new JPanel();
 eastPanel = new JPanel();
 westPanel = new JPanel();
 menuMain = new JPanel();
-
 btnName = new JTextField(20);
 btnName2 = new JTextField(20);
-
 btnName.addActionListener(this);
 btnName2.addActionListener(this);
-
 imagePreview = new JLabel("Image",preview, JLabel.CENTER );
-
-changeAudio = new JButton("Change Audio");
-changeImage = new JButton("Change Image");
-
 changeAudio.addActionListener(this);
 changeImage.addActionListener(this);
-
-
-
- enterName = new JButton("Apply Name");
- aAudio = new JButton("Add Audio");
- aImage = new JButton("Add Image");
- 
  simLog = new JButton("Log");
  simLog.addActionListener(this);
-
-
-
-audioPreview = new JButton("Audio Preview");
-nameEnter = new JButton("Apply Name");
-Apply = new JButton("SAVE SETTINGS");
 Apply.addActionListener(this);
 nameEnter.addActionListener(this);
 
 String[] bnames = new String [con.getSetAt(0)+1];//{"Pick Button","1","2","3","4","5","6"};
 bnames[0] = "Pick Button";
 for (int i = 1; i < bnames.length; i++) {
-	bnames[i] = ""+i;
+	bnames[i] = "" + i;
 }
-chooseButton = new JComboBox(bnames);
-chooseButton.addActionListener(
+	chooseButton = new JComboBox(bnames);
+	chooseButton.addActionListener(
 
         new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -145,6 +117,7 @@ for(int i = 0; i < con.getNumberOfAudioSets(); i++)
 }
 //chooseSet.addItem(con.getSetName(0)); chooseSet.addItem(con.getSetName(1));
 chooseSet.addActionListener(
+
 		new ActionListener() {
 				public void actionPerformed(ActionEvent e) 
 				{		
@@ -200,29 +173,29 @@ chooseSet.addActionListener(
 //	GBC.ipadx = 50;
 
 	
-		menu = new JPanel();
+		menuButtons = new JPanel();
 		
-//		menu.setLayout(new GridBagLayout());
-//		menu.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
-//		menu.add(addButton, GBC);
-//		menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
-//		menu.add(removeButton, GBC);
+//		menuButtons.setLayout(new GridBagLayout());
+//		menuButtons.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
+//		menuButtons.add(addButton, GBC);
+//		menuButtons.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
+//		menuButtons.add(removeButton, GBC);
 //		//GBC.gridy = 3;
-//		menu.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
-//		menu.add(changeButton, GBC);
-//		menu.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
+//		menuButtons.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
+//		menuButtons.add(changeButton, GBC);
+//		menuButtons.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
 
-		menu.setLayout(new GridLayout(2, 3, 100, 100));
+		menuButtons.setLayout(new GridLayout(2, 3, 100, 100));
 		menuMain.setLayout(new BorderLayout());
-		menu.add(addButton);
-		menu.add(Box.createRigidArea(new Dimension(100, 100)));
-		menu.add(removeButton);
-		menu.add(Box.createRigidArea(new Dimension(100, 100)));
-		menu.add(changeButton);
-		menu.add(simLog);
+		menuButtons.add(addButton);
+		menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));
+		menuButtons.add(removeButton);
+		menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));
+		menuButtons.add(changeButton);
+		menuButtons.add(simLog);
 		
 
-	this.add(menu);
+	this.add(menuButtons);
 	// BorderLayout.CENTER);
 	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.NORTH);
 	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
@@ -254,6 +227,7 @@ chooseSet.addActionListener(
 			}
 			else if (e.getSource() == RemoveSet)
 			{
+
 				RemoveOldSet();
 			}
 		}
@@ -276,24 +250,26 @@ chooseSet.addActionListener(
 	//ChoosePreLabel = new JLabel("Choose a Preset");
 	//GBC.gridy = 0;
 	
-	menu.add(Box.createRigidArea(new Dimension(70, 100))); //,GBC);
-	/*PresetSelect*/menu.add(AddSet);//, GBC);
+	menuButtons.add(Box.createRigidArea(new Dimension(70, 100))); //,GBC);
+	/*PresetSelect*/menuButtons.add(AddSet);//, GBC);
 	
-	menu.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
-	/*PresetSelect*/menu.add(chooseSetMain);//(chooseSetMain);//, GBC);
-	menu.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
-	//menu.add(Box.createRigidArea(new Dimension(150, 100)), GBC);
-	/*PresetSelect*/menu.add(RemoveSet);//, GBC);
-	menu.add(Box.createRigidArea(new Dimension(70, 100)));//, GBC);
-	//menu.setMinimumSize(new Dimension(500, 500));
+
+	menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
+	/*PresetSelect*/menuButtons.add(chooseSet);//(chooseSetMain);//, GBC);
+	menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
+	//menuButtons.add(Box.createRigidArea(new Dimension(150, 100)), GBC);
+	/*PresetSelect*/menuButtons.add(RemoveSet);//, GBC);
+	menuButtons.add(Box.createRigidArea(new Dimension(70, 100)));//, GBC);
+	//menuButtons.setMinimumSize(new Dimension(500, 500));
+
 	//PresetSelect.add(ChoosePreLabel);
 	//this.add(PresetSelect);
 	//this.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
 
 
-//	menuMain.add(menu, BorderLayout.CENTER);
+//	menuMain.add(menuButtons, BorderLayout.CENTER);
 //	
-//	menu.setBackground(java.awt.Color.cyan);
+//	menuButtons.setBackground(java.awt.Color.cyan);
 //	menuMain.setBackground(java.awt.Color.cyan);
 //	
 //	menuMain.add(Box.createRigidArea(new Dimension(100, 300)),BorderLayout.NORTH);
@@ -333,10 +309,10 @@ chooseSet.addActionListener(
 	
 	public void changeButton()
 	{
-		JFrame cb = new JFrame();
-		cb.setVisible(true);
-		cb.setMinimumSize(new Dimension(800,600));
-		//cb.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JFrame changeButtonFrame = new JFrame();
+		changeButtonFrame.setVisible(true);
+		changeButtonFrame.setMinimumSize(new Dimension(800,600));
+		//changeButtonFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				try {
 			this.preview = new ImageIcon(ImageIO.read(new File("sad.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 		} catch (IOException e) {
@@ -403,61 +379,60 @@ chooseSet.addActionListener(
 		main.add(eastPanel, BorderLayout.EAST);
 		main.add(westPanel, BorderLayout.WEST);
 		
-		centerHold.setBackground(java.awt.Color.GREEN);
-		main.setBackground(java.awt.Color.GREEN);
-		center2.setBackground(java.awt.Color.GREEN);
+		centerHold.setBackground(java.awt.Color.blue);
+		main.setBackground(java.awt.Color.cyan);
+		center2.setBackground(java.awt.Color.orange);
 		westPanel.setBackground(java.awt.Color.GREEN);
-		eastPanel.setBackground(java.awt.Color.GREEN);
+		eastPanel.setBackground(java.awt.Color.gray);
 		previewPanel.setBackground(java.awt.Color.yellow);
-		org.setBackground(java.awt.Color.GREEN);
+		org.setBackground(java.awt.Color.WHITE);
 
 		
 		org.add(main);
-		cb.setContentPane(org);
+		changeButtonFrame.setContentPane(org);
 	}
 	
 	public void addButton()
 	{
 		//set = 1;
 		
-		JFrame addB = new JFrame("Add Button");
-		JPanel amain = new JPanel();
+		JFrame addFrame = new JFrame("Add Button");
+		JPanel addMain = new JPanel();
 		
-		aAudio.addActionListener(this);
-		aImage.addActionListener(this);
+		addAudio.addActionListener(this);
+		addImage.addActionListener(this);
 
-		enterName.addActionListener(this);
-		addB.setVisible(true);
-		addB.setMinimumSize(new Dimension(500,500));
+		addFrame.setVisible(true);
+		addFrame.setMinimumSize(new Dimension(500,500));
 		
-		ab = new JButton("ADD BUTTON");
-		ab.addActionListener(this);
-		
+		addButtonSave = new JButton("ADD BUTTON");
+		addButtonSave.addActionListener(this);
 		
 		
-		amain.setLayout(new GridLayout(6,3));
 		
-		amain.add(Box.createRigidArea(new Dimension(10, 30)));
-		amain.add(chooseSet);
-		amain.add(Box.createRigidArea(new Dimension(10, 30)));
-		amain.add(Box.createRigidArea(new Dimension(10, 30)));
-		amain.add(new JLabel("Enter Button Name"));
-		amain.add(Box.createRigidArea(new Dimension(10, 30)));
-		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+		addMain.setLayout(new GridLayout(6,3));
+		
+		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
+		addMain.add(chooseSet);
+		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
+		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
+		addMain.add(new JLabel("Enter Button Name"));
+		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
+		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
 
-		amain.add(btnName2);
-		amain.add(Box.createRigidArea(new Dimension(10, 30)));
-		amain.add(Box.createRigidArea(new Dimension(10, 30)));
-		amain.add(aAudio);
-		amain.add(Box.createRigidArea(new Dimension(10, 30)));
-		amain.add(Box.createRigidArea(new Dimension(10, 30)));
-		amain.add(aImage);
-		amain.add(Box.createRigidArea(new Dimension(10, 30)));
-		amain.add(Box.createRigidArea(new Dimension(10, 30)));
-		amain.add(ab);
-		amain.add(Box.createRigidArea(new Dimension(10, 30)));
+		addMain.add(btnName2);
+		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
+		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
+		addMain.add(addAudio);
+		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
+		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
+		addMain.add(addImage);
+		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
+		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
+		addMain.add(addButtonSave);
+		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
 
-		addB.setContentPane(amain);
+		addFrame.setContentPane(addMain);
 		//public void Addbtn (int set, String bname, String audioname, String image) {
 		 
 		
@@ -471,8 +446,8 @@ chooseSet.addActionListener(
 
 		rmv.setVisible(true);
 		JPanel rmain = new JPanel();
-		rb = new JButton("REMOVE BUTTON");
-		rb.addActionListener(this);
+		removeButtonSave = new JButton("REMOVE BUTTON");
+		removeButtonSave.addActionListener(this);
 		
 		rmain.setLayout(new GridLayout(4,3));
 		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
@@ -485,7 +460,7 @@ chooseSet.addActionListener(
 		rmain.add(btnName2);
 		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
 		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
-		rmain.add(rb);
+		rmain.add(removeButtonSave);
 		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
 		
 		rmv.setContentPane(rmain);
@@ -562,7 +537,6 @@ chooseSet.addActionListener(
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		Object source = e.getSource();
 
 		if (source == changeAudio)
@@ -660,15 +634,8 @@ chooseSet.addActionListener(
 		{
 			removeButton();
 		}
-		/**
-		else if (source == enterName)
-		{
-			 holdName = btnName.getText();
-			System.out.println(holdName);
-		    btnName2.setText("");
-		}
-		*/
-		else if (source == aAudio)
+		
+		else if (source == addAudio)
 		{
 			String test = fileChooser();
 			if (test == null)
@@ -688,8 +655,6 @@ chooseSet.addActionListener(
 			   // a.printStackTrace();
 			}
 			
-          //  System.out.println(test+"   "+last);
-           // System.out.println(filename);
             if (filename.endsWith(".wav"))
             	newbtnAudio = filename;
 
@@ -702,7 +667,7 @@ chooseSet.addActionListener(
             }
 			}
 		}
-		else if (source == aImage)
+		else if (source == addImage)
 		{
 			String test = fileChooser();
 			if (test == null)
@@ -722,8 +687,6 @@ chooseSet.addActionListener(
 			   // a.printStackTrace();
 			}
 			
-          //  System.out.println(test+"   "+last);
-          //  System.out.println(filename);
             if (filename.endsWith(".png"))
             	newbtnImg = "Images/"+filename;
             	
@@ -736,19 +699,18 @@ chooseSet.addActionListener(
             }
 			}
 		}
-		else if (source == ab)
+		else if (source == addButtonSave)
 		{
-			 holdName = btnName2.getText();
-			 if (holdName=="" ||holdName==null)
-				 holdName="N/A";
-				//System.out.println(holdName);
+			 buttonText = btnName2.getText();
+			 if (buttonText=="" ||buttonText==null)
+				 buttonText="N/A";
 			    btnName2.setText("");
 			    if (newbtnAudio=="" || newbtnAudio==null)
 			    	newbtnAudio="default.wav";
 			    if (newbtnImg=="" || newbtnImg==null)
 			    	newbtnImg="Images/default.png";
-			con.Addbtn(set,holdName,newbtnAudio,newbtnImg);
-    		JOptionPane.showMessageDialog(new JFrame(), "New button added.\n Button Set: "+set+"\n Button Name: "+holdName+"\n Audio Name: "+newbtnAudio+"\n Image Name: "+newbtnImg);
+			con.Addbtn(set,buttonText,newbtnAudio,newbtnImg);
+    		JOptionPane.showMessageDialog(new JFrame(), "New button added.\n Button Set: "+set+"\n Button Name: "+buttonText+"\n Audio Name: "+newbtnAudio+"\n Image Name: "+newbtnImg);
 
 			try {
 				outputSerial();
@@ -759,27 +721,26 @@ chooseSet.addActionListener(
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			//public void Addbtn (int set, String bname, String audioname, String image) {
 
 		}
-		else if (source == rb)
+		else if (source == removeButtonSave)
 		{
-			int holdName = Integer.parseInt(btnName2.getText());
-			//System.out.println(holdName);
+			int buttonText = Integer.parseInt(btnName2.getText());
+			//System.out.println(buttonText);
 		    btnName2.setText("");
-//		    if ((set==1 && (holdName < 1 || holdName > con.getSetAt(0)) || (set==2 && (holdName<1 || holdName>con.getSetAt(0)))))
+//		    if ((set==1 && (buttonText < 1 || buttonText > con.getSetAt(0)) || (set==2 && (buttonText<1 || buttonText>con.getSetAt(0)))))
 //		    	{
 //		    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Button Number.\n Try Again.");
 //		    	}
-		    if (holdName < 1 || holdName > con.getSetAt(0) || holdName > con.getSetAt(1))
+		    if (buttonText < 1 || buttonText > con.getSetAt(0) || buttonText > con.getSetAt(1))
 	    	{
 	    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Button Number.\n Try Again.");
 	    	}
 		    else
 		    {
-	    	JOptionPane.showMessageDialog(new JFrame(), "Button removed.\n Button Set: "+set+"Button Name: "+con.getBtnName(set, holdName));
+	    	JOptionPane.showMessageDialog(new JFrame(), "Button removed.\n Button Set: "+set+"Button Name: "+con.getBtnName(set, buttonText));
 
-		    con.Removebtn(set, holdName);
+		    con.Removebtn(set, buttonText);
 
 		    }
 			try {
@@ -791,10 +752,6 @@ chooseSet.addActionListener(
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		//	public void Removebtn (int set, int num) {
-
-			
-			
 		}
 		else if (source == changeButton)
 		{	
@@ -828,8 +785,8 @@ chooseSet.addActionListener(
 				chooseSetMain.removeItemAt(chooseSet.getSelectedIndex());
 				chooseSetMain.updateUI();
 				
-				menu.revalidate();
-				menu.repaint();
+				menuButtons.revalidate();
+				menuButtons.repaint();
 			}
 			else
 			{
@@ -849,8 +806,8 @@ chooseSet.addActionListener(
 			chooseSet.updateUI();
 			chooseSetMain.addItem(name);
 			chooseSetMain.updateUI();
-			menu.revalidate();
-			menu.repaint();
+			menuButtons.revalidate();
+			menuButtons.repaint();
 				
 		}
 		
