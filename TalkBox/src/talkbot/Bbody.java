@@ -23,6 +23,7 @@ public class Bbody extends JPanel implements ActionListener {
 	protected Configuration con;
 	private ObjectInputStream in;
 	public JButton set1, set2;
+	public ArrayList<ArrayList<Buttons>> sets;
 	public ArrayList<Buttons> track1, track2;
 	private Boolean on, play=false;
 	private Clip clip;
@@ -37,8 +38,15 @@ public class Bbody extends JPanel implements ActionListener {
 	}
 	
 	public void sets() {
+//		for(int i = 0; i <= con.getNumberOfAudioSets(); i++)
+//		{
+//			JButton Button = new JButton(con.getSetName(i));
+//			this.add(Button);
+//			Button.addActionListener(this);
+//		}
+			
 		set1 = new JButton("Phrases");
-		set2 = new JButton("Emotions");
+		set2 = new JButton("Emotions");	
 		this.add(set1);
 		this.add(set2);
 		set1.addActionListener(this);

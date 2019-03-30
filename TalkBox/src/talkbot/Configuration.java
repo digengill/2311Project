@@ -12,12 +12,15 @@ public class Configuration implements TalkBoxConfiguration{
 	private String rpathAfile, aname[][], rpathImage[][];
 	//Buttons
 	private String btname[][];
+	protected String[] setNames;
+	private static Configuration config;
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(new File("serial" + File.separator + "log.bin")));
 
-		Configuration config = new Configuration();
+		//Configuration 
+		config = new Configuration();
 		//Test1 before sets
 		/*
 		//Get numbers
@@ -50,7 +53,9 @@ public class Configuration implements TalkBoxConfiguration{
 		*/
 		//Test2 with sets added
 		//Get numbers
-				config.setAudioSets(2);
+				
+				//config.setAudioSets(2);
+		        config.aset = 2;
 				config.setBtnNum(12);
 				config.review(config.getNumberOfAudioSets(), config.getNumberOfAudioButtons());
 				//AUDIO
@@ -99,6 +104,12 @@ public class Configuration implements TalkBoxConfiguration{
 		//for (int i = 0; i < config.getSet1(); i++) {
 		//	System.out.println(config.getBtnName(1, i+1));
 		//}
+					
+					config.setSetName(0, "Phrases");
+					config.setSetName(1, "Emotions");
+//					System.out.println(config.getSetName(0));
+//					System.out.println(config.getSetName(1));
+					
 		obj.writeObject(config);
 		obj.close();
 	}
@@ -192,9 +203,9 @@ public class Configuration implements TalkBoxConfiguration{
 		this.totalbtns = num;
 	}
 	
-	public void setAudioSets (int num) {
-		this.aset = num;
-	}
+//	public void setAudioSets (int num) {
+//		this.aset = num;
+//	}
 	
 	public void Removebtn (int set, int num) {
 		set--;
@@ -262,42 +273,102 @@ public class Configuration implements TalkBoxConfiguration{
 	}
 	
 	public void review (int set, int num) {
-		this.aname = new String [2][6];
+		this.aname = new String [set][6];
 		this.btname = new String [set][6];
 		this.rpathImage = new String[set][6];
+		this.setNames = new String[set];
 	}
 
 	protected void removeSetAt(int location)
 	{
-//		aname[location]= null;
-//		rpathImage[location] = null;
-//		btname[location] = null;
-		for(int i = 0; i <= 6; i++)
+		
+		setNames[location] = null;
+		for(int i = 0; i < 1000; i++)
 		{
 			try
 			{
-				Removebtn(location + 1, i + 1);
+				
+				Removebtn(location, i);
 				System.out.println("Button removed");
 			}
 			catch(IndexOutOfBoundsException E)
 			{
 				System.out.println("Removal out of bounds");
-				E.printStackTrace();
+				//E.printStackTrace();
 			}
 		}
 	}
-	protected void addSetAt(int location, String name)
+	
+	protected String getSetName(int index)
 	{
-		try 
+		return setNames[index];
+	}
+
+	protected void setSetName(int set, String name)
+	{
+		try
 		{
-			btname[location][0] = name;
-			System.out.println(name);
+			setNames[set] = name;
 		}
-		catch(IndexOutOfBoundsException E)
+		catch(Exception E)
 		{
-			System.out.println("New out of bounds");
+			System.out.println(set);
 			E.printStackTrace();
 		}
+		
 	}
+	protected void addSet(String name)
+	{
+	 setNumberPlusOne();
+
+		for(int i = 0; i < getNumberOfAudioSets(); i++)
+		{
+			if (getSetName(i) == null)
+			{
+				setSetName(i, name);
+				System.out.println(name + " " + getSetName(i) + " " + i + " " + getNumberOfAudioSets());
+				break;
+			}
+		}
+		//System.out.println(getSetName(2));
+	}
+	public void setNumberPlusOne() 
+	{
+		int set = getNumberOfAudioSets();
+		String[][] tempAudio = new String[set + 1][];
+		String[][] tempButtonName= new String[set + 1][];
+		String[][] tempImage = new String[set + 1][];		
+		String[] tempSetName = new String[set + 1];
+		
+		for(int i = 0; i < setNames.length; i++)
+		{
+			//for(int j = 0; j )
+			tempAudio[i] = aname[i];
+			tempButtonName[i] = btname[i];
+			tempImage[i] = rpathImage[i];
+			tempSetName[i] = setNames[i];
+		}
+		//System.out.println(aname.length + " " + tempAudio.length);
+		aname = tempAudio;
+		btname = tempButtonName;
+		rpathImage = tempImage;
+		setNames = tempSetName;
+		//System.out.println(aname.length + " " + tempAudio.length);
+		aset++;
+	}
+	
+//	protected void addSetAt(int location, String name)
+//	{
+//		try 
+//		{
+//			btname[location][0] = name;
+//			System.out.println(name);
+//		}
+//		catch(IndexOutOfBoundsException E)
+//		{
+//			System.out.println("New out of bounds");
+//			E.printStackTrace();
+//		}
+//	}
 
 }

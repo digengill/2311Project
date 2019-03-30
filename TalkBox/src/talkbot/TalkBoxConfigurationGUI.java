@@ -138,7 +138,12 @@ chooseButton.addActionListener(
         }
 		);
 chooseSet = new JComboBox<String>();
-chooseSet.addItem("Phrases"); chooseSet.addItem("Emotions");
+for(int i = 0; i < con.getNumberOfAudioSets(); i++)
+{
+	//System.out.println(con.getSetName(i));
+	chooseSet.addItem(con.getSetName(i));
+}
+//chooseSet.addItem(con.getSetName(0)); chooseSet.addItem(con.getSetName(1));
 chooseSet.addActionListener(
 		new ActionListener() {
 				public void actionPerformed(ActionEvent e) 
@@ -150,12 +155,20 @@ chooseSet.addActionListener(
 					//System.out.println(set);
 					//if (set==1) {
 					
-					String[] bnames = new String [con.getSetAt(set)+1];//{"Pick Button","1","2","3","4","5","6"};
-					bnames[0] = "Pick Button";
-					for (int i = 1; i < bnames.length; i++) {
-						bnames[i] = ""+i;
-					}
+					try 
+					{
+						String[] bnames = new String [con.getSetAt(set)];//+1];//{"Pick Button","1","2","3","4","5","6"};
+						bnames[0] = "Pick Button";
+						for (int i = 1; i < bnames.length; i++) 
+						{
+							bnames[i] = ""+i;
+						}
 					chooseButton = new JComboBox(bnames);
+					}
+					catch(Exception E)
+					{
+						E.printStackTrace();
+					}
 					
 				//	} 
 //						else if (set==2) {
@@ -256,7 +269,9 @@ chooseSet.addActionListener(
 //	ChoosePreset.add(B);
 //	PresetNames.addItem(P.GetName());
 //	PresetNames.addItem(B.GetName());
-	chooseSetMain.addActionListener(PresetPanelListener);
+//	chooseSetMain.addActionListener(PresetPanelListener);
+	chooseSetMain.addItem(con.getSetName(0)); chooseSetMain.addItem(con.getSetName(1));
+	
 	
 	//ChoosePreLabel = new JLabel("Choose a Preset");
 	//GBC.gridy = 0;
@@ -265,7 +280,7 @@ chooseSet.addActionListener(
 	/*PresetSelect*/menu.add(AddSet);//, GBC);
 	
 	menu.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
-	/*PresetSelect*/menu.add(chooseSet);//(chooseSetMain);//, GBC);
+	/*PresetSelect*/menu.add(chooseSetMain);//(chooseSetMain);//, GBC);
 	menu.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
 	//menu.add(Box.createRigidArea(new Dimension(150, 100)), GBC);
 	/*PresetSelect*/menu.add(RemoveSet);//, GBC);
@@ -782,8 +797,7 @@ chooseSet.addActionListener(
 			
 		}
 		else if (source == changeButton)
-		{
-			
+		{	
 			changeButton();
 		}
 		else if(source == back)
@@ -796,20 +810,24 @@ chooseSet.addActionListener(
 		
 		else if(e.getSource() == REMOVE)
 		{
-//			if(.size() > 0)
-//			{
-//				ChooseCat.remove(CatNames.getSelectedIndex());
-//				MainDisplayCatNames.removeItemAt(CatNames.getSelectedIndex());
-//				CatNames.removeItemAt(CatNames.getSelectedIndex());
-//				CatNames.updateUI();
-//				MainDisplayCatNames.updateUI();
-//			}
+
 			if(chooseSet.getSelectedIndex() >= 0)
 			{
 				System.out.println(con.getSetButtonsAt(chooseSet.getSelectedIndex()));
+				
 				con.removeSetAt(chooseSet.getSelectedIndex());
+				
+				for(int i = con.getSetAt(chooseSet.getSelectedIndex() + 1); i < 1000; i++)
+				{
+					con.getSetAt(chooseSet.getSelectedIndex() + 1);
+					//something here
+				}
+				
 				chooseSet.removeItemAt(chooseSet.getSelectedIndex());
 				chooseSet.updateUI();
+				chooseSetMain.removeItemAt(chooseSet.getSelectedIndex());
+				chooseSetMain.updateUI();
+				
 				menu.revalidate();
 				menu.repaint();
 			}
@@ -818,40 +836,23 @@ chooseSet.addActionListener(
 				System.out.println("Error cannot remove 0 presets");
 			}
 		}
-//		else if(e.getSource() == SetCatName)
-//		{
-//			NewSetName = SeName.getText();	
-//		}
-		
+
 		else if(e.getSource() == CREATE)
 		{
-//			Category Q = new Category(NewCatName);
-//			ChooseCat.add(Q);
-//			CatNames.addItem(Q.GetName());
-//			CatNames.updateUI();
-//			MainDisplayCatNames.addItem(Q.GetName());
-//			MainDisplayCatNames.updateUI();
+			String name = SetName.getText();
+			con.addSet(name);
 			
-			con.addSetAt(set + 1, SetName.getText());
-			chooseSet.addItem(SetName.getText());
+//			System.out.println(con.getSetName(0));
+//			con.setAudioSets(con.getNumberOfAudioSets() + 1);
+			
+			chooseSet.addItem(name);
 			chooseSet.updateUI();
+			chooseSetMain.addItem(name);
+			chooseSetMain.updateUI();
 			menu.revalidate();
 			menu.repaint();
-			
+				
 		}
-//		else if(e.getSource() == CatNames )
-//		{
-//			ButtonList.clear();
-//			ButtonNameList.removeAll();
-//			
-//			ButtonList.addAll(ChooseCat.get(CatNames.getSelectedIndex()).GetButtons());
-//			for(Buttons b : ButtonList)
-//			{
-//				System.out.println(b.getName());
-//				ButtonNameList.addItem(b.getName());
-//			}
-//			ButtonNameList.updateUI();
-//		}
 		
 		else if(source == simLog)
 		{
