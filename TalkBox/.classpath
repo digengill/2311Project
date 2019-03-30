@@ -22,7 +22,7 @@
 	<classpathentry kind="lib" path="libraries/commons-io-2.6-test-sources.jar"/>
 	<classpathentry kind="lib" path="libraries/commons-io-2.6-tests.jar"/>
 	<classpathentry kind="lib" path="libraries/commons-io-2.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Thomas/Desktop/apache-log4j-2.11.2-bin/apache-log4j-2.11.2-bin/log4j-core-2.11.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Thomas/Desktop/apache-log4j-2.11.2-bin/apache-log4j-2.11.2-bin/log4j-api-2.11.2.jar"/>
+	<classpathentry kind="lib" path="libraries/log4j-api-2.11.2.jar"/>
+	<classpathentry kind="lib" path="libraries/log4j-core-2.11.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
