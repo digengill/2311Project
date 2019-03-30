@@ -399,7 +399,7 @@ public class Configuration implements TalkBoxConfiguration{
 
 	public String getcatNames (int num) {
 		for (int i = 0; i < catnames.size(); i++) {
-			System.out.println(catnames.get(i));
+			//System.out.println(catnames.get(i));
 		}
 		return this.catnames.get(num);
 	}

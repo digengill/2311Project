@@ -12,3 +12,30 @@
 [INFO ] 2019-03-30 16:15:06.973 [AWT-EventQueue-0] TalkBoxConfigurationGUI - TestMessage
 [INFO ] 2019-03-30 16:15:12.467 [AWT-EventQueue-0] TalkBoxConfigurationGUI - TestMessage 1
 [INFO ] 2019-03-30 16:15:12.479 [AWT-EventQueue-0] TalkBoxConfigurationGUI - TestMessage
+[INFO ] 2019-03-30 16:52:55.983 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - addButton
+[INFO ] 2019-03-30 16:53:02.798 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - addAudio
+[INFO ] 2019-03-30 16:53:05.201 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - addImage
+[INFO ] 2019-03-30 16:53:12.957 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - addButtonSave
+[INFO ] 2019-03-30 16:53:16.210 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - chooseSet - 1
+[INFO ] 2019-03-30 16:53:24.006 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - chooseSet - 1
+[INFO ] 2019-03-30 16:53:33.979 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - AddSet
+[INFO ] 2019-03-30 16:53:36.360 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - CREATE
+[INFO ] 2019-03-30 16:53:39.800 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - chooseSet - 2
+[INFO ] 2019-03-30 16:53:43.366 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - addButton
+[INFO ] 2019-03-30 16:53:49.614 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - changeButton
+[INFO ] 2019-03-30 16:53:53.880 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - changeAudio
+[INFO ] 2019-03-30 16:54:03.653 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - chooseSet - 1
+[INFO ] 2019-03-30 16:54:09.508 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - nameEnter
+[INFO ] 2019-03-30 16:54:13.048 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - back
+[INFO ] 2019-03-30 16:57:45.719 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - changeButton
+[INFO ] 2019-03-30 16:57:49.089 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - back
+[INFO ] 2019-03-30 17:03:21.100 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - simLog
+[INFO ] 2019-03-30 17:03:23.401 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - addButton
+[INFO ] 2019-03-30 17:03:28.965 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - addButtonSave
+[INFO ] 2019-03-30 17:03:31.576 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - removeButton
+[INFO ] 2019-03-30 17:03:33.798 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - changeButton
+[INFO ] 2019-03-30 17:03:36.985 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - chooseButton - 22
+[INFO ] 2019-03-30 17:03:40.119 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - Apply
+[INFO ] 2019-03-30 17:03:43.499 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - removeButton
+[INFO ] 2019-03-30 17:03:47.428 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - chooseSet - 1
+[INFO ] 2019-03-30 17:03:52.761 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - removeButtonSave

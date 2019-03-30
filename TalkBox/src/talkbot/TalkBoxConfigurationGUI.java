@@ -113,7 +113,7 @@ for (int i = 1; i < bnames.length; i++) {
                 if (buttonNUM==(-1))
                 	buttonNUM=1;
                 //System.out.println(buttonNUM);
-            	logger.info("TestMessage " + buttonNUM);
+            	logger.info("ConfigurationGUI - chooseButton - " + chooseButton.getSelectedIndex() + buttonNUM);
             }
         }
 		);
@@ -150,7 +150,7 @@ chooseSet.addActionListener(
 					{
 						E.printStackTrace();
 					}
-					logger.info("TestMessage " + set);
+					logger.info("ConfigurationGUI - chooseSet - " + set);
 				//	} 
 //						else if (set==2) {
 //						String[] bnames = new String [con.getSetAt(1)+1];//{"Pick Button","1","2","3","4","5","6"};
@@ -232,12 +232,12 @@ chooseSet.addActionListener(
 			if (e.getSource() == AddSet)
 			{
 				AddNewSet();
-				logger.info("TestMessage");
+				logger.info("ConfigurationGUI - AddSet");
 			}
 			else if (e.getSource() == RemoveSet)
 			{
 				RemoveOldSet();
-				logger.info("TestMessage");
+				logger.info("ConfigurationGUI - RemoveSet");
 			}
 		}
 	};
@@ -580,7 +580,7 @@ chooseSet.addActionListener(
             	con.setAudioName(set, buttonNUM, "default.wav");
             }
 			}
-			logger.info("TestMessage");
+			logger.info("ConfigurationGUI - changeAudio");
 		}
 		else if(source == changeImage)
 		{
@@ -615,7 +615,7 @@ chooseSet.addActionListener(
             	con.setImagePath(set, buttonNUM, "Images/default.png");
             }
 			}
-			logger.info("TestMessage"); 
+			logger.info("ConfigurationGUI - changeImage"); 
 		}
 		else if (source == Apply)
 		{
@@ -625,7 +625,7 @@ chooseSet.addActionListener(
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			logger.info("TestMessage");
+			logger.info("ConfigurationGUI - Apply");
 		}
 		
 		else if (source == nameEnter)
@@ -634,18 +634,18 @@ chooseSet.addActionListener(
 			con.setBtnName(set, buttonNUM, text);
 			//System.out.println(text);
 		    btnName.setText("");
-		    logger.info("TestMessage");
+		    logger.info("ConfigurationGUI - nameEnter");
 		}
 	
 		else if (source == addButton)
 		{
 			addButton();
-			logger.info("TestMessage");
+			logger.info("ConfigurationGUI - addButton");
 		}
 		else if (source == removeButton)
 		{
 			removeButton();
-			logger.info("TestMessage");
+			logger.info("ConfigurationGUI - removeButton");
 		}
 		
 		else if (source == addAudio)
@@ -679,7 +679,7 @@ chooseSet.addActionListener(
 
             }
 			}
-			logger.info("TestMessage");
+			logger.info("ConfigurationGUI - addAudio");
 		}
 		else if (source == addImage)
 		{
@@ -712,7 +712,7 @@ chooseSet.addActionListener(
 
             }
 			}
-			logger.info("TestMessage");
+			logger.info("ConfigurationGUI - addImage");
 		}
 		else if (source == addButtonSave)
 		{
@@ -736,7 +736,7 @@ chooseSet.addActionListener(
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			logger.info("TestMessage");
+			logger.info("ConfigurationGUI - addButtonSave");
 
 		}
 		else if (source == removeButtonSave)
@@ -768,20 +768,20 @@ chooseSet.addActionListener(
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			logger.info("TestMessage");
+			logger.info("ConfigurationGUI - removeButtonSave");
 		}
 		else if (source == changeButton)
 		{	
 			changeButton();
-			logger.info("TestMessage");
+			logger.info("ConfigurationGUI - changeButton");
 		}
 		else if(source == back)
 		{
-			TalkBoxConfigurationGUI test1 = new TalkBoxConfigurationGUI();
-			
-			test1.setVisible(true);
-			test1.pack();
-			logger.info("TestMessage");
+//			TalkBoxConfigurationGUI test1 = new TalkBoxConfigurationGUI();
+//			
+//			test1.setVisible(true);
+//			test1.pack();
+//			logger.info("ConfigurationGUI - back");
 		}
 		
 		else if(e.getSource() == REMOVE)
@@ -811,7 +811,7 @@ chooseSet.addActionListener(
 			{
 				System.out.println("Error cannot remove 0 presets");
 			}
-			logger.info("TestMessage");
+			logger.info("ConfigurationGUI -  REMOVE");
 		}
 
 		else if(e.getSource() == CREATE)
@@ -828,13 +828,13 @@ chooseSet.addActionListener(
 			chooseSetMain.updateUI();
 			menuButtons.revalidate();
 			menuButtons.repaint();
-			logger.info("TestMessage");	
+			logger.info("ConfigurationGUI - CREATE");	
 		}
 		
 		else if(source == simLog)
 		{
 			simulatorLog();
-			logger.info("TestMessage");
+			logger.info("ConfigurationGUI - simLog");
 		}
 	}
 	public static void main(String[] args)  {
