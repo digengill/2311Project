@@ -39,6 +39,11 @@
 [INFO ] 2019-03-30 17:03:43.499 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - removeButton
 [INFO ] 2019-03-30 17:03:47.428 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - chooseSet - 1
 [INFO ] 2019-03-30 17:03:52.761 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - removeButtonSave
+<<<<<<< HEAD
 [INFO ] 2019-03-30 18:56:13.329 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - changeButton
 [INFO ] 2019-03-30 18:56:14.938 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - RemoveSet
 [INFO ] 2019-03-30 18:56:18.062 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - Apply
+=======
+[INFO ] 2019-03-30 19:06:45.446 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - simLog
+>>>>>>> branch 'master' of https://github.com/digengill/2311Project
+[INFO ] 2019-03-30 20:34:24.384 [AWT-EventQueue-0] TalkBoxConfigurationGUI - ConfigurationGUI - addButton
