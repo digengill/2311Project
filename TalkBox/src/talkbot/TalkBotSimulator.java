@@ -42,6 +42,7 @@ public class TalkBotSimulator extends JFrame {
 			e.printStackTrace();
 		} 
     	//Finish reading info
+    	i.setEditable(false);
     	info.add(i);
     	//info.setVisible(true);
 	}

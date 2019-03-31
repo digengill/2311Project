@@ -20,10 +20,10 @@ import java.util.*;
 
 public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	
-	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel, menuButtons, menuMain;
-	JButton addAudio, addImage;
+	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel, menuButtons, menuMain, catagoriesMain, catagoriesCenter;
+	JButton addAudio, addImage, catagories;
 	JButton simLog;
-	
+	JPanel menuSouth, menuNorth, menu;
 	JButton changeAudio, changeImage, Apply, nameEnter, audioPreview, addButton, removeButton, changeButton, addButtonSave,removeButtonSave, back;
 	JLabel imagePreview;
 	ImageIcon preview, goBack;
@@ -68,6 +68,7 @@ try {
 } catch (IOException e) {
 	e.printStackTrace();
 }
+catagories = new JButton("Catagories");
 back = new JButton(goBack);
 addAudio = new JButton("Add Audio");
 addImage = new JButton("Add Image");
@@ -77,6 +78,9 @@ audioPreview = new JButton("Audio Preview");
 nameEnter = new JButton("Apply Name");
 Apply = new JButton("SAVE SETTINGS");
 back.addActionListener(this);
+menu = new JPanel();
+menuSouth = new JPanel();
+menuNorth = new JPanel();
 main = new JPanel();
 center = new JPanel();
 center2 = new JPanel();
@@ -93,7 +97,7 @@ btnName2.addActionListener(this);
 imagePreview = new JLabel("Image",preview, JLabel.CENTER );
 changeAudio.addActionListener(this);
 changeImage.addActionListener(this);
- simLog = new JButton("Log");
+ simLog = new JButton("          Log          ");
  simLog.addActionListener(this);
 Apply.addActionListener(this);
 nameEnter.addActionListener(this);
@@ -173,6 +177,7 @@ chooseSet.addActionListener(
 	addButton.addActionListener(this);
 	removeButton.addActionListener(this);
 	changeButton.addActionListener(this);
+	catagories.addActionListener(this);
 	
 	
 //	GridBagConstraints GBC = new GridBagConstraints();
@@ -193,17 +198,23 @@ chooseSet.addActionListener(
 //		menuButtons.add(changeButton, GBC);
 //		menuButtons.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
 
-		menuButtons.setLayout(new GridLayout(2, 3, 100, 100));
+		menuButtons.setLayout(new GridLayout(4,3));
 		menuMain.setLayout(new BorderLayout());
+		menuButtons.add(Box.createRigidArea(new Dimension(10, 10)));
+		menuButtons.add(catagories);
+		menuButtons.add(Box.createRigidArea(new Dimension(10, 10)));
+		menuButtons.add(Box.createRigidArea(new Dimension(10, 10)));
+		menuButtons.add(Box.createRigidArea(new Dimension(10, 10)));
+		menuButtons.add(Box.createRigidArea(new Dimension(10, 10)));
 		menuButtons.add(addButton);
-		menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));
+		//menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));
 		menuButtons.add(removeButton);
-		menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));
+		//menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));
 		menuButtons.add(changeButton);
-		menuButtons.add(simLog);
 		
 
-	this.add(menuButtons);
+
+	//this.add(menuButtons);
 	// BorderLayout.CENTER);
 	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.NORTH);
 	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
@@ -259,33 +270,54 @@ chooseSet.addActionListener(
 	//ChoosePreLabel = new JLabel("Choose a Preset");
 	//GBC.gridy = 0;
 	
-	menuButtons.add(Box.createRigidArea(new Dimension(70, 100))); //,GBC);
-	/*PresetSelect*/menuButtons.add(AddSet);//, GBC);
+	//menuButtons.add(Box.createRigidArea(new Dimension(70, 100))); //,GBC);
 	
-
-	menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
-	/*PresetSelect*/menuButtons.add(chooseSetMain);//(chooseSetMain);//, GBC);
-	menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
-	//menuButtons.add(Box.createRigidArea(new Dimension(150, 100)), GBC);
-	/*PresetSelect*/menuButtons.add(RemoveSet);//, GBC);
-	menuButtons.add(Box.createRigidArea(new Dimension(70, 100)));//, GBC);
-	//menuButtons.setMinimumSize(new Dimension(500, 500));
+	menuNorth.setLayout(new BorderLayout());
+	JTextArea text = new JTextArea(10,10);
+	text.setBackground(new Color(153, 255, 255));
+	File fname = new File("Textfiles/configInfo.txt");
+	try {
+          BufferedReader input = new BufferedReader(new InputStreamReader(
+              new FileInputStream(fname)));
+          text.read(input, "READING FILE :-)");
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+	text.setEditable(false);
+	menuNorth.add(text,BorderLayout.CENTER);
+	menuNorth.add(Box.createRigidArea(new Dimension(100, 50)),BorderLayout.SOUTH);
+	menuSouth.setLayout(new BorderLayout());
+	menuSouth.add(simLog,BorderLayout.EAST);
+	menuSouth.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.CENTER);
+	
+	this.setMinimumSize(new Dimension(900, 500));
 
 	//PresetSelect.add(ChoosePreLabel);
 	//this.add(PresetSelect);
 	//this.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
 
 
-//	menuMain.add(menuButtons, BorderLayout.CENTER);
-//	
-//	menuButtons.setBackground(java.awt.Color.cyan);
-//	menuMain.setBackground(java.awt.Color.cyan);
-//	
-//	menuMain.add(Box.createRigidArea(new Dimension(100, 300)),BorderLayout.NORTH);
-//	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
-//	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
-//	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.WEST);
-//	this.setContentPane(menuMain);
+	menuMain.add(menuButtons, BorderLayout.CENTER);
+	
+	menuButtons.setBackground(java.awt.Color.cyan);
+	menuMain.setBackground(java.awt.Color.cyan);
+	menu.setBackground(java.awt.Color.cyan);
+	menuNorth.setBackground(java.awt.Color.cyan);
+	menuSouth.setBackground(java.awt.Color.cyan);
+
+	
+	menuMain.add(menuNorth,BorderLayout.NORTH);
+	menuMain.add(menuSouth,BorderLayout.SOUTH);
+	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
+	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.WEST);
+	menu.setLayout(new BorderLayout());
+
+	menu.add(menuMain, BorderLayout.CENTER);
+	menu.add(Box.createRigidArea(new Dimension(10, 10)),BorderLayout.EAST);
+	menu.add(Box.createRigidArea(new Dimension(10, 10)),BorderLayout.WEST);
+	menu.add(Box.createRigidArea(new Dimension(10, 10)),BorderLayout.NORTH);
+	menu.add(Box.createRigidArea(new Dimension(10, 10)),BorderLayout.SOUTH);
+	this.setContentPane(menu);
 
 	}
 	
@@ -313,7 +345,28 @@ chooseSet.addActionListener(
 	}
 
 	
-	
+	public void catagories()
+	{
+		JFrame catagoriesFrame = new JFrame("Edit Catagories");
+		catagoriesFrame.setVisible(true);
+		catagoriesFrame.setMinimumSize(new Dimension(800,600));
+
+		catagoriesMain =new JPanel();
+		catagoriesCenter = new JPanel();
+		
+		catagoriesMain.setLayout(new BorderLayout());
+		catagoriesCenter.setLayout(new GridLayout());
+		catagoriesCenter.add(AddSet);
+		catagoriesCenter.add(chooseSetMain);
+		catagoriesCenter.add(RemoveSet);
+
+		catagoriesMain.add(catagoriesCenter,BorderLayout.CENTER);
+		catagoriesMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.NORTH);
+		catagoriesMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
+		catagoriesMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
+		catagoriesMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.WEST);
+		catagoriesFrame.setContentPane(catagoriesMain);
+	}
 	
 	
 	public void changeButton()
@@ -783,7 +836,13 @@ chooseSet.addActionListener(
 //			test1.pack();
 //			logger.info("ConfigurationGUI - back");
 		}
-		
+		else if (source == catagories)
+		{
+			
+			catagories();
+			
+			
+		}
 		else if(e.getSource() == REMOVE)
 		{
 
