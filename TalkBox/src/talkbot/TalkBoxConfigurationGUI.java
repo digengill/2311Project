@@ -123,7 +123,7 @@ for(int i = 0; i < con.getNumberOfAudioSets(); i++)
 	//System.out.println(con.getSetName(i));
 	chooseSet.addItem(con.getcatNames(i));
 }
-//chooseSet.addItem(con.getSetName(0)); chooseSet.addItem(con.getSetName(1));
+
 chooseSet.addActionListener(
 
 		new ActionListener() {
@@ -133,9 +133,6 @@ chooseSet.addActionListener(
 					set = combo.getSelectedIndex();
 					if (set < (1))
 						set=1;
-					//System.out.println(set);
-					//if (set==1) {
-					
 					try 
 					{
 						String[] bnames = new String [con.getSetAt(set)];//+1];//{"Pick Button","1","2","3","4","5","6"};
@@ -151,16 +148,6 @@ chooseSet.addActionListener(
 						E.printStackTrace();
 					}
 					logger.info("ConfigurationGUI - chooseSet - " + set);
-				//	} 
-//						else if (set==2) {
-//						String[] bnames = new String [con.getSetAt(1)+1];//{"Pick Button","1","2","3","4","5","6"};
-//						bnames[0] = "Pick Button";
-//						for (int i = 1; i < bnames.length; i++) {
-//							bnames[i] = ""+i;
-//						}
-						//System.out.println(con.getSetAt(1)+1);
-						//chooseButton = new JComboBox(bnames);
-				//	}
 				}
 		}
 		);
@@ -174,24 +161,9 @@ chooseSet.addActionListener(
 	removeButton.addActionListener(this);
 	changeButton.addActionListener(this);
 	
-	
-//	GridBagConstraints GBC = new GridBagConstraints();
-//	GBC.gridy = 2;
-//	GBC.ipady = 100;
-//	GBC.ipadx = 50;
 
 	
 		menuButtons = new JPanel();
-		
-//		menuButtons.setLayout(new GridBagLayout());
-//		menuButtons.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
-//		menuButtons.add(addButton, GBC);
-//		menuButtons.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
-//		menuButtons.add(removeButton, GBC);
-//		//GBC.gridy = 3;
-//		menuButtons.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
-//		menuButtons.add(changeButton, GBC);
-//		menuButtons.add(Box.createRigidArea(new Dimension(70, 100)), GBC);
 
 		menuButtons.setLayout(new GridLayout(2, 3, 100, 100));
 		menuMain.setLayout(new BorderLayout());
@@ -204,22 +176,7 @@ chooseSet.addActionListener(
 		
 
 	this.add(menuButtons);
-	// BorderLayout.CENTER);
-	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.NORTH);
-	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
-	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
-	//this.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.WEST);
-	
-	
-	
-	//Testing PresetPanel
-	
-	
-//	ArrayList<Buttons> test = new ArrayList<Buttons>();
-//	Preset P = new Preset("Weather", test);
-//	Preset B = new Preset("Weather2", test);
-//	PresetSelect = new JPanel();
-//	PresetSelect.setLayout(new GridBagLayout());
+
 	AddSet = new JButton("Add Set");
 	RemoveSet = new JButton("Remove Set");
 	
@@ -245,48 +202,20 @@ chooseSet.addActionListener(
 	AddSet.addActionListener(PresetPanelListener);
 	RemoveSet.addActionListener(PresetPanelListener);
 	
-	//chooseSetMain = new ArrayList<String>();
 	chooseSetMain = new JComboBox<String>();
 
-//	ChoosePreset.add(P);
-//	ChoosePreset.add(B);
-//	PresetNames.addItem(P.GetName());
-//	PresetNames.addItem(B.GetName());
-//	chooseSetMain.addActionListener(PresetPanelListener);
 	chooseSetMain.addItem(con.getcatNames(0)); chooseSetMain.addItem(con.getcatNames(1));
 	
-	
-	//ChoosePreLabel = new JLabel("Choose a Preset");
-	//GBC.gridy = 0;
-	
-	menuButtons.add(Box.createRigidArea(new Dimension(70, 100))); //,GBC);
-	/*PresetSelect*/menuButtons.add(AddSet);//, GBC);
+	menuButtons.add(Box.createRigidArea(new Dimension(70, 100))); 
+	menuButtons.add(AddSet);;
 	
 
-	menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
-	/*PresetSelect*/menuButtons.add(chooseSetMain);//(chooseSetMain);//, GBC);
-	menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));//, GBC);
-	//menuButtons.add(Box.createRigidArea(new Dimension(150, 100)), GBC);
-	/*PresetSelect*/menuButtons.add(RemoveSet);//, GBC);
+	menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));
+	menuButtons.add(chooseSetMain);
+	menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));
+	
+	menuButtons.add(RemoveSet);
 	menuButtons.add(Box.createRigidArea(new Dimension(70, 100)));//, GBC);
-	//menuButtons.setMinimumSize(new Dimension(500, 500));
-
-	//PresetSelect.add(ChoosePreLabel);
-	//this.add(PresetSelect);
-	//this.add(Box.createRigidArea(new Dimension(100, 100)), GBC);
-
-
-//	menuMain.add(menuButtons, BorderLayout.CENTER);
-//	
-//	menuButtons.setBackground(java.awt.Color.cyan);
-//	menuMain.setBackground(java.awt.Color.cyan);
-//	
-//	menuMain.add(Box.createRigidArea(new Dimension(100, 300)),BorderLayout.NORTH);
-//	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
-//	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
-//	menuMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.WEST);
-//	this.setContentPane(menuMain);
-
 	}
 	
 	public void simulatorLog()
@@ -321,7 +250,6 @@ chooseSet.addActionListener(
 		JFrame changeButtonFrame = new JFrame();
 		changeButtonFrame.setVisible(true);
 		changeButtonFrame.setMinimumSize(new Dimension(800,600));
-		//changeButtonFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				try {
 			this.preview = new ImageIcon(ImageIO.read(new File("sad.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 		} catch (IOException e) {
@@ -602,9 +530,7 @@ chooseSet.addActionListener(
 			} catch (IOException a) {
 			   // a.printStackTrace();
 			}
-			
-           // System.out.println(test+"   "+last);
-           // System.out.println(filename);
+		
             String imagepath = "Images/"+filename;
           //  System.out.println(imagepath);
             if (imagepath.endsWith(".png") || imagepath.endsWith(".PNG"))
@@ -796,7 +722,6 @@ chooseSet.addActionListener(
 				for(int i = con.getSetAt(chooseSet.getSelectedIndex() + 1); i < 1000; i++)
 				{
 					con.getSetAt(chooseSet.getSelectedIndex() + 1);
-					//something here
 				}
 				
 				chooseSet.removeItemAt(chooseSet.getSelectedIndex());
@@ -818,10 +743,6 @@ chooseSet.addActionListener(
 		{
 			String name = SetName.getText();
 			con.addcat(name);
-			
-//			System.out.println(con.getSetName(0));
-//			con.setAudioSets(con.getNumberOfAudioSets() + 1);
-			
 			chooseSet.addItem(name);
 			chooseSet.updateUI();
 			chooseSetMain.addItem(name);
