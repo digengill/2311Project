@@ -27,7 +27,7 @@ public class Bbody extends JPanel implements ActionListener {
 	private JScrollPane scroll;
 	protected Configuration con;
 	private ObjectInputStream in;
-	private ArrayList<JButton> categories;
+	public ArrayList<JButton> categories;
 	//public JButton set1, set2;
 	//public ArrayList<ArrayList<Buttons>> sets;//track1, track2;
 	private ArrayList<ArrayList<Buttons>> tbuttons;

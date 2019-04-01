@@ -31,6 +31,7 @@ public class Configuration implements TalkBoxConfiguration{
 		config.setBtnNum(6);
 		config.review(config.getNumberOfAudioSets(), config.getNumberOfAudioButtons());
 		//AUDIO
+		 * 
 		config.setAudioName(1, 1, "bad.wav");
 		config.setAudioName(1, 2, "first.wav");
 		config.setAudioName(1, 3, "good.wav");
