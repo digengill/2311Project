@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
-public class exmaple {
+public class SystemTester1 {
 	TalkBotSimulator tbb= new TalkBotSimulator();
 	Bbody body= new Bbody(tbb.mpanel);
 	
@@ -25,7 +25,7 @@ public class exmaple {
 		for(int i =0; i <body.tbuttons.get(1).size();i++) {
 			body.tbuttons.get(1).get(i).doClick();
 		}
-
+ 
 	}
 
 	
