@@ -71,7 +71,7 @@ public class SystemTester1 {
 		
 		config.setAudioSets(2);
 		config.setBtnNum(12);
-		config.review(config.getNumberOfAudioSets(), config.getNumberOfAudioButtons());
+		config.review(2, 12);
 		
 		config.setArrList();
 		config.addcat("Phrases");
