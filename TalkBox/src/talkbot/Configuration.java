@@ -259,7 +259,7 @@ public class Configuration implements TalkBoxConfiguration{
 		//Button Names
 		this.bn.get(set).add(bname);
 		this.btname[set] = new String [this.bn.get(set).size()];
-		this.btname[set] = this.a.get(set).toArray(this.btname[set]);
+		this.btname[set] = this.bn.get(set).toArray(this.btname[set]);
 		
 		//Audio Names
 		this.a.get(set).add(audioname);
