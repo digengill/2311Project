@@ -30,11 +30,11 @@ public class Bbody extends JPanel implements ActionListener {
 	public ArrayList<JButton> categories;
 	//public JButton set1, set2;
 	//public ArrayList<ArrayList<Buttons>> sets;//track1, track2;
-	private ArrayList<ArrayList<Buttons>> tbuttons;
+	public ArrayList<ArrayList<Buttons>> tbuttons;
 	private int currentset=0;
 	private Boolean on, play=false;
 	private Clip clip;
-	 
+	  
 	
 	public void setup(JPanel mpanel) {
 		sp = new JPanel();

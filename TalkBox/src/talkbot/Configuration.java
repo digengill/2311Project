@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Configuration implements TalkBoxConfiguration{
 /**
-	 * 
+	 *  
 	 */
 	private static final long serialVersionUID = -2211192959370524557L;
 	//PRACTICE

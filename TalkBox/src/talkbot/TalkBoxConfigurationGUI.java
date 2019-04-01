@@ -69,7 +69,7 @@ try {
 	this.goBack = new ImageIcon(ImageIO.read(new File("Images"+File.separator+"goback.png")).getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 } catch (IOException e) {
 	e.printStackTrace();
-}
+} 
 catagories = new JButton("Catagories");
 back = new JButton(goBack);
 addAudio = new JButton("Add Audio");

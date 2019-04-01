@@ -80,7 +80,7 @@ public class TalkBotSimulator extends JFrame {
 		mpanel.add(body);
 		
 	}
-	
+	 
 	public TalkBotSimulator() {
 		//Frame Settings
 		super("TalkBot Simulator");
