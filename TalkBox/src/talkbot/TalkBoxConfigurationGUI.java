@@ -8,6 +8,7 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.*;
+import javax.swing.border.Border;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -19,7 +20,8 @@ import org.apache.logging.log4j.core.message.*;
 import java.util.*;
 
 public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
-	
+		
+	JFrame rmv, simFrame, catagoriesFrame, changeButtonFrame, addFrame;		
 	JPanel main, org, center,center2,centerHold, namePanel, previewPanel, eastPanel, westPanel, menuButtons, menuMain, catagoriesMain, catagoriesCenter;
 	JButton addAudio, addImage, catagories;
 	JButton simLog;
@@ -64,7 +66,7 @@ org.setLayout(new FlowLayout());
 
 
 try {
-	this.goBack = new ImageIcon(ImageIO.read(new File("angry.png")).getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+	this.goBack = new ImageIcon(ImageIO.read(new File("Images"+File.separator+"goback.png")).getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 } catch (IOException e) {
 	e.printStackTrace();
 }
@@ -75,7 +77,7 @@ addImage = new JButton("Add Image");
 changeAudio = new JButton("Change Audio");
 changeImage = new JButton("Change Image");
 audioPreview = new JButton("Audio Preview");
-nameEnter = new JButton("Apply Name");
+nameEnter = new JButton("Apply Changes");
 Apply = new JButton("SAVE SETTINGS");
 back.addActionListener(this);
 menu = new JPanel();
@@ -216,15 +218,6 @@ chooseSet.addActionListener(
 
 	chooseSetMain.addItem(con.getcatNames(0)); chooseSetMain.addItem(con.getcatNames(1));
 	
-	menuButtons.add(Box.createRigidArea(new Dimension(70, 100))); 
-	menuButtons.add(AddSet);;
-
-//	menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));
-//	menuButtons.add(chooseSetMain);
-//	menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));
-//	
-//	menuButtons.add(RemoveSet);
-//	menuButtons.add(Box.createRigidArea(new Dimension(70, 100)));//, GBC);
 
 	menuNorth.setLayout(new BorderLayout());
 	JTextArea text = new JTextArea(10,10);
@@ -242,7 +235,7 @@ chooseSet.addActionListener(
 	menuNorth.add(Box.createRigidArea(new Dimension(100, 50)),BorderLayout.SOUTH);
 	menuSouth.setLayout(new BorderLayout());
 	menuSouth.add(simLog,BorderLayout.EAST);
-	menuSouth.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.CENTER);
+	menuSouth.add(Box.createRigidArea(new Dimension(100, 5)),BorderLayout.CENTER);
 	
 	this.setMinimumSize(new Dimension(900, 500));
 
@@ -278,9 +271,13 @@ chooseSet.addActionListener(
 	
 	public void simulatorLog()
 	{
-		JFrame simFrame = new JFrame();
+		 simFrame = new JFrame();
 		simFrame.setVisible(true);
 		simFrame.setMinimumSize(new Dimension(800,600));
+		
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+	    JLabel header = new JLabel("Simulator Logs");
+		
 		JTextArea text = new JTextArea(10,10);
 		File fname = new File("logs" + File.separator + "Mylogs.log");
 		try {
@@ -290,24 +287,34 @@ chooseSet.addActionListener(
 	        } catch (Exception e) {
 	          e.printStackTrace();
 	        }
-		simFrame.getContentPane().add(text, BorderLayout.CENTER);
-		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.NORTH);
+		
+		JScrollPane scroll = new JScrollPane (text, 
+				   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		text.setBorder(BorderFactory.createCompoundBorder(border,
+	            BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+		text.setEditable(false);
+
+		simFrame.getContentPane().add(scroll, BorderLayout.CENTER);
+		simFrame.getContentPane().add(header, BorderLayout.NORTH);
 		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.SOUTH);
 		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.EAST);
 		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.WEST);
-
+		simFrame.getContentPane().setBackground(new Color(153, 255, 255));
 		
 	}
 
 	
 	public void catagories()
 	{
-		JFrame catagoriesFrame = new JFrame("Edit Catagories");
+		 catagoriesFrame = new JFrame("Edit Catagories");
 		catagoriesFrame.setVisible(true);
 		catagoriesFrame.setMinimumSize(new Dimension(800,600));
 
 		catagoriesMain =new JPanel();
 		catagoriesCenter = new JPanel();
+		JPanel catagoriesWest = new JPanel();
+		catagoriesWest.setLayout(new BorderLayout());
+		catagoriesWest.add(back, BorderLayout.PAGE_START);
 		
 		catagoriesMain.setLayout(new BorderLayout());
 		catagoriesCenter.setLayout(new GridLayout());
@@ -319,14 +326,14 @@ chooseSet.addActionListener(
 		catagoriesMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.NORTH);
 		catagoriesMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
 		catagoriesMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
-		catagoriesMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.WEST);
+		catagoriesMain.add(catagoriesWest,BorderLayout.WEST);
 		catagoriesFrame.setContentPane(catagoriesMain);
 	}
 	
 	
 	public void changeButton()
 	{
-		JFrame changeButtonFrame = new JFrame();
+		 changeButtonFrame = new JFrame();
 		changeButtonFrame.setVisible(true);
 		changeButtonFrame.setMinimumSize(new Dimension(800,600));
 				try {
@@ -343,7 +350,7 @@ chooseSet.addActionListener(
 		namePanel.setLayout(new GridLayout(3,1));
 		previewPanel.setLayout(new GridLayout(1,3));
 		eastPanel.setLayout(new GridLayout(5,2));
-		westPanel.setLayout(new GridLayout(3,2));
+		westPanel.setLayout(new BorderLayout());
 		
 		main.removeAll();
 		centerHold.removeAll();
@@ -353,8 +360,11 @@ chooseSet.addActionListener(
 		eastPanel.removeAll();
 		westPanel.removeAll();
 		
-		westPanel.add(back);
+		westPanel.add(back, BorderLayout.PAGE_START);
+		
 
+		
+		
 		center.add(chooseSet); //Change made here
 		center.add(chooseButton);
 		centerHold.add(center);
@@ -379,40 +389,33 @@ chooseSet.addActionListener(
 		
 		centerHold.add(namePanel);
 		
-		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
-		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
-		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
-		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
-		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
-		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
-		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
-		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
-		eastPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+		
+		eastPanel.add(Box.createRigidArea(new Dimension(20, 30)));
 
-		eastPanel.add(Apply);
+		//eastPanel.add(Apply);
 		
 		main.add(centerHold,BorderLayout.CENTER);
 		main.add(eastPanel, BorderLayout.EAST);
 		main.add(westPanel, BorderLayout.WEST);
 		
-		centerHold.setBackground(java.awt.Color.blue);
+		centerHold.setBackground(java.awt.Color.cyan);
 		main.setBackground(java.awt.Color.cyan);
-		center2.setBackground(java.awt.Color.orange);
-		westPanel.setBackground(java.awt.Color.GREEN);
-		eastPanel.setBackground(java.awt.Color.gray);
-		previewPanel.setBackground(java.awt.Color.yellow);
-		org.setBackground(java.awt.Color.WHITE);
+		center2.setBackground(java.awt.Color.cyan);
+		westPanel.setBackground(java.awt.Color.cyan);
+		eastPanel.setBackground(java.awt.Color.cyan);
+		previewPanel.setBackground(java.awt.Color.cyan);
+		org.setBackground(java.awt.Color.cyan);
 
 		
-		org.add(main);
-		changeButtonFrame.setContentPane(org);
+		//org.add(main);
+		changeButtonFrame.setContentPane(main);
 	}
 	
 	public void addButton()
 	{
 		//set = 1;
 		
-		JFrame addFrame = new JFrame("Add Button");
+		 addFrame = new JFrame("Add Button");
 		JPanel addMain = new JPanel();
 		
 		addAudio.addActionListener(this);
@@ -428,7 +431,7 @@ chooseSet.addActionListener(
 		
 		addMain.setLayout(new GridLayout(6,3));
 		
-		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
+		addMain.add(back);
 		addMain.add(chooseSet);
 		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
 		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
@@ -447,7 +450,8 @@ chooseSet.addActionListener(
 		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
 		addMain.add(addButtonSave);
 		addMain.add(Box.createRigidArea(new Dimension(10, 30)));
-
+		
+		addMain.setBackground(Color.cyan);
 		addFrame.setContentPane(addMain);
 		
 		//public void Addbtn (int set, String bname, String audioname, String image) {
@@ -457,8 +461,8 @@ chooseSet.addActionListener(
 	public void removeButton()
 	{
 		set = 1;
-		JFrame rmv = new JFrame("Remove Button");
-		rmv.setMinimumSize(new Dimension(400,500));
+		 rmv = new JFrame("Remove Button");
+		rmv.setMinimumSize(new Dimension(450,300));
 
 		rmv.setVisible(true);
 		JPanel rmain = new JPanel();
@@ -466,7 +470,7 @@ chooseSet.addActionListener(
 		removeButtonSave.addActionListener(this);
 		
 		rmain.setLayout(new GridLayout(4,3));
-		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
+		rmain.add(back);
 		rmain.add(chooseSet);
 		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
 		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
@@ -479,6 +483,7 @@ chooseSet.addActionListener(
 		rmain.add(removeButtonSave);
 		rmain.add(Box.createRigidArea(new Dimension(10, 30)));
 		
+		rmain.setBackground(Color.cyan);
 		rmv.setContentPane(rmain);
 
 	}
@@ -564,7 +569,7 @@ chooseSet.addActionListener(
 			}
 			else
 			{
-			int last = test.lastIndexOf('\\');
+			int last = test.lastIndexOf(File.separator);
 			String filename = test.substring(last);
 			
 			File sourceOfFile = new File(test);
@@ -599,7 +604,7 @@ chooseSet.addActionListener(
 			}
 			else
 			{
-			int last = test.lastIndexOf('\\');
+			int last = test.lastIndexOf(File.separator);
 			String filename = test.substring(last+1);
 			
 			File sourceOfFile = new File(test);
@@ -610,14 +615,14 @@ chooseSet.addActionListener(
 			   // a.printStackTrace();
 			}
 		
-            String imagepath = "Images/"+filename;
+            String imagepath = "Images"+File.separator+filename;
           //  System.out.println(imagepath);
             if (imagepath.endsWith(".png") || imagepath.endsWith(".PNG"))
             	con.setImagePath(set, buttonNUM, imagepath);
             else {
             	File f = new File(imagepath);
             	f.delete();
-            	con.setImagePath(set, buttonNUM, "Images/default.png");
+            	con.setImagePath(set, buttonNUM, "Images"+File.separator+"default.png");
             }
 			}
 			logger.info("ConfigurationGUI - changeImage"); 
@@ -639,6 +644,12 @@ chooseSet.addActionListener(
 			con.setBtnName(set, buttonNUM, text);
 			//System.out.println(text);
 		    btnName.setText("");
+		    try {
+				outputSerial();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		    logger.info("ConfigurationGUI - nameEnter");
 		}
 	
@@ -662,7 +673,7 @@ chooseSet.addActionListener(
 			}
 			else
 			{
-			int last = test.lastIndexOf('\\'); System.out.println(last);
+			int last = test.lastIndexOf(File.separator); System.out.println(last);
 			String filename = test.substring(last);
 			
 			File sourceOfFile = new File(test);
@@ -695,7 +706,7 @@ chooseSet.addActionListener(
 			}
 			else
 			{
-			int last = test.lastIndexOf('\\');
+			int last = test.lastIndexOf(File.separator);
 			String filename = test.substring(last+1);
 			
 			File sourceOfFile = new File(test);
@@ -707,12 +718,12 @@ chooseSet.addActionListener(
 			}
 			
             if (filename.endsWith(".png"))
-            	newbtnImg = "Images/"+filename;
+            	newbtnImg = "Images"+File.separator+filename;
             	
             else { //If wrong file 
-					File f = new File("Images/"+filename);
+					File f = new File("Images"+File.separator+filename);
 					f.delete();
-				newbtnImg = "Images/default.png";
+				newbtnImg = "Images"+File.separator+"default.png";
 	    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Image. Default image is set.");
 
             }
@@ -728,7 +739,7 @@ chooseSet.addActionListener(
 			    if (newbtnAudio=="" || newbtnAudio==null)
 			    	newbtnAudio="default.wav";
 			    if (newbtnImg=="" || newbtnImg==null)
-			    	newbtnImg="Images/default.png";
+			    	newbtnImg="Images"+File.separator+"default.png";
 			con.Addbtn(set,buttonText,newbtnAudio,newbtnImg);
     		JOptionPane.showMessageDialog(new JFrame(), "New button added.\n Button Set: "+set+"\n Button Name: "+buttonText+"\n Audio Name: "+newbtnAudio+"\n Image Name: "+newbtnImg);
 
@@ -782,11 +793,34 @@ chooseSet.addActionListener(
 		}
 		else if(source == back)
 		{
-//			TalkBoxConfigurationGUI test1 = new TalkBoxConfigurationGUI();
-//			
-//			test1.setVisible(true);
-//			test1.pack();
-//			logger.info("ConfigurationGUI - back");
+			// rmv, simFrame, catagoriesFrame, changeButtonFrame, addFrame
+			
+			if (addFrame != null)
+			{
+				addFrame.dispose();
+			}
+			else if (rmv != null)
+			{
+				rmv.dispose();
+			}
+			else if (simFrame != null)
+			{
+				simFrame.dispose();
+			}
+			else if (catagoriesFrame != null)
+			{
+				catagoriesFrame.dispose();
+			}
+			else if (changeButtonFrame != null)
+			{
+				changeButtonFrame.dispose();
+			}
+			this.dispose();
+			TalkBoxConfigurationGUI test1 = new TalkBoxConfigurationGUI();
+			
+			test1.setVisible(true);
+			test1.pack();
+			logger.info("ConfigurationGUI - back");
 		}
 		else if (source == catagories)
 		{

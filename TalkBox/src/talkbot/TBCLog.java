@@ -17,7 +17,7 @@ public class TBCLog {
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JTextArea text = new JTextArea(10,10);
-		File fname = new File("Textfiles/info.txt");
+		File fname = new File("logs" + File.separator + "Mylogs.log");
 		try {
 	          BufferedReader input = new BufferedReader(new InputStreamReader(
 	              new FileInputStream(fname)));
