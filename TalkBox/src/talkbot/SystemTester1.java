@@ -36,8 +36,6 @@ public class SystemTester1 {
 	public void testingSimulatorGUILabels() {
 		
 		
-		
-		
 		assertEquals("Phrases",body.categories.get(0));
 		assertEquals("Emotions",body.categories.get(1));
 		//hrtr
