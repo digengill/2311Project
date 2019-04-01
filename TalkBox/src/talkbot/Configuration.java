@@ -163,6 +163,7 @@ public class Configuration implements TalkBoxConfiguration{
 		return this.btname[0].length;
 	}
 	
+	
 	public int getSet2 () {
 		return this.btname[1].length;
 	}
@@ -217,7 +218,7 @@ public class Configuration implements TalkBoxConfiguration{
 		//Button Names
 		this.bn.get(set).remove(num-1);
 		this.btname[set] = new String [this.bn.get(set).size()];
-		this.btname[set] = this.a.get(set).toArray(this.btname[set]);
+		this.btname[set] = this.bn.get(set).toArray(this.btname[set]);
 		
 		//Audio Names
 		this.a.get(set).remove(num-1);

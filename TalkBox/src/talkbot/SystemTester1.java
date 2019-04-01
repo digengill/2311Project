@@ -69,8 +69,8 @@ public class SystemTester1 {
 	public void testConfiguration() {
 		Configuration config = new Configuration();
 		
-		config.setAudioSets(2);
-		config.setBtnNum(12);
+		config.setAudioSets(0);
+		config.setBtnNum(0);
 		config.review(2, 12);
 		
 		config.setArrList();
@@ -106,6 +106,8 @@ public class SystemTester1 {
 		//Buttons
 		config.setBtnName(1, 1, "Bad");
 		config.setBtnName(1, 2, "First");
+		
+		/*
 		config.setBtnName(1, 3, "Good");
 		config.setBtnName(1, 4, "Last");
 		config.setBtnName(1, 5, "Little");
@@ -116,6 +118,7 @@ public class SystemTester1 {
 		config.setBtnName(2, 4, "Suprised");
 		config.setBtnName(2, 5, "Angry");
 		config.setBtnName(2, 6, "Happy");
+		*/
 		config.setTotalBtnNum(14);
 		//Images
 		config.setImagePath(1, 1, "Images"+File.separator+"bad.png");
@@ -133,7 +136,7 @@ public class SystemTester1 {
 		config.setImagePath(2, 6, "Images"+File.separator+"happy.png");
 
 		
-		/*
+		
 		assertEquals(12,config.getNumberOfAudioButtons());//there are 12 audio buttons
 		assertEquals(14,config.getTotalNumberOfButtons()); //12 audio button + 2 category buttons
 		
@@ -152,20 +155,26 @@ public class SystemTester1 {
 		String [] set1BtnNames= {"Bad","First","Good","Last","Little","Long"};
 		String [] set2BtnNames= {"Jealous","Sad","Scared","Suprised","Angry","Happy"};
 		
+		
+		
+		
 		for(int i =0; i <config.getSet1();i++) {
 			assertEquals(set1BtnNames[i],(config.getSet1Buttons()[i]));
 		}
+		
 		for(int i =0; i <config.getSet2();i++) {
 			assertEquals(set2BtnNames[i],(config.getSet2Buttons()[i]));
 		}
-		
+
 		
 		config.Removebtn(1,6);
 		//when button removed test that it's no longer in  the set btname
 		String [] set1NewBtnNames= {"Bad","First","Good","Last","Little"};
+		 
 		for(int i =0; i <config.getSet1();i++) {
 			assertEquals(set1NewBtnNames[i],(config.getSet1Buttons()[i]));
 		}
+		
 		String[][] audioFileNamesExpectedNew= {
 				{"bad.wav","first.wav","good.wav","last.wav","little.wav"},
 				{"jealous.wav","sad.wav","scared.wav","suprised.wav","angry.wav","happy.wav"}
@@ -180,7 +189,6 @@ public class SystemTester1 {
 		
 		config.Addbtn(1, "Long", "long.wav", "Images/long.png");
 		
-		System.out.println("Start here 1:\n\n\n");
 		//when a button added, test that it's in  the set btname in the correct index
 		for(int i =0; i <config.getSet1();i++) {
 			assertEquals(set1BtnNames[i],(config.getSet1Buttons()[i]));
@@ -197,8 +205,12 @@ public class SystemTester1 {
 			}
 		}
 		
-		System.out.println("stop here:\n\n\n");
-		*/
+		
+		// Remove category at to doc
+		
+		
+		
+		
 	}
 	
 	
