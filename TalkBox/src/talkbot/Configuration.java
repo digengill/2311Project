@@ -196,7 +196,7 @@ public class Configuration implements TalkBoxConfiguration{
 	
 	//Button sets
 	public void setBtnName (int set, int num, String name) {
-		this.a.get(num-1).set(num-1, name);
+		this.bn.get(num-1).set(num-1, name);
 		this.btname[set-1][num-1] = name;
 	}
 	
@@ -304,6 +304,7 @@ public class Configuration implements TalkBoxConfiguration{
 	
 	public void setAudioName (int set, int num, String name) {
 		//System.out.println("THe data is" +aname[0][0]);
+		
 		this.aname[set-1][num-1] = name;
 		this.a.get(set-1).set(num-1, name);
 	}
@@ -404,4 +405,12 @@ public class Configuration implements TalkBoxConfiguration{
 		}
 		return this.catnames.get(num);
 	}
+	
+	public void setArrList() {
+		this.catnames=new ArrayList<String>();
+		this.a = new ArrayList<ArrayList<String>>();
+		this.bn = new ArrayList<ArrayList<String>>();
+		this.rpi = new ArrayList<ArrayList<String>>();
+	}
 }
+
