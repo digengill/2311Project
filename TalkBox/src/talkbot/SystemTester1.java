@@ -25,7 +25,7 @@ public class SystemTester1 {
 		for(int i =0; i <body.tbuttons.get(1).size();i++) {
 			body.tbuttons.get(1).get(i).doClick();
 		}
- 
+  
 	}
 
 	
