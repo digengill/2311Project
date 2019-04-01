@@ -20,11 +20,4 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>musicFile1.m4a</name>
-			<type>1</type>
-			<location>/Users/Usama/Desktop/03 Bounce Back copy.m4a</location>
-		</link>
-	</linkedResources>
 </projectDescription>
