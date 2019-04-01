@@ -16,7 +16,7 @@ public class Configuration implements TalkBoxConfiguration{
 	private String rpathAfile, aname[][], rpathImage[][];
 	//Buttons
 	private String btname[][];
-	private ArrayList<String> catnames;
+	public ArrayList<String> catnames;
 	private ArrayList<ArrayList<String>> a, rpi, bn;
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
@@ -59,7 +59,7 @@ public class Configuration implements TalkBoxConfiguration{
 		//Get numbers
 				//config.setAudioSets(2);
 				//config.setBtnNum(12);
-				config.review(2, 12);
+				config.review(2, 12); 
 				//AUDIO
 				config.catnames=new ArrayList<String>();
 				config.a = new ArrayList<ArrayList<String>>();
