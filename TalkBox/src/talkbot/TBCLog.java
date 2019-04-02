@@ -3,21 +3,74 @@ package talkbot;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.Border;
+
+import org.apache.logging.log4j.LogManager;
+
+
 
 public class TBCLog {
+	
+	private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(TalkBoxConfigurationGUI.class);
 
-	public TBCLog()
+	public static void runLog()
 	{
-		JFrame frame = new JFrame("Log");
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		JFrame simFrame = new JFrame();
+		simFrame.setVisible(true);
+		simFrame.setMinimumSize(new Dimension(800,600));
+		JButton clear = new JButton("Clear");
 		JTextArea text = new JTextArea(10,10);
+		JScrollPane scroll = new JScrollPane (text, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		File fname = new File("logs" + File.separator + "Mylogs.log");
+		
+		ActionListener clearListener = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == clear)
+				{
+					FileWriter fwOb;
+					try {
+						fwOb = new FileWriter("logs" + File.separator + "Mylogs.log", false);
+						 PrintWriter pwOb = new PrintWriter(fwOb, false);
+						    pwOb.flush();
+						    pwOb.close();
+						    fwOb.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} 
+					try {
+				          BufferedReader input = new BufferedReader(new InputStreamReader(
+				              new FileInputStream(fname)));
+				          text.read(input, "READING FILE :-)");
+				        } catch (Exception b) {
+				          b.printStackTrace();
+				        }
+					
+					logger.info("Clear");
+				}
+			}
+		};
+		clear.addActionListener(clearListener);
+		//clear.setSize(new Dimension(50, 50));
+		
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+	    JLabel header = new JLabel("Simulator Logs");
+		
+		
+		
 		try {
 	          BufferedReader input = new BufferedReader(new InputStreamReader(
 	              new FileInputStream(fname)));
@@ -25,15 +78,20 @@ public class TBCLog {
 	        } catch (Exception e) {
 	          e.printStackTrace();
 	        }
-		 frame.getContentPane().add(text, BorderLayout.CENTER);
-		 frame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.NORTH);
-		 frame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.SOUTH);
-		 frame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.EAST);
-		 frame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.WEST);
-		 frame.getContentPane().setBackground(Color.blue);
+		
+		
+		
+		//scroll.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(30, 30, 30, 30)));
+		//text.setEditable(false);
 
-		 frame.pack();
-		 frame.setVisible(true);
+		simFrame.getContentPane().add(scroll, BorderLayout.CENTER);
+		simFrame.getContentPane().add(header, BorderLayout.NORTH);
+		simFrame.getContentPane().add(clear, BorderLayout.WEST);
+		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.SOUTH);
+		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.EAST);
+		//simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.WEST);
+		simFrame.getContentPane().setBackground(new Color(153, 255, 255));
+		
 		
 	}
 	
