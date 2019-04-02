@@ -139,6 +139,7 @@ chooseSet.addActionListener(
 		new ActionListener() {
 				public void actionPerformed(ActionEvent e) 
 				{		
+					chooseSetMain.setSelectedIndex(chooseSet.getSelectedIndex());
 					JComboBox combo = (JComboBox)e.getSource();
 					set = combo.getSelectedIndex() + 1;
 					if (set < (1))
@@ -177,6 +178,17 @@ chooseSet.addActionListener(
 				}
 		}
 		);
+
+ chooseSetMain.addActionListener(
+		 new ActionListener()
+		 {
+ 				public void actionPerformed(ActionEvent E)
+ 				{
+ 					chooseSet.setSelectedIndex(chooseSetMain.getSelectedIndex());
+ 				}
+		 }
+		 );
+ 
 
 	this.setLayout(new GridLayout());
 
@@ -443,8 +455,8 @@ chooseSet.addActionListener(
 	
 	public void removeButton()
 	{
-		set = 1;
-		 rmv = new JFrame("Remove Button");
+		//set = 1;
+		rmv = new JFrame("Remove Button");
 		rmv.setMinimumSize(new Dimension(450,300));
 
 		rmv.setVisible(true);
