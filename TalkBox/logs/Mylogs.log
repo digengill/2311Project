@@ -1,1 +1,14 @@
 [INFO ] 2019-04-01 13:24:50.937 [AWT-EventQueue-0] TalkBoxConfigurationGUI - Clear
+[INFO ] 2019-04-01 20:37:18.637 [AWT-EventQueue-0] TalkBoxConfigurationGUI - AddSet
+[INFO ] 2019-04-01 20:37:19.974 [AWT-EventQueue-0] TalkBoxConfigurationGUI - CREATE -  Set Name
+[INFO ] 2019-04-01 20:37:24.205 [AWT-EventQueue-0] TalkBoxConfigurationGUI - back
+[INFO ] 2019-04-01 20:37:29.676 [AWT-EventQueue-0] TalkBoxConfigurationGUI - removeButton
+[INFO ] 2019-04-01 20:37:33.753 [AWT-EventQueue-0] TalkBoxConfigurationGUI - removeButton
+[INFO ] 2019-04-01 20:37:42.047 [AWT-EventQueue-0] TalkBoxConfigurationGUI - addButton
+[INFO ] 2019-04-01 20:37:50.767 [AWT-EventQueue-0] TalkBoxConfigurationGUI - AddSet
+[INFO ] 2019-04-01 20:37:52.510 [AWT-EventQueue-0] TalkBoxConfigurationGUI - CREATE -  Set Name
+[INFO ] 2019-04-01 20:37:56.569 [AWT-EventQueue-0] TalkBoxConfigurationGUI - removeButton
+[INFO ] 2019-04-01 20:38:01.739 [AWT-EventQueue-0] TalkBoxConfigurationGUI - addButton
+[INFO ] 2019-04-01 20:38:04.409 [AWT-EventQueue-0] TalkBoxConfigurationGUI - chooseSet - 2
+[INFO ] 2019-04-01 20:38:08.328 [AWT-EventQueue-0] TalkBoxConfigurationGUI - addButtonSave
+[INFO ] 2019-04-01 20:38:13.424 [AWT-EventQueue-0] TalkBoxConfigurationGUI - SimLog
