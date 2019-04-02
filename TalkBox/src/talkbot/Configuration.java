@@ -16,7 +16,7 @@ public class Configuration implements TalkBoxConfiguration{
 	private String rpathAfile, aname[][], rpathImage[][];
 	//Buttons
 	private String btname[][];
-	private ArrayList<String> catnames;
+	public ArrayList<String> catnames;
 	private ArrayList<ArrayList<String>> a, rpi, bn;
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
@@ -59,7 +59,7 @@ public class Configuration implements TalkBoxConfiguration{
 		//Get numbers
 				//config.setAudioSets(2);
 				//config.setBtnNum(12);
-				config.review(2, 12);
+				config.review(2, 12); 
 				//AUDIO
 				config.catnames=new ArrayList<String>();
 				config.a = new ArrayList<ArrayList<String>>();
@@ -176,6 +176,7 @@ public class Configuration implements TalkBoxConfiguration{
 		return this.btname[0].length;
 	}
 	
+	
 	public int getSet2 () {
 		return this.btname[1].length;
 	}
@@ -209,7 +210,9 @@ public class Configuration implements TalkBoxConfiguration{
 	
 	//Button sets
 	public void setBtnName (int set, int num, String name) {
-		//this.bn.get(num-1).set(num-1, name);
+
+		this.bn.get(num-1).set(num-1, name);
+
 		this.btname[set-1][num-1] = name;
 	}
 	
@@ -230,7 +233,7 @@ public class Configuration implements TalkBoxConfiguration{
 		//Button Names
 		this.bn.get(set).remove(num-1);
 		this.btname[set] = new String [this.bn.get(set).size()];
-		this.btname[set] = this.a.get(set).toArray(this.btname[set]);
+		this.btname[set] = this.bn.get(set).toArray(this.btname[set]);
 		
 		//Audio Names
 		this.a.get(set).remove(num-1);
@@ -317,6 +320,7 @@ public class Configuration implements TalkBoxConfiguration{
 	
 	public void setAudioName (int set, int num, String name) {
 		//System.out.println("THe data is" +aname[0][0]);
+		
 		this.aname[set-1][num-1] = name;
 		this.a.get(set-1).set(num-1, name);
 	}
@@ -417,4 +421,12 @@ public class Configuration implements TalkBoxConfiguration{
 		}
 		return this.catnames.get(num);
 	}
+	
+	public void setArrList() {
+		this.catnames=new ArrayList<String>();
+		this.a = new ArrayList<ArrayList<String>>();
+		this.bn = new ArrayList<ArrayList<String>>();
+		this.rpi = new ArrayList<ArrayList<String>>();
+	}
 }
+
