@@ -229,8 +229,8 @@ chooseSet.addActionListener(
 
 	this.add(menuButtons);
 
-	AddSet = new JButton("Add Set");
-	RemoveSet = new JButton("Remove Set");
+	AddSet = new JButton("Add Category");
+	RemoveSet = new JButton("Remove Category");
 	
 	
 	
@@ -527,12 +527,12 @@ chooseSet.addActionListener(
 	
 	public void AddNewSet() 
 	{
-		JFrame AddSetFrame = new JFrame("AddSetFrame");
+		JFrame AddSetFrame = new JFrame("Add Category");
 		JPanel panel = new JPanel(); 
 		panel.setLayout(new GridLayout(3, 2)); 
 		CREATE = new JButton("CREATE"); 
 		CREATE.addActionListener(this); 
-		SetName = new JTextField("Set Name"); 
+		SetName = new JTextField("Category Name"); 
 		SetName.addActionListener(this); 
 		panel.add(chooseSet); 
 		panel.add(SetName); 
@@ -543,7 +543,7 @@ chooseSet.addActionListener(
 		}
 	public void RemoveOldSet() 
 	{ 
-		JFrame RemoveSetFrame = new JFrame("RemoveSetFrame"); 
+		JFrame RemoveSetFrame = new JFrame("Remove Category"); 
 		JPanel panel = new JPanel(); 
 		panel.setLayout(new GridLayout(3, 2)); 
 		REMOVE = new JButton("REMOVE"); 
