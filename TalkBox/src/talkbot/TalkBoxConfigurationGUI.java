@@ -119,7 +119,7 @@ for (int i = 1; i < bnames.length; i++) {
                 if (buttonNUM==(-1))
                 	buttonNUM=1;
                 //System.out.println(buttonNUM);
-            	logger.info("ConfigurationGUI - chooseButton - " + chooseButton.getSelectedIndex() + buttonNUM);
+            	logger.info("chooseButton - " + chooseButton.getSelectedIndex() + buttonNUM);
             }
         }
 		);
@@ -139,7 +139,22 @@ chooseSet.addActionListener(
 					set = combo.getSelectedIndex();
 					if (set < (1))
 						set=1;
-					try 
+//					try 
+//					{
+//						String[] bnames = new String [con.getSetAt(set)];//+1];//{"Pick Button","1","2","3","4","5","6"};
+//						bnames[0] = "Pick Button";
+//						for (int i = 1; i < bnames.length; i++) 
+//						{
+//							bnames[i] = ""+i;
+//						}
+//					chooseButton = new JComboBox(bnames);
+//					}
+//					catch(Exception E)
+//					{
+//						E.printStackTrace();
+//					}
+					
+					if(con.getSetAt(set) > 0)
 					{
 						String[] bnames = new String [con.getSetAt(set)];//+1];//{"Pick Button","1","2","3","4","5","6"};
 						bnames[0] = "Pick Button";
@@ -147,17 +162,12 @@ chooseSet.addActionListener(
 						{
 							bnames[i] = ""+i;
 						}
-					chooseButton = new JComboBox(bnames);
 					}
-					catch(Exception E)
-					{
-						E.printStackTrace();
-					}
-					logger.info("ConfigurationGUI - chooseSet - " + set);
+					
+					logger.info("chooseSet - " + set);
 				}
 		}
 		);
-
 
 	this.setLayout(new GridLayout());
 
@@ -202,12 +212,12 @@ chooseSet.addActionListener(
 			if (e.getSource() == AddSet)
 			{
 				AddNewSet();
-				logger.info("ConfigurationGUI - AddSet");
+				logger.info("AddSet");
 			}
 			else if (e.getSource() == RemoveSet)
 			{
 				RemoveOldSet();
-				logger.info("ConfigurationGUI - RemoveSet");
+				logger.info("RemoveSet");
 			}
 		}
 	};
@@ -270,52 +280,14 @@ chooseSet.addActionListener(
 
 	}
 	
-	public void simulatorLog()
-	{
-		this.setEnabled(false);
-
-		 simFrame = new JFrame();
-		simFrame.setVisible(true);
-		simFrame.setMinimumSize(new Dimension(800,600));
-		
-		Border border = BorderFactory.createLineBorder(Color.BLACK);
-	    JLabel header = new JLabel("Simulator Logs");
-		
-		JTextArea text = new JTextArea(10,10);
-		File fname = new File("logs" + File.separator + "Mylogs.log");
-		try {
-	          BufferedReader input = new BufferedReader(new InputStreamReader(
-	              new FileInputStream(fname)));
-	          text.read(input, "READING FILE :-)");
-	        } catch (Exception e) {
-	          e.printStackTrace();
-	        }
-		
-		JScrollPane scroll = new JScrollPane (text, 
-				   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		text.setBorder(BorderFactory.createCompoundBorder(border,
-	            BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-		text.setEditable(false);
-
-		simFrame.getContentPane().add(scroll, BorderLayout.CENTER);
-		simFrame.getContentPane().add(header, BorderLayout.NORTH);
-		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.SOUTH);
-		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.EAST);
-		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.WEST);
-		simFrame.getContentPane().setBackground(new Color(153, 255, 255));
-		
-	}
-
 	
 	public void catagories()
 	{
-		this.setEnabled(false);
-
-		 catagoriesFrame = new JFrame("Edit Catagories");
+		catagoriesFrame = new JFrame("Edit Catagories");
 		catagoriesFrame.setVisible(true);
 		catagoriesFrame.setMinimumSize(new Dimension(800,600));
 
-		catagoriesMain =new JPanel();
+		catagoriesMain = new JPanel();
 		catagoriesCenter = new JPanel();
 		JPanel catagoriesWest = new JPanel();
 		catagoriesWest.setLayout(new BorderLayout());
@@ -338,8 +310,6 @@ chooseSet.addActionListener(
 	
 	public void changeButton()
 	{
-		this.setEnabled(false);
-
 		 changeButtonFrame = new JFrame();
 		changeButtonFrame.setVisible(true);
 		changeButtonFrame.setMinimumSize(new Dimension(800,600));
@@ -421,8 +391,7 @@ chooseSet.addActionListener(
 	public void addButton()
 	{
 		//set = 1;
-		this.setEnabled(false);
-
+		
 		 addFrame = new JFrame("Add Button");
 		JPanel addMain = new JPanel();
 		
@@ -468,8 +437,6 @@ chooseSet.addActionListener(
 	
 	public void removeButton()
 	{
-		this.setEnabled(false);
-
 		set = 1;
 		 rmv = new JFrame("Remove Button");
 		rmv.setMinimumSize(new Dimension(450,300));
@@ -498,11 +465,6 @@ chooseSet.addActionListener(
 
 	}
 	
-	public void imagePreview()
-	{
-		
-		
-	}
 	
 	public String fileChooser()
 	{
@@ -602,7 +564,7 @@ chooseSet.addActionListener(
             	con.setAudioName(set, buttonNUM, "default.wav");
             }
 			}
-			logger.info("ConfigurationGUI - changeAudio");
+			logger.info("changeAudio");
 		}
 		else if(source == changeImage)
 		{
@@ -635,7 +597,7 @@ chooseSet.addActionListener(
             	con.setImagePath(set, buttonNUM, "Images"+File.separator+"default.png");
             }
 			}
-			logger.info("ConfigurationGUI - changeImage"); 
+			logger.info("changeImage"); 
 		}
 		else if (source == Apply)
 		{
@@ -645,7 +607,7 @@ chooseSet.addActionListener(
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			logger.info("ConfigurationGUI - Apply");
+			logger.info("Apply");
 		}
 		
 		else if (source == nameEnter)
@@ -660,18 +622,18 @@ chooseSet.addActionListener(
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		    logger.info("ConfigurationGUI - nameEnter");
+		    logger.info("nameEnter");
 		}
 	
 		else if (source == addButton)
 		{
 			addButton();
-			logger.info("ConfigurationGUI - addButton");
+			logger.info("addButton");
 		}
 		else if (source == removeButton)
 		{
 			removeButton();
-			logger.info("ConfigurationGUI - removeButton");
+			logger.info("removeButton");
 		}
 		
 		else if (source == addAudio)
@@ -705,7 +667,7 @@ chooseSet.addActionListener(
 
             }
 			}
-			logger.info("ConfigurationGUI - addAudio");
+			logger.info("addAudio");
 		}
 		else if (source == addImage)
 		{
@@ -738,7 +700,7 @@ chooseSet.addActionListener(
 
             }
 			}
-			logger.info("ConfigurationGUI - addImage");
+			logger.info("addImage");
 		}
 		else if (source == addButtonSave)
 		{
@@ -762,7 +724,8 @@ chooseSet.addActionListener(
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			logger.info("ConfigurationGUI - addButtonSave");
+			logger.info("addButtonSave");
+
 		}
 		else if (source == removeButtonSave)
 		{
@@ -793,12 +756,12 @@ chooseSet.addActionListener(
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			logger.info("ConfigurationGUI - removeButtonSave");
+			logger.info("removeButtonSave");
 		}
 		else if (source == changeButton)
 		{	
 			changeButton();
-			logger.info("ConfigurationGUI - changeButton");
+			logger.info("changeButton");
 		}
 		else if(source == back)
 		{
@@ -829,23 +792,20 @@ chooseSet.addActionListener(
 			
 			test1.setVisible(true);
 			test1.pack();
-			logger.info("ConfigurationGUI - back");
+			logger.info("back");
 		}
 		else if (source == catagories)
 		{
-			
 			catagories();
-			
-			
 		}
 		else if(e.getSource() == REMOVE)
 		{
-
+			String remove = "Error";
 			if(chooseSet.getSelectedIndex() >= 0)
 			{
 				System.out.println(con.getSetButtonsAt(chooseSet.getSelectedIndex()));
-				
-				con.removecat((String)chooseSet.getSelectedItem());
+				remove = (String)chooseSet.getSelectedItem();
+				con.removecat(remove);
 				
 				for(int i = con.getSetAt(chooseSet.getSelectedIndex() + 1); i < 1000; i++)
 				{
@@ -864,7 +824,7 @@ chooseSet.addActionListener(
 			{
 				System.out.println("Error cannot remove 0 presets");
 			}
-			logger.info("ConfigurationGUI -  REMOVE");
+			logger.info("REMOVE - " + remove);
 		}
 
 		else if(e.getSource() == CREATE)
@@ -877,13 +837,13 @@ chooseSet.addActionListener(
 			chooseSetMain.updateUI();
 			menuButtons.revalidate();
 			menuButtons.repaint();
-			logger.info("ConfigurationGUI - CREATE");	
+			logger.info("CREATE -  " + name);	
 		}
 		
 		else if(source == simLog)
 		{
-			simulatorLog();
-			logger.info("ConfigurationGUI - simLog");
+			TBCLog.runLog();
+			logger.info("SimLog");
 		}
 	}
 	public static void main(String[] args)  {
@@ -893,8 +853,6 @@ chooseSet.addActionListener(
 		TalkBoxConfigurationGUI test = new TalkBoxConfigurationGUI();
 		test.setVisible(true);
 		test.pack();
-		
-		
 		
 	}
 

@@ -116,6 +116,19 @@ public class Configuration implements TalkBoxConfiguration{
 				//config.addcat("Test");
 		obj.writeObject(config);
 		obj.close();
+		
+		FileWriter fwOb;
+		try {
+			fwOb = new FileWriter("logs" + File.separator + "Mylogs.log", false);
+			 PrintWriter pwOb = new PrintWriter(fwOb, false);
+			    pwOb.flush();
+			    pwOb.close();
+			    fwOb.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
+		
 	}
 
 	@Override
@@ -197,7 +210,9 @@ public class Configuration implements TalkBoxConfiguration{
 	
 	//Button sets
 	public void setBtnName (int set, int num, String name) {
+
 		this.bn.get(num-1).set(num-1, name);
+
 		this.btname[set-1][num-1] = name;
 	}
 	
