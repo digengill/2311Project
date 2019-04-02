@@ -211,7 +211,7 @@ public class Configuration implements TalkBoxConfiguration{
 	//Button sets
 	public void setBtnName (int set, int num, String name) {
 
-		this.bn.get(num-1).set(num-1, name);
+		this.bn.get(set-1).set(num-1, name);
 
 		this.btname[set-1][num-1] = name;
 	}
