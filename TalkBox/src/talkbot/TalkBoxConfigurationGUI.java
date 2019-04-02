@@ -142,7 +142,6 @@ chooseSet.addActionListener(
 					chooseSetMain.setSelectedIndex(chooseSet.getSelectedIndex());
 					JComboBox combo = (JComboBox)e.getSource();
 					set = combo.getSelectedIndex() + 1;
-					//System.out.println(con.getSetAt(set));
 					if (set < (1))
 						set=1;
 //					try 
@@ -163,7 +162,6 @@ chooseSet.addActionListener(
 					if(con.getSetAt(set-1) > 0)
 					{
 						String[] bnames = new String [con.getSetAt(set-1)];//+1];//{"Pick Button","1","2","3","4","5","6"};
-
 						bnames[0] = "Pick Button";
 						for (int i = 1; i < bnames.length; i++) 
 						{
@@ -756,13 +754,13 @@ chooseSet.addActionListener(
 //		    	{
 //		    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Button Number.\n Try Again.");
 //		    	}
-		    if (buttonText < 1 || buttonText > con.getSetAt(0) || buttonText > con.getSetAt(1))
+		    if (buttonText < 1 || buttonText > con.getSetAt(set-1) )
 	    	{
 	    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Button Number.\n Try Again.");
 	    	}
 		    else
 		    {
-	    	JOptionPane.showMessageDialog(new JFrame(), "Button removed.\n Button Set: "+set+"Button Name: "+con.getBtnName(set, buttonText));
+	    	JOptionPane.showMessageDialog(new JFrame(), "Button removed.\n Button Set: "+ set +"Button Name: "+con.getBtnName(set, buttonText));
 
 		    con.Removebtn(set, buttonText);
 
