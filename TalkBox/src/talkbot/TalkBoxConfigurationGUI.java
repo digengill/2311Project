@@ -3,6 +3,8 @@ package talkbot;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.*;
 
 import javax.imageio.ImageIO;
@@ -179,13 +181,19 @@ chooseSet.addActionListener(
 		}
 		);
 
- chooseSetMain.addActionListener(
-		 new ActionListener()
+ chooseSetMain.addItemListener(
+		 new ItemListener()
 		 {
- 				public void actionPerformed(ActionEvent E)
- 				{
- 					chooseSet.setSelectedIndex(chooseSetMain.getSelectedIndex());
- 				}
+				public void itemStateChanged(ItemEvent arg0) {
+					// TODO Auto-generated method stub
+					try {
+					chooseSet.setSelectedIndex(chooseSetMain.getSelectedIndex());
+					}
+					catch(Exception E)
+					{
+						
+					}
+				}
 		 }
 		 );
  
@@ -820,7 +828,7 @@ chooseSet.addActionListener(
 		else if(e.getSource() == REMOVE)
 		{
 			String remove = "Error";
-			if(chooseSet.getSelectedIndex() >= 0)
+			if(chooseSet.getSelectedIndex() >= 0 && chooseSet.getItemCount() > 1)
 			{
 				System.out.println(con.getSetButtonsAt(chooseSet.getSelectedIndex()));
 				remove = (String)chooseSet.getSelectedItem();
@@ -830,10 +838,13 @@ chooseSet.addActionListener(
 //				{
 //					con.getSetAt(chooseSet.getSelectedIndex() + 1);
 //				}
-//				
-				chooseSet.removeItemAt(chooseSet.getSelectedIndex());
+				
+				int removeIndx = chooseSet.getSelectedIndex();
+				System.out.println(removeIndx);
+				chooseSet.removeItemAt(removeIndx);
+				chooseSetMain.removeItemAt(removeIndx);
+				
 				chooseSet.updateUI();
-				chooseSetMain.removeItemAt(chooseSet.getSelectedIndex());
 				chooseSetMain.updateUI();
 				
 				menuButtons.revalidate();
@@ -847,7 +858,7 @@ chooseSet.addActionListener(
 			}
 			else
 			{
-				System.out.println("Error cannot remove 0 presets");
+				JOptionPane.showMessageDialog(new JFrame(), "Error cannot remove Last Category");
 			}
 			logger.info("REMOVE - " + remove);
 		}
