@@ -123,12 +123,16 @@ for (int i = 1; i < bnames.length; i++) {
             }
         }
 		);
-chooseSet = new JComboBox<String>();
-for(int i = 0; i < con.getNumberOfAudioSets(); i++)
-{
-	//System.out.println(con.getSetName(i));
-	chooseSet.addItem(con.getcatNames(i));
-}
+	
+	chooseSetMain = new JComboBox<String>();
+
+	chooseSet = new JComboBox<String>();
+	for(int i = 0; i < con.getNumberOfAudioSets(); i++)
+	{
+		//System.out.println(con.getSetName(i));
+		chooseSet.addItem(con.getcatNames(i));
+		chooseSetMain.addItem(con.getcatNames(i));
+	}
 
 chooseSet.addActionListener(
 
@@ -136,7 +140,7 @@ chooseSet.addActionListener(
 				public void actionPerformed(ActionEvent e) 
 				{		
 					JComboBox combo = (JComboBox)e.getSource();
-					set = combo.getSelectedIndex();
+					set = combo.getSelectedIndex() + 1;
 					if (set < (1))
 						set=1;
 //					try 
@@ -154,7 +158,7 @@ chooseSet.addActionListener(
 //						E.printStackTrace();
 //					}
 					
-					if(con.getSetAt(set) > 0)
+					if(con.getSetAt(set-1) > 0)
 					{
 						String[] bnames = new String [con.getSetAt(set)];//+1];//{"Pick Button","1","2","3","4","5","6"};
 						bnames[0] = "Pick Button";
@@ -162,6 +166,11 @@ chooseSet.addActionListener(
 						{
 							bnames[i] = ""+i;
 						}
+					}
+					else if (con.getSetAt(set-1) == 0)
+					{
+						String[] bnames = new String [con.getSetAt(set-1) + 1];//+1];//{"Pick Button","1","2","3","4","5","6"};
+						bnames[0] = "Pick Button";
 					}
 					
 					logger.info("chooseSet - " + set);
@@ -225,9 +234,6 @@ chooseSet.addActionListener(
 	AddSet.addActionListener(PresetPanelListener);
 	RemoveSet.addActionListener(PresetPanelListener);
 	
-	chooseSetMain = new JComboBox<String>();
-
-	chooseSetMain.addItem(con.getcatNames(0)); chooseSetMain.addItem(con.getcatNames(1));
 	
 
 	menuNorth.setLayout(new BorderLayout());
@@ -713,7 +719,7 @@ chooseSet.addActionListener(
 			    if (newbtnImg=="" || newbtnImg==null)
 			    	newbtnImg="Images"+File.separator+"default.png";
 			con.Addbtn(set,buttonText,newbtnAudio,newbtnImg);
-    		JOptionPane.showMessageDialog(new JFrame(), "New button added.\n Button Set: "+set+"\n Button Name: "+buttonText+"\n Audio Name: "+newbtnAudio+"\n Image Name: "+newbtnImg);
+    		JOptionPane.showMessageDialog(new JFrame(), "New button added.\n Button Set: " + set + "\n Button Name: "+buttonText+"\n Audio Name: "+newbtnAudio+"\n Image Name: "+newbtnImg);
 
 			try {
 				outputSerial();
@@ -797,6 +803,7 @@ chooseSet.addActionListener(
 		else if (source == catagories)
 		{
 			catagories();
+			logger.info("categories");
 		}
 		else if(e.getSource() == REMOVE)
 		{
@@ -807,11 +814,11 @@ chooseSet.addActionListener(
 				remove = (String)chooseSet.getSelectedItem();
 				con.removecat(remove);
 				
-				for(int i = con.getSetAt(chooseSet.getSelectedIndex() + 1); i < 1000; i++)
-				{
-					con.getSetAt(chooseSet.getSelectedIndex() + 1);
-				}
-				
+//				for(int i = con.getSetAt(chooseSet.getSelectedIndex() + 1); i < 1000; i++)
+//				{
+//					con.getSetAt(chooseSet.getSelectedIndex() + 1);
+//				}
+//				
 				chooseSet.removeItemAt(chooseSet.getSelectedIndex());
 				chooseSet.updateUI();
 				chooseSetMain.removeItemAt(chooseSet.getSelectedIndex());
@@ -819,6 +826,12 @@ chooseSet.addActionListener(
 				
 				menuButtons.revalidate();
 				menuButtons.repaint();
+				 try {
+						outputSerial();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 			else
 			{
@@ -837,6 +850,13 @@ chooseSet.addActionListener(
 			chooseSetMain.updateUI();
 			menuButtons.revalidate();
 			menuButtons.repaint();
+			 try {
+				 
+					outputSerial();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			logger.info("CREATE -  " + name);	
 		}
 		
