@@ -141,6 +141,7 @@ chooseSet.addActionListener(
 				{		
 					JComboBox combo = (JComboBox)e.getSource();
 					set = combo.getSelectedIndex() + 1;
+					//System.out.println(con.getSetAt(set));
 					if (set < (1))
 						set=1;
 //					try 
@@ -160,7 +161,8 @@ chooseSet.addActionListener(
 					
 					if(con.getSetAt(set-1) > 0)
 					{
-						String[] bnames = new String [con.getSetAt(set)];//+1];//{"Pick Button","1","2","3","4","5","6"};
+						String[] bnames = new String [con.getSetAt(set-1)];//+1];//{"Pick Button","1","2","3","4","5","6"};
+						//System.out.println(bnames.length);
 						bnames[0] = "Pick Button";
 						for (int i = 1; i < bnames.length; i++) 
 						{
