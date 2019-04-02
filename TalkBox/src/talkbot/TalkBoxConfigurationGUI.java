@@ -158,6 +158,7 @@ chooseSet.addActionListener(
 		}
 		);
 
+
 	this.setLayout(new GridLayout());
 
 	addButton = new JButton("Add Button");
@@ -271,6 +272,8 @@ chooseSet.addActionListener(
 	
 	public void simulatorLog()
 	{
+		this.setEnabled(false);
+
 		 simFrame = new JFrame();
 		simFrame.setVisible(true);
 		simFrame.setMinimumSize(new Dimension(800,600));
@@ -306,6 +309,8 @@ chooseSet.addActionListener(
 	
 	public void catagories()
 	{
+		this.setEnabled(false);
+
 		 catagoriesFrame = new JFrame("Edit Catagories");
 		catagoriesFrame.setVisible(true);
 		catagoriesFrame.setMinimumSize(new Dimension(800,600));
@@ -333,6 +338,8 @@ chooseSet.addActionListener(
 	
 	public void changeButton()
 	{
+		this.setEnabled(false);
+
 		 changeButtonFrame = new JFrame();
 		changeButtonFrame.setVisible(true);
 		changeButtonFrame.setMinimumSize(new Dimension(800,600));
@@ -414,7 +421,8 @@ chooseSet.addActionListener(
 	public void addButton()
 	{
 		//set = 1;
-		
+		this.setEnabled(false);
+
 		 addFrame = new JFrame("Add Button");
 		JPanel addMain = new JPanel();
 		
@@ -460,6 +468,8 @@ chooseSet.addActionListener(
 	
 	public void removeButton()
 	{
+		this.setEnabled(false);
+
 		set = 1;
 		 rmv = new JFrame("Remove Button");
 		rmv.setMinimumSize(new Dimension(450,300));
@@ -753,7 +763,6 @@ chooseSet.addActionListener(
 				e1.printStackTrace();
 			}
 			logger.info("ConfigurationGUI - addButtonSave");
-
 		}
 		else if (source == removeButtonSave)
 		{
