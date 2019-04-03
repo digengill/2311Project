@@ -106,7 +106,7 @@ changeImage.addActionListener(this);
 Apply.addActionListener(this);
 nameEnter.addActionListener(this);
 
-String[] bnames = new String [con.getSetAt(0)+1];//{"Pick Button","1","2","3","4","5","6"};
+String[] bnames = new String [con.getSetAt(0)+1];
 bnames[0] = "Pick Button";
 for (int i = 1; i < bnames.length; i++) {
 	bnames[i] = "" + i;
@@ -120,7 +120,6 @@ for (int i = 1; i < bnames.length; i++) {
                 buttonNUM = combo.getSelectedIndex();
                 if (buttonNUM==(-1))
                 	buttonNUM=1;
-                //System.out.println(buttonNUM);
             	logger.info("chooseButton - " + chooseButton.getSelectedIndex() + buttonNUM);
             }
         }
@@ -221,9 +220,7 @@ chooseSet.addActionListener(
 		menuButtons.add(Box.createRigidArea(new Dimension(10, 10)));
 		menuButtons.add(Box.createRigidArea(new Dimension(10, 10)));
 		menuButtons.add(addButton);
-		//menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));
 		menuButtons.add(removeButton);
-		//menuButtons.add(Box.createRigidArea(new Dimension(100, 100)));
 		menuButtons.add(changeButton);
 		
 
@@ -312,7 +309,11 @@ chooseSet.addActionListener(
 		catagoriesFrame = new JFrame("Edit Catagories");
 		catagoriesFrame.setVisible(true);
 		catagoriesFrame.setMinimumSize(new Dimension(800,600));
-
+		
+		JLabel label = new JLabel(" Catagory Preview");
+		label.setFont(new Font("Arial", Font.PLAIN, 20));
+		label.setBackground(Color.cyan);
+		
 		catagoriesMain = new JPanel();
 		catagoriesCenter = new JPanel();
 		JPanel catagoriesWest = new JPanel();
@@ -320,16 +321,27 @@ chooseSet.addActionListener(
 		catagoriesWest.add(back, BorderLayout.PAGE_START);
 		
 		catagoriesMain.setLayout(new BorderLayout());
-		catagoriesCenter.setLayout(new GridLayout());
+		catagoriesCenter.setLayout(new GridLayout(3,3));
+		catagoriesCenter.add(Box.createRigidArea(new Dimension(10, 30)));
+		catagoriesCenter.add(label);
+		catagoriesCenter.add(Box.createRigidArea(new Dimension(10, 30)));
 		catagoriesCenter.add(AddSet);
 		catagoriesCenter.add(chooseSetMain);
 		catagoriesCenter.add(RemoveSet);
+		catagoriesCenter.add(Box.createRigidArea(new Dimension(10, 30)));
+		catagoriesCenter.add(Box.createRigidArea(new Dimension(10, 30)));
+		catagoriesCenter.add(Box.createRigidArea(new Dimension(10, 30)));
+
 
 		catagoriesMain.add(catagoriesCenter,BorderLayout.CENTER);
 		catagoriesMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.NORTH);
 		catagoriesMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.SOUTH);
 		catagoriesMain.add(Box.createRigidArea(new Dimension(100, 100)),BorderLayout.EAST);
 		catagoriesMain.add(catagoriesWest,BorderLayout.WEST);
+		
+		catagoriesCenter.setBackground(Color.cyan);
+		catagoriesWest.setBackground(Color.cyan);
+		catagoriesMain.setBackground(Color.cyan);
 		catagoriesFrame.setContentPane(catagoriesMain);
 	}
 	
@@ -408,9 +420,8 @@ chooseSet.addActionListener(
 		eastPanel.setBackground(java.awt.Color.cyan);
 		previewPanel.setBackground(java.awt.Color.cyan);
 		org.setBackground(java.awt.Color.cyan);
-
+		namePanel.setBackground(new Color(153, 255, 255));
 		
-		//org.add(main);
 		changeButtonFrame.setContentPane(main);
 	}
 	
@@ -841,6 +852,7 @@ chooseSet.addActionListener(
 //				}
 				
 				int removeIndx = chooseSet.getSelectedIndex();
+	    		JOptionPane.showMessageDialog(new JFrame(), "Removed Category: "+removeIndx);
 				System.out.println(removeIndx);
 				chooseSet.removeItemAt(removeIndx);
 				chooseSetMain.removeItemAt(removeIndx);
@@ -867,6 +879,8 @@ chooseSet.addActionListener(
 		else if(e.getSource() == CREATE)
 		{
 			String name = SetName.getText();
+    		JOptionPane.showMessageDialog(new JFrame(), "Category Added: "+name);
+
 			con.addcat(name);
 			chooseSet.addItem(name);
 			chooseSet.updateUI();

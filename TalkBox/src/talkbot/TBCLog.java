@@ -33,7 +33,7 @@ public class TBCLog {
 
 		JTabbedPane tabbedPane = new JTabbedPane();
 		simFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		simFrame.setVisible(true);
+		
 		simFrame.setMinimumSize(new Dimension(800,600));
 		JButton clear = new JButton("ClearAll");
 		JTextArea simText = new JTextArea(10,10);
@@ -125,7 +125,7 @@ public class TBCLog {
 		simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.EAST);
 		//simFrame.getContentPane().add(Box.createRigidArea(new Dimension(30, 30)), BorderLayout.WEST);
 		simFrame.getContentPane().setBackground(new Color(153, 255, 255));
-		
+		simFrame.setVisible(true);
 		
 	}
 	
