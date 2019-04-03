@@ -160,7 +160,7 @@ chooseSet.addActionListener(
 //					{
 //						E.printStackTrace();
 //					}
-					
+					System.out.println(set - 1 + " set");
 					if(con.getSetAt(set-1) > 0)
 					{
 						String[] bnames = new String [con.getSetAt(set-1)];//+1];//{"Pick Button","1","2","3","4","5","6"};
@@ -830,8 +830,9 @@ chooseSet.addActionListener(
 			String remove = "Error";
 			if(chooseSet.getSelectedIndex() >= 0 && chooseSet.getItemCount() > 1)
 			{
-				System.out.println(con.getSetButtonsAt(chooseSet.getSelectedIndex()));
+				//System.out.println(con.getSetButtonsAt(chooseSet.getSelectedIndex()));
 				remove = (String)chooseSet.getSelectedItem();
+				System.out.println(remove);
 				con.removecat(remove);
 				
 //				for(int i = con.getSetAt(chooseSet.getSelectedIndex() + 1); i < 1000; i++)

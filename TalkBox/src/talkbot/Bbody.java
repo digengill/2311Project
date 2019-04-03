@@ -14,6 +14,13 @@ import java.util.ArrayList;
 
 import sun.audio.*;
 
+
+
+import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.core.message.*;
+
 /*class Set{
 	String name;
 	ArrayList<Buttons> track = new ArrayList<Buttons>();
@@ -34,6 +41,7 @@ public class Bbody extends JPanel implements ActionListener {
 	private int currentset=0;
 	private Boolean on, play=false;
 	private Clip clip;
+	private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(TalkBoxConfigurationGUI.class);
 	  
 	
 	public void setup(JPanel mpanel) {
@@ -144,6 +152,7 @@ public class Bbody extends JPanel implements ActionListener {
 			
 			String tempath = this.con.getPathToAudioFile(currentset+1, temp.getbtnNumber());
 			playSound(tempath);
+			logger.info("Set " + currentset + " - Button " + temp.getbtnNumber());
 		} else if (categories.contains((JButton) e.getSource())) {
 			if (currentset != categories.indexOf((JButton) e.getSource())) {
 			for (int i = 0; i < tbuttons.get(currentset).size(); i++) {
@@ -159,6 +168,7 @@ public class Bbody extends JPanel implements ActionListener {
 				tbuttons.get(currentset).get(i).setVisible(true);
 			}}
 			this.revalidate(); this.repaint(); }
+			logger.info("Set - " + currentset);
 		} /*else if (e.getSource()==set1 && on==false) {
 			for (int i = 0; i < track2.size(); i++) {
 				//track2.get(i).setVisible(false); 
