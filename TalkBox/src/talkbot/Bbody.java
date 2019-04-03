@@ -41,9 +41,8 @@ public class Bbody extends JPanel implements ActionListener {
 	private int currentset=0;
 	private Boolean on, play=false;
 	private Clip clip;
-	private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(TalkBoxConfigurationGUI.class);
+	private static org.apache.logging.log4j.Logger logger = LogManager.getLogger("Bbody");//Bbody.class);
 	  
-	
 	public void setup(JPanel mpanel) {
 		sp = new JPanel();
 		sp.setMinimumSize(new Dimension(this.getWidth(), 300));

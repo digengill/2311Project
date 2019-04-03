@@ -24,7 +24,7 @@ import org.apache.logging.log4j.LogManager;
 
 public class TBCLog {
 	
-	private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(TalkBoxConfigurationGUI.class);
+	private static org.apache.logging.log4j.Logger logger = LogManager.getLogger("talkbot");//TalkBoxConfigurationGUI.class);
 	public static void runLog()
 	{
 		JFrame simFrame = new JFrame();
@@ -35,10 +35,13 @@ public class TBCLog {
 		simFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		simFrame.setVisible(true);
 		simFrame.setMinimumSize(new Dimension(800,600));
-		JButton clear = new JButton("Clear");
-		JTextArea text = new JTextArea(10,10);
-		JScrollPane scroll = new JScrollPane (text, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		File fname = new File("logs" + File.separator + "Mylogs.log");
+		JButton clear = new JButton("ClearAll");
+		JTextArea simText = new JTextArea(10,10);
+		JTextArea configText = new JTextArea(10, 10);
+		JScrollPane simScroll = new JScrollPane (simText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		JScrollPane configScroll = new JScrollPane (configText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		File simFile = new File("loggerFiles" + File.separator + "MySimlogs.log");
+		File configFile = new File("loggerFiles" + File.separator + "MyConfiglogs.log");
 		
 		tabbedPane.addTab("Simulator Logs", panel1);
 		tabbedPane.addTab("Configurator Logs", panel2);
@@ -52,21 +55,34 @@ public class TBCLog {
 				{
 					FileWriter fwOb;
 					try {
-						fwOb = new FileWriter("logs" + File.separator + "Mylogs.log", false);
+						fwOb = new FileWriter("loggerFiles" + File.separator + "MyConfiglogs.log", false);
 						 PrintWriter pwOb = new PrintWriter(fwOb, false);
 						    pwOb.flush();
 						    pwOb.close();
 						    fwOb.close();
+						    
+						    fwOb = new FileWriter("loggerFiles" + File.separator + "MySimlogs.log", false);
+						    pwOb = new PrintWriter(fwOb, false);
+							    pwOb.flush();
+							    pwOb.close();
+							    fwOb.close();
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} 
 					try {
 				          BufferedReader input = new BufferedReader(new InputStreamReader(
-				              new FileInputStream(fname)));
-				          text.read(input, "READING FILE :-)");
+				              new FileInputStream(simFile)));
+				          simText.read(input, "READING FILE :-)");
 				        } catch (Exception b) {
 				          b.printStackTrace();
+				        }
+					try {
+				          BufferedReader input = new BufferedReader(new InputStreamReader(
+				              new FileInputStream(configFile)));
+				          configText.read(input, "READING FILE :-)");
+				        } catch (Exception c) {
+				          c.printStackTrace();
 				        }
 					
 					logger.info("Clear");
@@ -83,15 +99,22 @@ public class TBCLog {
 		
 		try {
 	          BufferedReader input = new BufferedReader(new InputStreamReader(
-	              new FileInputStream(fname)));
-	          text.read(input, "READING FILE :-)");
+	              new FileInputStream(simFile)));
+	          simText.read(input, "READING FILE :-)");
+	        } catch (Exception e) {
+	          e.printStackTrace();
+	        }
+		try {
+	          BufferedReader input = new BufferedReader(new InputStreamReader(
+	              new FileInputStream(configFile)));
+	          configText.read(input, "READING FILE :-)");
 	        } catch (Exception e) {
 	          e.printStackTrace();
 	        }
 		panel1.setLayout(new BorderLayout());
-		panel1.add(scroll,BorderLayout.CENTER);
+		panel1.add(simScroll,BorderLayout.CENTER);
 		panel2.setLayout(new BorderLayout());
-		//panel2.add(scroll,BorderLayout.CENTER);
+		panel2.add(configScroll,BorderLayout.CENTER);
 		//scroll.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(30, 30, 30, 30)));
 		//text.setEditable(false);
 

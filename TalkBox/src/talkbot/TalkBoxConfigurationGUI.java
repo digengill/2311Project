@@ -45,7 +45,7 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	JTextField SetName;
 	
 	//for logger
-	private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(TalkBoxConfigurationGUI.class);
+	private static org.apache.logging.log4j.Logger logger = LogManager.getLogger("talkbot");//TalkBoxConfigurationGUI.class);
 	
 	 Configuration con;
 	private ObjectInputStream in;

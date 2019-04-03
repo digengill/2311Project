@@ -119,8 +119,13 @@ public class Configuration implements TalkBoxConfiguration{
 		
 		FileWriter fwOb;
 		try {
-			fwOb = new FileWriter("logs" + File.separator + "Mylogs.log", false);
+			fwOb = new FileWriter("loggerFiles" + File.separator + "MyConfiglogs.log", false);
 			 PrintWriter pwOb = new PrintWriter(fwOb, false);
+			    pwOb.flush();
+			    pwOb.close();
+			    fwOb.close();
+			    fwOb = new FileWriter("loggerFiles" + File.separator + "MySimlogs.log", false);
+			    pwOb = new PrintWriter(fwOb, false);
 			    pwOb.flush();
 			    pwOb.close();
 			    fwOb.close();
