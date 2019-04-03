@@ -188,7 +188,7 @@ public class Configuration implements TalkBoxConfiguration{
 	 */
 	public int getSetAt(int location)
 	{
-		System.out.println(this.btname[1].length);
+		//System.out.println(this.btname[1].length);
 		return this.btname[location].length;
 	}
 	
