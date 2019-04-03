@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [INFO ] 2019-04-02 21:21:22.100 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
 [INFO ] 2019-04-02 21:21:23.308 [AWT-EventQueue-0] TalkBoxConfigurationGUI - RemoveSet
 [INFO ] 2019-04-02 22:16:34.473 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
@@ -40,3 +41,63 @@
 [INFO ] 2019-04-02 23:11:09.486 [AWT-EventQueue-0] TalkBoxConfigurationGUI - Set 1 - Button 2
 [INFO ] 2019-04-02 23:11:09.629 [AWT-EventQueue-0] TalkBoxConfigurationGUI - Set 1 - Button 2
 [INFO ] 2019-04-02 23:11:09.741 [AWT-EventQueue-0] TalkBoxConfigurationGUI - Set 1 - Button 2
+=======
+[INFO ] 2019-04-02 20:35:26.505 [AWT-EventQueue-0] TalkBoxConfigurationGUI - Clear
+[INFO ] 2019-04-02 20:38:51.867 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
+[INFO ] 2019-04-02 20:38:53.800 [AWT-EventQueue-0] TalkBoxConfigurationGUI - RemoveSet
+[INFO ] 2019-04-02 20:39:20.079 [AWT-EventQueue-0] TalkBoxConfigurationGUI - back
+[INFO ] 2019-04-02 20:39:31.083 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
+[INFO ] 2019-04-02 20:39:35.823 [AWT-EventQueue-0] TalkBoxConfigurationGUI - AddSet
+[INFO ] 2019-04-02 20:39:45.595 [AWT-EventQueue-0] TalkBoxConfigurationGUI - CREATE -  New Set
+[INFO ] 2019-04-02 20:39:52.086 [AWT-EventQueue-0] TalkBoxConfigurationGUI - CREATE -  New Set 2
+[INFO ] 2019-04-02 20:39:54.833 [AWT-EventQueue-0] TalkBoxConfigurationGUI - CREATE -  New Set 3
+[INFO ] 2019-04-02 20:39:57.104 [AWT-EventQueue-0] TalkBoxConfigurationGUI - CREATE -  New Set 4
+[INFO ] 2019-04-02 20:39:59.548 [AWT-EventQueue-0] TalkBoxConfigurationGUI - RemoveSet
+[INFO ] 2019-04-02 20:40:03.774 [AWT-EventQueue-0] TalkBoxConfigurationGUI - chooseSet - 2
+[INFO ] 2019-04-02 20:40:03.791 [AWT-EventQueue-0] TalkBoxConfigurationGUI - REMOVE - Phrases
+[INFO ] 2019-04-02 20:40:17.467 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
+[INFO ] 2019-04-02 20:40:18.460 [AWT-EventQueue-0] TalkBoxConfigurationGUI - RemoveSet
+[INFO ] 2019-04-02 20:40:19.776 [AWT-EventQueue-0] TalkBoxConfigurationGUI - chooseSet - 2
+[INFO ] 2019-04-02 20:40:19.795 [AWT-EventQueue-0] TalkBoxConfigurationGUI - REMOVE - Emotions
+[INFO ] 2019-04-02 20:40:26.687 [AWT-EventQueue-0] TalkBoxConfigurationGUI - chooseSet - 1
+[INFO ] 2019-04-02 20:40:28.528 [AWT-EventQueue-0] TalkBoxConfigurationGUI - chooseSet - 2
+[INFO ] 2019-04-02 20:40:28.540 [AWT-EventQueue-0] TalkBoxConfigurationGUI - REMOVE - New Set
+[INFO ] 2019-04-02 20:40:33.039 [AWT-EventQueue-0] TalkBoxConfigurationGUI - chooseSet - 2
+[INFO ] 2019-04-02 20:40:33.054 [AWT-EventQueue-0] TalkBoxConfigurationGUI - REMOVE - New Set 2
+[INFO ] 2019-04-02 20:40:58.381 [AWT-EventQueue-0] TalkBoxConfigurationGUI - back
+[INFO ] 2019-04-02 20:41:06.335 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
+[INFO ] 2019-04-02 20:41:07.126 [AWT-EventQueue-0] TalkBoxConfigurationGUI - RemoveSet
+[INFO ] 2019-04-02 20:41:57.383 [AWT-EventQueue-0] TalkBoxConfigurationGUI - back
+[INFO ] 2019-04-02 20:42:04.320 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
+[INFO ] 2019-04-02 20:42:10.391 [AWT-EventQueue-0] TalkBoxConfigurationGUI - AddSet
+[INFO ] 2019-04-02 20:42:18.463 [AWT-EventQueue-0] TalkBoxConfigurationGUI - CREATE -  a
+[INFO ] 2019-04-02 20:42:21.489 [AWT-EventQueue-0] TalkBoxConfigurationGUI - CREATE -  b
+[INFO ] 2019-04-02 20:42:24.104 [AWT-EventQueue-0] TalkBoxConfigurationGUI - CREATE -  c
+[INFO ] 2019-04-02 20:42:27.515 [AWT-EventQueue-0] TalkBoxConfigurationGUI - CREATE -  d
+[INFO ] 2019-04-02 20:42:30.865 [AWT-EventQueue-0] TalkBoxConfigurationGUI - RemoveSet
+[INFO ] 2019-04-02 20:42:41.018 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
+[INFO ] 2019-04-02 20:42:41.908 [AWT-EventQueue-0] TalkBoxConfigurationGUI - RemoveSet
+[INFO ] 2019-04-02 20:42:49.072 [AWT-EventQueue-0] TalkBoxConfigurationGUI - chooseSet - 2
+[INFO ] 2019-04-02 20:42:49.092 [AWT-EventQueue-0] TalkBoxConfigurationGUI - REMOVE - New Set 3
+[INFO ] 2019-04-02 20:42:49.978 [AWT-EventQueue-0] TalkBoxConfigurationGUI - chooseSet - 2
+[INFO ] 2019-04-02 20:42:49.988 [AWT-EventQueue-0] TalkBoxConfigurationGUI - REMOVE - New Set 4
+[INFO ] 2019-04-02 20:42:50.394 [AWT-EventQueue-0] TalkBoxConfigurationGUI - chooseSet - 2
+[INFO ] 2019-04-02 20:42:50.405 [AWT-EventQueue-0] TalkBoxConfigurationGUI - REMOVE - a
+[INFO ] 2019-04-02 20:42:50.847 [AWT-EventQueue-0] TalkBoxConfigurationGUI - chooseSet - 2
+[INFO ] 2019-04-02 20:42:50.862 [AWT-EventQueue-0] TalkBoxConfigurationGUI - REMOVE - b
+[INFO ] 2019-04-02 20:43:42.247 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
+[INFO ] 2019-04-02 20:43:50.534 [AWT-EventQueue-0] TalkBoxConfigurationGUI - AddSet
+[INFO ] 2019-04-02 20:43:55.268 [AWT-EventQueue-0] TalkBoxConfigurationGUI - CREATE -  Category Name
+[INFO ] 2019-04-02 20:44:08.625 [AWT-EventQueue-0] TalkBoxConfigurationGUI - back
+[INFO ] 2019-04-02 20:44:10.024 [AWT-EventQueue-0] TalkBoxConfigurationGUI - removeButton
+[INFO ] 2019-04-02 20:44:19.118 [AWT-EventQueue-0] TalkBoxConfigurationGUI - changeButton
+[INFO ] 2019-04-02 20:44:23.425 [AWT-EventQueue-0] TalkBoxConfigurationGUI - back
+[INFO ] 2019-04-02 20:44:31.562 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
+[INFO ] 2019-04-02 20:44:38.923 [AWT-EventQueue-0] TalkBoxConfigurationGUI - changeAudio
+[INFO ] 2019-04-02 20:44:41.567 [AWT-EventQueue-0] TalkBoxConfigurationGUI - back
+[INFO ] 2019-04-02 20:44:50.055 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
+[INFO ] 2019-04-02 20:44:53.067 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
+[INFO ] 2019-04-02 20:46:20.860 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
+[INFO ] 2019-04-02 20:49:39.828 [AWT-EventQueue-0] TalkBoxConfigurationGUI - categories
+[INFO ] 2019-04-02 20:49:41.459 [AWT-EventQueue-0] TalkBoxConfigurationGUI - RemoveSet
+>>>>>>> branch 'master' of https://github.com/digengill/2311Project
