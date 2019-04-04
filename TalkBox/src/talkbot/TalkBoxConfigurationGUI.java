@@ -802,9 +802,10 @@ chooseSet.addActionListener(
 			changeButton();
 			logger.info("changeButton");
 		}else if (source == def) {
-			for (int i = 0; i < con.catnames.size(); i++) {
-				con.removecat(con.getcatNames(i));
-			}
+			for (int i = con.catnames.size()-1; i >=0; i--) {
+				con.removecat(con.getcatNames(i)); System.out.println(i + " index");
+			} //con.removecat(con.catnames.get(0));
+			//System.out.println(con.getSetAt(0) + " heremate");
 			con.addcat("Phrases");
 			con.addcat("Emotions");
 			con.setAudioSets(2);
@@ -823,7 +824,7 @@ chooseSet.addActionListener(
 			con.setRelativePath("Audio" + File.separator);
 			con.setTotalBtnNum(14);
 			con.setBtnNum(12);
-			System.out.println(con.getNumberOfAudioSets() + con.getTotalNumberOfButtons());
+			//System.out.println(con.getNumberOfAudioSets() + con.getTotalNumberOfButtons());
 			try {
 				outputSerial();
 			} catch (FileNotFoundException e1) {
