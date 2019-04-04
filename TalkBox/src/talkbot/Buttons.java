@@ -24,7 +24,7 @@ public class Buttons extends JButton{
 		super(name);
 		this.num = num;
 		this.ifile = ifile;
-		try {
+		try { //System.out.println(ifile);
 			this.pic = new ImageIcon(ImageIO.read(new File(ifile)).getScaledInstance(200, 230, Image.SCALE_DEFAULT));
 		} catch (IOException e) {
 			validImgPath=false;

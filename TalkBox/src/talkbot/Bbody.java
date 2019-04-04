@@ -54,12 +54,12 @@ public class Bbody extends JPanel implements ActionListener {
 	
 	public void sets() {
 		for (int i = 0; i < con.getNumberOfAudioSets(); i++) {
-			System.out.println(i + "\there");			
-			System.out.println(con.getNumberOfAudioSets());
+			//System.out.println(i + "\there");			
+			//System.out.println(con.getNumberOfAudioSets());
 
 			JButton temp = new JButton(con.getcatNames(i));
 			categories.add(temp);
-		} System.out.println(con.getNumberOfAudioSets());
+		} //System.out.println(con.getNumberOfAudioSets());
 		//set1 = new JButton("Phrases");
 		//set2 = new JButton("Emotions");
 		for (int i = 0; i < categories.size(); i++) {
@@ -74,7 +74,7 @@ public class Bbody extends JPanel implements ActionListener {
 	
 	public void setbtns() {//
 		tbuttons = new ArrayList<ArrayList<Buttons>>();
-		
+		//System.out.println(con.getSet1());
 		on=true;
 		for (int h = 0; h < con.getNumberOfAudioSets(); h++) {
 			if (h==0) { //System.out.println(con.getSet1());
@@ -161,7 +161,7 @@ public class Bbody extends JPanel implements ActionListener {
 			}
 			
 			currentset= categories.indexOf((JButton) e.getSource());
-			System.out.println(currentset); 
+			//System.out.println(currentset); 
 			if (!tbuttons.get(currentset).isEmpty()) {
 			for (int i = 0; i < tbuttons.get(currentset).size(); i++) {
 				sp.add(tbuttons.get(currentset).get(i));
@@ -170,30 +170,7 @@ public class Bbody extends JPanel implements ActionListener {
 			}}
 			this.revalidate(); this.repaint(); }
 			logger.info("Set - " + currentset);
-		} /*else if (e.getSource()==set1 && on==false) {
-			for (int i = 0; i < track2.size(); i++) {
-				//track2.get(i).setVisible(false); 
-				sp.remove(track2.get(i));
-			}
-			on=true;
-			for (int i = 0; i < track1.size(); i++) {
-				//track1.get(i).setVisible(true); 
-				sp.add(track1.get(i));
-				track1.get(i).addActionListener(this);
-			} 
-			this.revalidate(); this.repaint();
-		} else if (e.getSource()==set2 && on==true) {
-			for (int i = 0; i < track1.size(); i++) {
-				//track1.get(i).setVisible(false); track1.get(i).removeActionListener(this);
-				sp.remove(track1.get(i));
-				track1.get(i).removeActionListener(this);
-			} on=false;
-			for (int i = 0; i < track2.size(); i++) {
-				sp.add(track2.get(i));
-				track2.get(i).setVisible(true);
-				track2.get(i).addActionListener(this);
-			} this.revalidate(); this.repaint();
-		}*/
+		} 
 	}
 	 
 	public void playSound(String temp) {
