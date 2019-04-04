@@ -360,7 +360,7 @@ public class Configuration implements TalkBoxConfiguration{
 		
 		for (int i = 0; i < this.a.size(); i++) {
 			//Map values to array 
-			System.out.println(a.size());
+			System.out.println(a.size() + " here");
 			//Button Names
 			this.btname[i] = new String [this.bn.get(i).size()];
 			this.btname[i] = this.a.get(i).toArray(this.btname[i]);
@@ -397,6 +397,7 @@ public class Configuration implements TalkBoxConfiguration{
 		this.rpathImage = this.rpi.stream().map(u -> u.toArray(new String[0])).toArray(String[][]::new);//.toArray(this.rpathImage);
 		
 		this.aset--;
+		System.out.println(aset);
 	}
 
 //	protected void removeSetAt(int location)
@@ -423,7 +424,7 @@ public class Configuration implements TalkBoxConfiguration{
 
 	public String getcatNames (int num) {
 		for (int i = 0; i < catnames.size(); i++) {
-			//System.out.println(catnames.get(i));
+			System.out.println(catnames.get(i));
 		}
 		return this.catnames.get(num);
 	}
