@@ -131,7 +131,7 @@ for (int i = 1; i < bnames.length; i++) {
 	chooseSet = new JComboBox<String>();
 	for(int i = 0; i < con.getNumberOfAudioSets(); i++)
 	{
-		//System.out.println(con.getSetName(i));
+
 		chooseSet.addItem(con.getcatNames(i));
 		chooseSetMain.addItem(con.getcatNames(i));
 	}
@@ -146,21 +146,7 @@ chooseSet.addActionListener(
 					set = combo.getSelectedIndex() + 1;
 					if (set < (1))
 						set=1;
-//					try 
-//					{
-//						String[] bnames = new String [con.getSetAt(set)];//+1];//{"Pick Button","1","2","3","4","5","6"};
-//						bnames[0] = "Pick Button";
-//						for (int i = 1; i < bnames.length; i++) 
-//						{
-//							bnames[i] = ""+i;
-//						}
-//					chooseButton = new JComboBox(bnames);
-//					}
-//					catch(Exception E)
-//					{
-//						E.printStackTrace();
-//					}
-					System.out.println(set - 1 + " set");
+
 					if(con.getSetAt(set-1) > 0)
 					{
 						String[] bnames = new String [con.getSetAt(set-1)];//+1];//{"Pick Button","1","2","3","4","5","6"};
@@ -470,7 +456,6 @@ chooseSet.addActionListener(
 		addMain.setBackground(Color.cyan);
 		addFrame.setContentPane(addMain);
 		
-		//public void Addbtn (int set, String bname, String audioname, String image) {
 		
 	}
 	
@@ -515,12 +500,9 @@ chooseSet.addActionListener(
 		 String filename = null;
         File f = chooser.getSelectedFile();
         if (JFileChooser.CANCEL_OPTION == result) {
-           // System.out.println("canceled");
         } else if (JFileChooser.APPROVE_OPTION== result) {
             filename = f.getAbsolutePath();
-            //System.out.println(filename+"   APPROVE");
         }else{
-            //System.out.println(result);
         }
 		
 		String path = filename;
@@ -545,9 +527,9 @@ chooseSet.addActionListener(
 		panel.setLayout(new GridLayout(3, 2)); 
 		CREATE = new JButton("CREATE"); 
 		CREATE.addActionListener(this); 
-		SetName = new JTextField("Category Name"); 
+		SetName = new JTextField(""); 
 		SetName.addActionListener(this); 
-		panel.add(chooseSet); 
+		panel.add(new JLabel("Add Set")); 
 		panel.add(SetName); 
 		panel.add(CREATE); 
 		AddSetFrame.add(panel); 
@@ -591,9 +573,7 @@ chooseSet.addActionListener(
 			   // a.printStackTrace();
 			}
 			
-           // System.out.println(test+"   "+last);
-           // System.out.println(filename);
-           // System.out.println(con.getRelativePathToAudioFiles());
+          
             if (filename.endsWith(".wav"))
             	con.setAudioName(set, buttonNUM, filename);
             else { //If wrong file 
@@ -607,7 +587,6 @@ chooseSet.addActionListener(
 		}
 		else if(source == changeImage)
 		{
-			// Images/filename.
 			String test = fileChooser();
 			if (test == null)
 			{
@@ -627,7 +606,6 @@ chooseSet.addActionListener(
 			}
 		
             String imagepath = "Images"+File.separator+filename;
-          //  System.out.println(imagepath);
             if (imagepath.endsWith(".png") || imagepath.endsWith(".PNG"))
             	con.setImagePath(set, buttonNUM, imagepath);
             else {
@@ -653,7 +631,6 @@ chooseSet.addActionListener(
 		{
 			String text = btnName.getText();
 			con.setBtnName(set, buttonNUM, text);
-			//System.out.println(text);
 		    btnName.setText("");
 		    try {
 				outputSerial();
@@ -684,7 +661,7 @@ chooseSet.addActionListener(
 			}
 			else
 			{
-			int last = test.lastIndexOf(File.separator); System.out.println(last + " here");
+			int last = test.lastIndexOf(File.separator); 
 			String filename = test.substring(last);
 			
 			File sourceOfFile = new File(test);
@@ -769,12 +746,8 @@ chooseSet.addActionListener(
 		else if (source == removeButtonSave)
 		{
 			int buttonText = Integer.parseInt(btnName2.getText());
-			//System.out.println(buttonText);
 		    btnName2.setText("");
-//		    if ((set==1 && (buttonText < 1 || buttonText > con.getSetAt(0)) || (set==2 && (buttonText<1 || buttonText>con.getSetAt(0)))))
-//		    	{
-//		    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Button Number.\n Try Again.");
-//		    	}
+
 		    if (buttonText < 1 || buttonText > con.getSetAt(set-1) )
 	    	{
 	    		JOptionPane.showMessageDialog(new JFrame(), "Invalid Button Number.\n Try Again.");
@@ -824,7 +797,7 @@ chooseSet.addActionListener(
 			con.setRelativePath("Audio" + File.separator);
 			con.setTotalBtnNum(14);
 			con.setBtnNum(12);
-			//System.out.println(con.getNumberOfAudioSets() + con.getTotalNumberOfButtons());
+
 			try {
 				outputSerial();
 			} catch (FileNotFoundException e1) {
@@ -877,19 +850,12 @@ chooseSet.addActionListener(
 			String remove = "Error";
 			if(chooseSet.getSelectedIndex() >= 0 && chooseSet.getItemCount() > 1)
 			{
-				//System.out.println(con.getSetButtonsAt(chooseSet.getSelectedIndex()));
 				remove = (String)chooseSet.getSelectedItem();
-				System.out.println(remove);
 				con.removecat(remove);
-				
-//				for(int i = con.getSetAt(chooseSet.getSelectedIndex() + 1); i < 1000; i++)
-//				{
-//					con.getSetAt(chooseSet.getSelectedIndex() + 1);
-//				}
+		
 				
 				int removeIndx = chooseSet.getSelectedIndex();
 	    		JOptionPane.showMessageDialog(new JFrame(), "Removed Category: "+removeIndx);
-				System.out.println(removeIndx);
 				chooseSet.removeItemAt(removeIndx);
 				chooseSetMain.removeItemAt(removeIndx);
 				
