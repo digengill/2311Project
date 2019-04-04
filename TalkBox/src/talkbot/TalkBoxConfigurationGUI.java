@@ -797,10 +797,7 @@ chooseSet.addActionListener(
 			con.setRelativePath("Audio" + File.separator);
 			con.setTotalBtnNum(14);
 			con.setBtnNum(12);
-<<<<<<< HEAD
-=======
-			//System.out.println(con.getNumberOfAudioSets() + con.getTotalNumberOfButtons());
->>>>>>> branch 'master' of https://github.com/digengill/2311Project
+
 			try {
 				outputSerial();
 			} catch (FileNotFoundException e1) {
