@@ -33,7 +33,7 @@ public class TalkBoxConfigurationGUI extends JFrame implements ActionListener {
 	ImageIcon preview, goBack;
 	JComboBox chooseButton;
 	JComboBox<String> chooseSet, chooseSetMain;
-	
+	JButton def;
 	String buttonText, newbtnImg, newbtnAudio;
 	JTextField btnName, btnName2;
 	int buttonNUM = 1, set = 1;
@@ -72,6 +72,7 @@ try {
 } catch (IOException e) {
 	e.printStackTrace();
 } 
+def = new JButton("Reset");
 catagories = new JButton("Catagories");
 back = new JButton(goBack);
 addAudio = new JButton("Add Audio");
@@ -206,7 +207,7 @@ chooseSet.addActionListener(
 	removeButton.addActionListener(this);
 	changeButton.addActionListener(this);
 	catagories.addActionListener(this);
-	
+	def.addActionListener(this);
 
 	
 		menuButtons = new JPanel();
@@ -222,6 +223,7 @@ chooseSet.addActionListener(
 		menuButtons.add(addButton);
 		menuButtons.add(removeButton);
 		menuButtons.add(changeButton);
+		menuButtons.add(def);
 		
 
 	this.add(menuButtons);
@@ -682,7 +684,7 @@ chooseSet.addActionListener(
 			}
 			else
 			{
-			int last = test.lastIndexOf(File.separator); System.out.println(last);
+			int last = test.lastIndexOf(File.separator); System.out.println(last + " here");
 			String filename = test.substring(last);
 			
 			File sourceOfFile = new File(test);
@@ -799,6 +801,39 @@ chooseSet.addActionListener(
 		{	
 			changeButton();
 			logger.info("changeButton");
+		}else if (source == def) {
+			for (int i = 0; i < con.catnames.size(); i++) {
+				con.removecat(con.getcatNames(i));
+			}
+			con.addcat("Phrases");
+			con.addcat("Emotions");
+			con.setAudioSets(2);
+			con.Addbtn(1, "Bad", "bad.wav", "Images"+File.separator+"bad.png");//config.setAudioName(1, 1, "bad.wav"); 
+			con.Addbtn(1, "First", "first.wav", "Images"+File.separator+"1st.png");//.setAudioName(1, 2, "first.wav");
+			con.Addbtn(1, "Good", "good.wav", "Images"+File.separator+"good.png");//.setAudioName(1, 3, "good.wav");
+			con.Addbtn(1, "Last", "last.wav", "Images"+File.separator+"last.png");//.setAudioName(1, 4, "last.wav");
+			con.Addbtn(1, "Little", "little.wav", "Images"+File.separator+"little.png");//.setAudioName(1, 5, "little.wav");
+			con.Addbtn(1, "Long", "long.wav", "Images"+File.separator+"long.png");//.setAudioName(1, 6, "long.wav");
+				con.Addbtn(2, "Jealous", "jealous.wav", "Images"+File.separator+"jealous.png");//.setAudioName(2, 1, "jealous.wav");
+				con.Addbtn(2, "Sad", "sad.wav", "Images"+File.separator+"sad.png");//.setAudioName(2, 2, "sad.wav");
+				con.Addbtn(2, "Scared", "scared.wav", "Images"+File.separator+"scared.png");//.setAudioName(2, 3, "scared.wav");
+				con.Addbtn(2, "Suprised", "suprised.wav", "Images"+File.separator+"suprised.png");//.setAudioName(2, 4, "suprised.wav");
+				con.Addbtn(2, "Angry", "angry.wav", "Images"+File.separator+"angry.png");//.setAudioName(2, 5, "angry.wav");
+				con.Addbtn(2, "Happy", "happy.wav", "Images"+File.separator+"happy.png");//.setAudioName(2, 6, "happy.wav");
+			con.setRelativePath("Audio" + File.separator);
+			con.setTotalBtnNum(14);
+			con.setBtnNum(12);
+			System.out.println(con.getNumberOfAudioSets() + con.getTotalNumberOfButtons());
+			try {
+				outputSerial();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 		}
 		else if(source == back)
 		{

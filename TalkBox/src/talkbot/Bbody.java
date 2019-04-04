@@ -54,10 +54,12 @@ public class Bbody extends JPanel implements ActionListener {
 	
 	public void sets() {
 		for (int i = 0; i < con.getNumberOfAudioSets(); i++) {
-			System.out.println(i + "\there");
-			JButton temp = new JButton(con.getcatNames(i));System.out.println(con.getNumberOfAudioSets());
+			System.out.println(i + "\there");			
+			System.out.println(con.getNumberOfAudioSets());
+
+			JButton temp = new JButton(con.getcatNames(i));
 			categories.add(temp);
-		} 
+		} System.out.println(con.getNumberOfAudioSets());
 		//set1 = new JButton("Phrases");
 		//set2 = new JButton("Emotions");
 		for (int i = 0; i < categories.size(); i++) {
