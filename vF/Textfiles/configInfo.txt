@@ -1,0 +1,7 @@
+Welcome to the TalkBox Configurator!
+This acts as an emulator for the actual TalkBox, and can be used on any platform.
+How to use:
+	-To add/remove Categories, press Categories
+	-You can edit the buttons through Add/Remove/Change Buttons
+	-To see the Simulator logs, go to Logs
+	-Only .wav files for Audio, and .png for Image
